@@ -16,7 +16,7 @@ import prefuse.visual.NodeItem;
  * 
  * <p>The algorithm used is that of G. Melançon and I. Herman from their
  * research paper Circular Drawings of Rooted Trees, Reports of the Centre for 
- * Mathematics and Computer Sciences, Report Number INS9817, 1998.</p>
+ * Mathematics and Computer Sciences, Report Number INS-9817, 1998.</p>
  *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
