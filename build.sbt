@@ -10,7 +10,7 @@ lazy val commonJavaOptions = Seq("-source", "1.6")
 lazy val fullDescr = "A toolkit for building interactive information visualization applications"
 
 lazy val commonSettings = Project.defaultSettings ++ Seq(
-  version           := "1.0.0-SNAPSHOT",
+  version           := "1.0.0",
   organization      := "de.sciss",
   scalaVersion      := "2.11.1",  // not used
   homepage          := Some(url(s"https://github.com/Sciss/$baseName")),
@@ -46,6 +46,11 @@ lazy val commonSettings = Project.defaultSettings ++ Seq(
         <name>Hanns Holger Rutz</name>
         <url>http://www.sciss.de</url>
       </developer>
+      <developer>
+        <id>alex-rind</id>
+        <name>Alexander Rind</name>
+        <url>http://alex.timebench.org</url>
+      </developer>
     </developers>
   }
 )
@@ -60,9 +65,10 @@ lazy val full = Project(
   settings      = commonSettings ++ Seq(
     name := baseName,
     description := fullDescr,
-    publishArtifact in (Compile, packageBin) := false, // there are no binaries
-    publishArtifact in (Compile, packageDoc) := false, // there are no javadocs
-    publishArtifact in (Compile, packageSrc) := false  // there are no sources
+    // publishArtifact in (Compile, packageBin) := false, // there are no binaries
+    // publishArtifact in (Compile, packageDoc) := false, // there are no javadocs
+    // publishArtifact in (Compile, packageSrc) := false  // there are no sources
+    packagedArtifacts := Map.empty
   )
 )
 
@@ -73,7 +79,7 @@ lazy val core: Project = Project(
     name        := s"$baseName-core",
     description := fullDescr,
     libraryDependencies ++= Seq(
-      // "junit" % "junit" % "3.8.1" % "test"
+      "lucene"       % "lucene"               % "1.4.3",
       "com.novocode" % "junit-interface"      % "0.10"  % "test",
       "mysql"        % "mysql-connector-java" % "5.1.6" % "test"
     )

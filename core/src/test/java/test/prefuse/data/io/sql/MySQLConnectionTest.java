@@ -5,12 +5,18 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 import prefuse.data.Table;
 import prefuse.data.io.sql.ConnectionFactory;
 import prefuse.data.io.sql.DatabaseDataSource;
 import prefuse.util.ui.JPrefuseTable;
 import test.prefuse.TestConfig;
 
+/**
+ * Note: this test currently fails because it expects a
+ * MySQL database locally provided.
+ */
+@Ignore
 public class MySQLConnectionTest extends TestCase {
 
     // logger
