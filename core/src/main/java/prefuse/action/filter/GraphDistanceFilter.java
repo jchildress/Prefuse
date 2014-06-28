@@ -148,4 +148,12 @@ public class GraphDistanceFilter extends GroupAction {
         }
     }
 
+    /**
+     * Clears references to graph tuples. The group and visualization are
+     * retained.
+     */
+    public void reset() {
+        m_bfs = new BreadthFirstIterator();
+    }
+
 } // end of class GraphDistanceFilter
