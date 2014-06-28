@@ -67,7 +67,7 @@ public class MySQLConnectionTest extends TestCase {
         
         m_table = t;
     }
-    
+
     public static void main(String[] args) {
         MySQLConnectionTest test = new MySQLConnectionTest();
         test.testLoadFromMySQLDatabase();
