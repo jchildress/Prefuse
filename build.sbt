@@ -9,7 +9,7 @@ lazy val commonJavaOptions = Seq("-source", "1.6")
 
 lazy val fullDescr = "A toolkit for building interactive information visualization applications"
 
-lazy val commonSettings = Project.defaultSettings ++ Seq(
+lazy val commonSettings = Seq(
   version           := "1.0.1-SNAPSHOT",
   organization      := "de.sciss",
   scalaVersion      := "2.11.7",  // not used
@@ -81,6 +81,7 @@ lazy val core: Project = Project(
     libraryDependencies ++= Seq(
       "lucene"       % "lucene"               % "1.4.3",
       "com.novocode" % "junit-interface"      % "0.11"   % "test",
+      // "junit"        % "junit"                % "4.12"   % "test",
       "mysql"        % "mysql-connector-java" % "5.1.38" % "test"
     )
   )
