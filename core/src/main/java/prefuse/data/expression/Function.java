@@ -8,7 +8,7 @@ package prefuse.data.expression;
  */
 public interface Function extends Expression {
 
-    /** Constant indicating a vriable argument count */
+    /** Constant indicating a variable argument count */
     public static final int VARARGS = -1;
     
     /**
@@ -25,7 +25,7 @@ public interface Function extends Expression {
     
     /**
      * Get the maximum number of parameters accepted by this Function.
-     * @return the maximum number of parametes accepted, or
+     * @return the maximum number of parameters accepted, or
      * {@link #VARARGS} is the number is variable.
      */
     public int getParameterCount();

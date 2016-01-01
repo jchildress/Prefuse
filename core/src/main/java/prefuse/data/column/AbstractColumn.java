@@ -136,9 +136,9 @@ public abstract class AbstractColumn implements Column {
      * Notifies all registered listeners of a column UPDATE event
      */
     protected final void fireColumnEvent(int type, int start, int end) {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i )
-            ((ColumnListener)lstnrs[i]).columnChanged(this, type, start, end);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i )
+            ((ColumnListener)listeners[i]).columnChanged(this, type, start, end);
     }
     
     /**
@@ -147,9 +147,9 @@ public abstract class AbstractColumn implements Column {
      * @param prev the previous value at the given index
      */
     protected final void fireColumnEvent(int idx, int prev) {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i )
-            ((ColumnListener)lstnrs[i]).columnChanged(this, idx, prev);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i )
+            ((ColumnListener)listeners[i]).columnChanged(this, idx, prev);
     }
     
     /**
@@ -158,9 +158,9 @@ public abstract class AbstractColumn implements Column {
      * @param prev the previous value at the given index
      */
     protected final void fireColumnEvent(int idx, long prev) {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i )
-            ((ColumnListener)lstnrs[i]).columnChanged(this, idx, prev);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i )
+            ((ColumnListener)listeners[i]).columnChanged(this, idx, prev);
     }
     
     /**
@@ -169,9 +169,9 @@ public abstract class AbstractColumn implements Column {
      * @param prev the previous value at the given index
      */
     protected final void fireColumnEvent(int idx, float prev) {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i )
-            ((ColumnListener)lstnrs[i]).columnChanged(this, idx, prev);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i )
+            ((ColumnListener)listeners[i]).columnChanged(this, idx, prev);
     }
     
     /**
@@ -180,9 +180,9 @@ public abstract class AbstractColumn implements Column {
      * @param prev the previous value at the given index
      */
     protected final void fireColumnEvent(int idx, double prev) {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i )
-            ((ColumnListener)lstnrs[i]).columnChanged(this, idx, prev);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i )
+            ((ColumnListener)listeners[i]).columnChanged(this, idx, prev);
     }
     
     /**
@@ -191,9 +191,9 @@ public abstract class AbstractColumn implements Column {
      * @param prev the previous value at the given index
      */
     protected final void fireColumnEvent(int idx, boolean prev) {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i )
-            ((ColumnListener)lstnrs[i]).columnChanged(this, idx, prev);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i )
+            ((ColumnListener)listeners[i]).columnChanged(this, idx, prev);
     }
     
     /**
@@ -202,9 +202,9 @@ public abstract class AbstractColumn implements Column {
      * @param prev the previous value at the given index
      */
     protected final void fireColumnEvent(int idx, Object prev) {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i )
-            ((ColumnListener)lstnrs[i]).columnChanged(this, idx, prev);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i )
+            ((ColumnListener)listeners[i]).columnChanged(this, idx, prev);
     }
     
     // ------------------------------------------------------------------------
@@ -222,18 +222,18 @@ public abstract class AbstractColumn implements Column {
      * under a different default value will not be changed as a result
      * of this method; the new default will apply to newly added rows
      * only.
-     * @param dflt
+     * @param dFlt
      */
-    public void setDefaultValue(Object dflt) {
+    public void setDefaultValue(Object dFlt) {
         boolean prim = m_columnType.isPrimitive();
-        if ( dflt != null &&
-            ((!prim && !m_columnType.isInstance(dflt)) ||
-             (prim && !TypeLib.isWrapperInstance(m_columnType, dflt))) )
+        if ( dFlt != null &&
+            ((!prim && !m_columnType.isInstance(dFlt)) ||
+             (prim && !TypeLib.isWrapperInstance(m_columnType, dFlt))) )
         {
             throw new IllegalArgumentException(
                 "Default value is not of type " + m_columnType.getName());
         }
-        m_defaultValue = dflt;
+        m_defaultValue = dFlt;
     }
     
     /**
@@ -533,7 +533,7 @@ public abstract class AbstractColumn implements Column {
      */
     public void setBoolean(boolean val, int row) throws DataTypeException {
         if ( canSetBoolean() ) {
-            set(new Boolean(val), row);
+            set(Boolean.valueOf(val), row);
         } else {
             throw new DataTypeException(boolean.class);
         }

@@ -459,7 +459,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
         
         public boolean keyEquals(Entry e) {
             Object k = getKey();
-            return ( k==null ? k==e.getKey() : k.equals(e.getKey()) );
+            return (k == null ? null == e.getKey() : k.equals(e.getKey()));
         }
         
         public boolean equals(Object o) {
@@ -472,9 +472,9 @@ public abstract class AbstractTreeMap implements IntSortedMap {
         }
 
         public int hashCode() {
-            int khash = getKey().hashCode();
-            int vhash = val;
-            return khash^vhash;
+            int kHash = getKey().hashCode();
+            int vHash = val;
+            return kHash^vHash;
         }
 
         public String toString() {
@@ -539,7 +539,8 @@ public abstract class AbstractTreeMap implements IntSortedMap {
             if (lastReturned == NIL)
                 throw new IllegalStateException();
             if (modCount != expectedModCount)
-                throw new ConcurrentModificationException();
+                throw new ConcurrentModificationException(
+                        "modCount = " + modCount + "; expectedModCount = " + expectedModCount);
             if (lastReturned.left != NIL && lastReturned.right != NIL) 
                 next = lastReturned; 
             AbstractTreeMap.this.remove(lastReturned);

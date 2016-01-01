@@ -18,7 +18,7 @@ import prefuse.visual.VisualItem;
  * a data field. The type of color encoding used is dependent upon the
  * reported data type. Nominal (categorical) data is encoded using a different
  * hue for each unique data value. Ordinal (ordered) and Numerical
- * (quantitative) data is shown using a grayscale color ramp. In all cases,
+ * (quantitative) data is shown using a gray-scale color ramp. In all cases,
  * the default color palette used by this Action can be replaced with a
  * client-specified palette provided to the DataColorAction constructor.
  * </p>
@@ -52,9 +52,9 @@ public class DataColorAction extends ColorAction {
     
     private double[] m_dist;
     private int      m_bins = Constants.CONTINUOUS;
-    private Map      m_omap;
-    private Object[] m_olist;
-    private ColorMap m_cmap = new ColorMap(null,0,1);
+    private Map      m_oMap;
+    private Object[] m_oList;
+    private ColorMap m_cMap = new ColorMap(null,0,1);
     private int[]    m_palette;
     
     
@@ -222,10 +222,10 @@ public class DataColorAction extends ColorAction {
      * will be thrown when this action is run.
      */
     public void setOrdinalMap(Object[] values) {
-        m_olist = values;
-        m_omap = new HashMap();
+        m_oList = values;
+        m_oMap = new HashMap();
         for ( int i=0; i<values.length; ++i ) {
-            m_omap.put(values[i], new Integer(i));
+            m_oMap.put(values[i], new Integer(i));
         }
     }
     
@@ -238,7 +238,7 @@ public class DataColorAction extends ColorAction {
     protected void setup() {
         int size = 64;
         
-        int[] palette = m_palette;
+        int[] palette;
         
         // switch up scale if necessary
         m_tempScale = m_scale;
@@ -255,20 +255,19 @@ public class DataColorAction extends ColorAction {
         case Constants.NOMINAL:
         case Constants.ORDINAL:
             m_dist = getDistribution();
-            size = m_omap.size();
+            size = m_oMap.size();
             palette = (m_palette!=null ? m_palette : createPalette(size));
-            m_cmap.setColorPalette(palette);
-            m_cmap.setMinValue(m_dist[0]);
-            m_cmap.setMaxValue(m_dist[1]);
-            return;
+            m_cMap.setColorPalette(palette);
+            m_cMap.setMinValue(m_dist[0]);
+            m_cMap.setMaxValue(m_dist[1]);
+            break;
         case Constants.NUMERICAL:
             m_dist = getDistribution();
             size = m_bins > 0 ? m_bins : size;
             palette = (m_palette!=null ? m_palette : createPalette(size));
-            m_cmap.setColorPalette(palette);
-            m_cmap.setMinValue(0.0);
-            m_cmap.setMaxValue(1.0);
-            return;
+            m_cMap.setColorPalette(palette);
+            m_cMap.setMinValue(0.0);
+            m_cMap.setMaxValue(1.0);
         }
     }
     
@@ -285,7 +284,7 @@ public class DataColorAction extends ColorAction {
         TupleSet ts = m_vis.getGroup(m_group);
 
         if ( m_type == Constants.NUMERICAL ) {
-            m_omap = null;
+            m_oMap = null;
             if ( m_scale == Constants.QUANTILE_SCALE && m_bins > 0 ) {
                 double[] values =
                         DataLib.toDoubleArray(ts.tuples(), m_dataField);
@@ -297,9 +296,9 @@ public class DataColorAction extends ColorAction {
                 return dist;
             }
         } else {
-            if ( m_olist == null ) 
-                m_omap = DataLib.ordinalMap(ts, m_dataField);
-            return new double[] { 0, m_omap.size()-1 };
+            if ( m_oList == null )
+                m_oMap = DataLib.ordinalMap(ts, m_dataField);
+            return new double[] { 0, m_oMap.size()-1 };
         }
     }
     
@@ -339,10 +338,10 @@ public class DataColorAction extends ColorAction {
         case Constants.NUMERICAL:
             double v = item.getDouble(m_dataField);
             double f = MathLib.interp(m_scale, v, m_dist);
-            return m_cmap.getColor(f);
+            return m_cMap.getColor(f);
         default:
-            Integer idx = (Integer)m_omap.get(item.get(m_dataField));
-            return m_cmap.getColor(idx.doubleValue());
+            Integer idx = (Integer) m_oMap.get(item.get(m_dataField));
+            return m_cMap.getColor(idx.doubleValue());
         }
     }
     

@@ -199,7 +199,7 @@ public class TreeView extends Display {
         TupleSet search = new PrefixSearchTupleSet(); 
         m_vis.addFocusGroup(Visualization.SEARCH_ITEMS, search);
         search.addTupleSetListener(new TupleSetListener() {
-            public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
+            public void tupleSetChanged(TupleSet tSet, Tuple[] add, Tuple[] rem) {
                 m_vis.cancel("animatePaint");
                 m_vis.run("fullPaint");
                 m_vis.run("animatePaint");

@@ -186,7 +186,7 @@ public class RadialGraphView extends Display {
         m_vis.addFocusGroup(linear, new DefaultTupleSet());
         m_vis.getGroup(Visualization.FOCUS_ITEMS).addTupleSetListener(
             new TupleSetListener() {
-                public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
+                public void tupleSetChanged(TupleSet tSet, Tuple[] add, Tuple[] rem) {
                     TupleSet linearInterp = m_vis.getGroup(linear);
                     if ( add.length < 1 ) return; linearInterp.clear();
                     for ( Node n = (Node)add[0]; n!=null; n=n.getParent() )
@@ -198,7 +198,7 @@ public class RadialGraphView extends Display {
         SearchTupleSet search = new PrefixSearchTupleSet();
         m_vis.addFocusGroup(Visualization.SEARCH_ITEMS, search);
         search.addTupleSetListener(new TupleSetListener() {
-            public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
+            public void tupleSetChanged(TupleSet tSet, Tuple[] add, Tuple[] rem) {
                 m_vis.cancel("animatePaint");
                 m_vis.run("recolor");
                 m_vis.run("animatePaint");

@@ -110,7 +110,6 @@ public class ColorAction extends EncoderAction {
      * Set the color field name that this ColorAction should set. The
      * ColorAction will automatically try to update the start and end
      * values for this field if it is an interpolated field.
-     * @param field
      */
     public void setField(String field) {
         m_colorField = field;

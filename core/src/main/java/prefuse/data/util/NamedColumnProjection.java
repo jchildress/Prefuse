@@ -51,7 +51,7 @@ public class NamedColumnProjection extends AbstractColumnProjection {
     /**
      * Remove a column name from this projection
      * @param name the column name to remove
-     * @return true if the name was succesffuly removed, false otherwise
+     * @return true if the name was successfully removed, false otherwise
      */
     public boolean removeName(String name) {
         return m_names.remove(name);

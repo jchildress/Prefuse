@@ -1,7 +1,7 @@
 package prefuse.util.collections;
 
 /**
- * Not of interest for users; only for implementors of hashtables. Used to keep
+ * Not of interest for users; only for implementors of hash-tables. Used to keep
  * hash table capacities prime numbers.
  * 
  * <p>
@@ -21,12 +21,12 @@ package prefuse.util.collections;
  * </p>
  * 
  * This class has been adapted from the corresponding class in the COLT
- * library for scientfic computing.
+ * library for scientific computing.
  * 
  * @author wolfgang.hoschek@cern.ch
  * @version 1.0, 09/24/99
  */
-public class PrimeFinder extends Object {
+public class PrimeFinder {
     /**
      * The largest prime this class can generate; currently equal to
      * <tt>Integer.MAX_VALUE</tt>.
@@ -51,9 +51,9 @@ public class PrimeFinder extends Object {
      * includes 1039,1117,1201,1277,1361,1439,1523,1597,1759,1907,2081. So if
      * you need a prime >= 1040, you will find a prime <= 1040*1.11=1154.
      * 
-     * Chunks are chosen such that they are optimized for a hashtable
-     * growthfactor of 2.0; If your hashtable has such a growthfactor then,
-     * after initially "rounding to a prime" upon hashtable construction, it
+     * Chunks are chosen such that they are optimized for a hash-table
+     * growth factor of 2.0; If your hash-table has such a growth factor then,
+     * after initially "rounding to a prime" upon hash-table construction, it
      * will later expand to prime capacities such that there exist no better
      * primes.
      * 
@@ -155,7 +155,7 @@ public class PrimeFinder extends Object {
      * 
      * @param desiredCapacity
      *            the capacity desired by the user.
-     * @return the capacity which should be used for a hashtable.
+     * @return the capacity which should be used for a hash-table.
      */
     public static int nextPrime(int desiredCapacity) {
         int i = java.util.Arrays.binarySearch(primeCapacities, desiredCapacity);

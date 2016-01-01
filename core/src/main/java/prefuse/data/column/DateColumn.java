@@ -26,43 +26,43 @@ public class DateColumn extends AbstractColumn {
 
     /**
      * Create a new DateColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public DateColumn(int nrows) {
-        this(Date.class, nrows, nrows, 0L);
+    public DateColumn(int nRows) {
+        this(Date.class, nRows, nRows, 0L);
     }
     
     /**
      * Create a new DateColumn.
      * @param type the exact data type (must be an instance or 
      * subclass of java.util.Date) 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public DateColumn(Class type, int nrows) {
-        this(type, nrows, nrows, 0L);
+    public DateColumn(Class type, int nRows) {
+        this(type, nRows, nRows, 0L);
     }
     
     /**
      * Create a new DateColumn.
      * @param type the exact data type (must be an instance or 
      * subclass of java.util.Date)
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      * @param capacity the initial capacity of the column
      * @param defaultValue the default value for the column
      */
-    public DateColumn(Class type, int nrows, int capacity, long defaultValue) {
+    public DateColumn(Class type, int nRows, int capacity, long defaultValue) {
         super(type, TimeLib.getDate(type, defaultValue));
         if ( !Date.class.isAssignableFrom(type) ) {
             throw new IllegalArgumentException("Column type must be an "
                 + "instance or subclass of java.util.Date.");
         }
-        if ( capacity < nrows ) {
+        if ( capacity < nRows ) {
             throw new IllegalArgumentException(
                 "Capacity value can not be less than the row count.");
         }
         m_values = new long[capacity];
         Arrays.fill(m_values, defaultValue);
-        m_size = nrows;
+        m_size = nRows;
     }
     
     // ------------------------------------------------------------------------
@@ -78,16 +78,16 @@ public class DateColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        if ( nrows > m_values.length ) {
-            int capacity = Math.max((3*m_values.length)/2 + 1, nrows);
+    public void setMaximumRow(int nRows) {
+        if ( nRows > m_values.length ) {
+            int capacity = Math.max((3*m_values.length)/2 + 1, nRows);
             long[] values = new long[capacity];
             System.arraycopy(m_values, 0, values, 0, m_size);
             Arrays.fill(values, m_size, capacity,
                     ((Date)m_defaultValue).getTime());
             m_values = values;
         }
-        m_size = nrows;
+        m_size = nRows;
     }
     
     /**

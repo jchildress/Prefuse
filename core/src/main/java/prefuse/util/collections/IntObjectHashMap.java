@@ -19,7 +19,7 @@ import java.util.Arrays;
  * the broad picture.
  * 
  * This class has been adapted from the corresponding class in the COLT
- * library for scientfic computing.
+ * library for scientific computing.
  * 
  * @author wolfgang.hoschek@cern.ch
  * @version 1.0, 09/24/99

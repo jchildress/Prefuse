@@ -9,9 +9,9 @@ public interface Force {
 
     /**
      * Initialize this force function.
-     * @param fsim the encompassing ForceSimulator
+     * @param fSim the encompassing ForceSimulator
      */
-    public void init(ForceSimulator fsim);
+    public void init(ForceSimulator fSim);
 
     /**
      * Returns the number of parameters (e.g., gravitational constant or

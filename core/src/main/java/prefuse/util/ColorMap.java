@@ -30,7 +30,7 @@ public class ColorMap {
      * Returns the color associated with the given value. If the value
      * is outside the range defined by this map's minimum or maximum
      * values, a endpoint value is returned (i.e. the first entry
-     * in the color map for values below the minimum, the last enty
+     * in the color map for values below the minimum, the last entry
      * for value above the maximum).
      * @param val the value for which to retrieve the color
      * @return the color corresponding the given value

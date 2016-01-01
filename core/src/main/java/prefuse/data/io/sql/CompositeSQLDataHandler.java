@@ -70,20 +70,20 @@ public class CompositeSQLDataHandler implements SQLDataHandler {
     /**
      * @see prefuse.data.io.sql.SQLDataHandler#process(prefuse.data.Table, int, java.sql.ResultSet, int)
      */
-    public void process(Table t, int trow, ResultSet rset, int rcol)
+    public void process(Table t, int trow, ResultSet rSet, int rCol)
             throws SQLException
     {
         SQLDataHandler handler = m_default;
         if ( m_overrides != null && m_overrides.size() > 0 ) {
-            ResultSetMetaData metadata = rset.getMetaData();
-            String name = metadata.getColumnName(rcol);
+            ResultSetMetaData metadata = rSet.getMetaData();
+            String name = metadata.getColumnName(rCol);
             SQLDataHandler h = 
                 (SQLDataHandler)m_overrides.get(name);
             if ( h != null )
                 handler = h;
         }
 
-        handler.process(t, trow, rset, rcol);
+        handler.process(t, trow, rSet, rCol);
     }
 
     /**

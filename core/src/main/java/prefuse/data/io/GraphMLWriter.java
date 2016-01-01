@@ -168,13 +168,13 @@ OUTER:
             vals[1] = group;
             vals[2] = vals[0];
             vals[3] = (String)TYPES.get(s.getColumnType(i));
-            Object dflt = s.getDefault(i);
+            Object dFlt = s.getDefault(i);
             
-            if ( dflt == null ) {
+            if ( dFlt == null ) {
                 xml.tag(Tokens.KEY, attr, vals, 4);
             } else {
                 xml.start(Tokens.KEY, attr, vals, 4);
-                xml.contentTag(Tokens.DEFAULT, dflt.toString());
+                xml.contentTag(Tokens.DEFAULT, dFlt.toString());
                 xml.end();
             }
         }

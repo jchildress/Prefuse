@@ -426,12 +426,12 @@ public class Visualization {
             Predicate filter, Schema nodeSchema, Schema edgeSchema)
     {
     	checkGroupExists(group); // check before adding sub-tables
-        String ngroup = PrefuseLib.getGroupName(group, Graph.NODES); 
-        String egroup = PrefuseLib.getGroupName(group, Graph.EDGES);
+        String nGroup = PrefuseLib.getGroupName(group, Graph.NODES);
+        String eGroup = PrefuseLib.getGroupName(group, Graph.EDGES);
 
         VisualTable nt, et;
-        nt = addTable(ngroup, graph.getNodeTable(), filter, nodeSchema);
-        et = addTable(egroup, graph.getEdgeTable(), filter, edgeSchema);
+        nt = addTable(nGroup, graph.getNodeTable(), filter, nodeSchema);
+        et = addTable(eGroup, graph.getEdgeTable(), filter, edgeSchema);
         
         VisualGraph vg = new VisualGraph(nt, et, 
                 graph.isDirected(), graph.getNodeKeyField(),
@@ -500,12 +500,12 @@ public class Visualization {
             Predicate filter, Schema nodeSchema, Schema edgeSchema)
     {
     	checkGroupExists(group); // check before adding sub-tables
-        String ngroup = PrefuseLib.getGroupName(group, Graph.NODES); 
-        String egroup = PrefuseLib.getGroupName(group, Graph.EDGES);
+        String nGroup = PrefuseLib.getGroupName(group, Graph.NODES);
+        String eGroup = PrefuseLib.getGroupName(group, Graph.EDGES);
         
         VisualTable nt, et;
-        nt = addTable(ngroup, tree.getNodeTable(), filter, nodeSchema);
-        et = addTable(egroup, tree.getEdgeTable(), filter, edgeSchema);
+        nt = addTable(nGroup, tree.getNodeTable(), filter, nodeSchema);
+        et = addTable(eGroup, tree.getEdgeTable(), filter, edgeSchema);
 
         VisualTree vt = new VisualTree(nt, et, tree.getNodeKeyField(),
                 tree.getEdgeSourceField(), tree.getEdgeTargetField());
@@ -583,7 +583,7 @@ public class Visualization {
      * Add a group of decorators to an existing visual data group. Decorators
      * are VisualItem instances intended to "decorate" another VisualItem,
      * such as providing a label or dedicated interactive control, and are
-     * realizeed as {@link prefuse.visual.DecoratorItem} instances that provide
+     * realized as {@link prefuse.visual.DecoratorItem} instances that provide
      * access to the decorated item in addition to the standard VisualItem
      * properties. The generated table is created using the
      * {@link #addDerivedTable(String, String, Predicate, Schema)} method,
@@ -600,7 +600,7 @@ public class Visualization {
      * Add a group of decorators to an existing visual data group. Decorators
      * are VisualItem instances intended to "decorate" another VisualItem,
      * such as providing a label or dedicated interactive control, and are
-     * realizeed as {@link prefuse.visual.DecoratorItem} instances that provide
+     * realized as {@link prefuse.visual.DecoratorItem} instances that provide
      * access to the decorated item in addition to the standard VisualItem
      * properties.
      * @param group the data group to use for the decorators
@@ -620,7 +620,7 @@ public class Visualization {
      * Add a group of decorators to an existing visual data group. Decorators
      * are VisualItem instances intended to "decorate" another VisualItem,
      * such as providing a label or dedicated interactive control, and are
-     * realizeed as {@link prefuse.visual.DecoratorItem} instances that provide
+     * realized as {@link prefuse.visual.DecoratorItem} instances that provide
      * access to the decorated item in addition to the standard VisualItem
      * properties.
      * @param group the data group to use for the decorators
@@ -641,7 +641,7 @@ public class Visualization {
      * Add a group of decorators to an existing visual data group. Decorators
      * are VisualItem instances intended to "decorate" another VisualItem,
      * such as providing a label or dedicated interactive control, and are
-     * realizeed as {@link prefuse.visual.DecoratorItem} instances that provide
+     * realized as {@link prefuse.visual.DecoratorItem} instances that provide
      * access to the decorated item in addition to the standard VisualItem
      * properties.
      * @param group the data group to use for the decorators
@@ -763,7 +763,7 @@ public class Visualization {
     /**
      * Get the Tuple from a backing source data set that corresponds most
      * closely to the given VisualItem.
-     * @param item the VisualItem for which to retreive the source tuple
+     * @param item the VisualItem for which to retrieve the source tuple
      * @return the data source tuple, or null if no such tuple could
      * be found
      */
@@ -784,10 +784,10 @@ public class Visualization {
         
         // now get the appropriate source tuple
         // graphs maintain their own tuple managers so treat them specially
-        String cgroup = PrefuseLib.getChildGroup(group);
-        if ( cgroup != null ) {
-            String pgroup = PrefuseLib.getParentGroup(group);
-            Graph g = (Graph)getSourceData(pgroup);
+        String cGroup = PrefuseLib.getChildGroup(group);
+        if ( cGroup != null ) {
+            String pGroup = PrefuseLib.getParentGroup(group);
+            Graph g = (Graph)getSourceData(pGroup);
             if ( t == g.getNodeTable() ) {
                 return g.getNode(row);
             } else {
@@ -847,11 +847,11 @@ public class Visualization {
     public boolean isInGroup(VisualItem item, String group) {
         if ( ALL_ITEMS.equals(group) )
             return true;
-        if ( item.getGroup() == group )
+        if (item.getGroup().equals(group))
             return true;
         
-        TupleSet tset = getGroup(group);
-        return ( tset==null ? false : tset.containsTuple(item) );
+        TupleSet tSet = getGroup(group);
+        return ( tSet==null ? false : tSet.containsTuple(item) );
     }
     
     /**
@@ -868,11 +868,11 @@ public class Visualization {
     /**
      * Add a new secondary, or focus, group to this visualization.
      * @param group the name of the focus group to add
-     * @param tset the TupleSet for the focus group
+     * @param tSet the TupleSet for the focus group
      */
-    public void addFocusGroup(String group, TupleSet tset) {
+    public void addFocusGroup(String group, TupleSet tSet) {
         checkGroupExists(group);
-    	m_focus.put(group, tset);
+    	m_focus.put(group, tSet);
     }
     
     // ------------------------------------------------------------------------
@@ -884,8 +884,8 @@ public class Visualization {
      * @return the size (number of tuples) of the group
      */
     public int size(String group) {
-        TupleSet tset = getGroup(group);
-        return ( tset==null ? 0 : tset.getTupleCount() );
+        TupleSet tSet = getGroup(group);
+        return ( tSet==null ? 0 : tSet.getTupleCount() );
     }
     
     /**
@@ -1046,7 +1046,7 @@ public class Visualization {
     }
     
     /**
-     * Sets the visbility status for all items in a given data group matching
+     * Sets the visibility status for all items in a given data group matching
      * a given filter predicate.
      * @param group the visual data group name
      * @param p the filter predicate determining which items to modify
@@ -1225,7 +1225,7 @@ public class Visualization {
     /**
      * Get the renderer for the given item. Consults this visualization's
      * {@link prefuse.render.RendererFactory} and returns the result.
-     * @param item the item to retreive the renderer for
+     * @param item the item to retrieve the renderer for
      * @return the {@link prefuse.render.Renderer} for drawing the
      * given item
      */

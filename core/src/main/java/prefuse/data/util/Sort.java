@@ -139,7 +139,7 @@ public class Sort {
      */
     public Comparator getComparator(TupleSet ts) {
         // get the schema, so we can lookup column value types        
-        Schema s = null;
+        Schema s;
         if ( ts instanceof Table ) {
             // for Tables, we can get this directly
         	s = ((Table)ts).getSchema();
@@ -247,13 +247,13 @@ public class Sort {
      * @see java.lang.Object#toString()
      */
     public String toString() {
-    	StringBuffer sbuf = new StringBuffer();
+    	StringBuffer sBuf = new StringBuffer();
     	for ( int i=0; i<m_fields.length; ++i ) {
-    		if ( i > 0 ) sbuf.append(", ");
-    		sbuf.append('[').append(m_fields[i]).append(']');
-    		sbuf.append((m_ascend[i]) ? ASC : DESC);
+    		if ( i > 0 ) sBuf.append(", ");
+    		sBuf.append('[').append(m_fields[i]).append(']');
+    		sBuf.append((m_ascend[i]) ? ASC : DESC);
     	}
-    	return sbuf.toString();
+    	return sBuf.toString();
     }
     
 } // end of class Sort

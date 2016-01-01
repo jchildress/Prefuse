@@ -90,7 +90,7 @@ public abstract class BrowserLauncher {
 
     /**
      * Try to determine whether this application is running under Windows
-     * or some other platform by examing the "os.name" property.
+     * or some other platform by examining the "os.name" property.
      * @return true if this application is running under a Windows OS
      */
     public static boolean isWindowsPlatform() {

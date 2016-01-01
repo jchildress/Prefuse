@@ -22,7 +22,7 @@ import prefuse.visual.VisualItem;
  * single shape instance in memory, and update its parameters on each call
  * to getRawShape, rather than allocating a new Shape object each time.
  * Otherwise, a new object will be allocated every time something needs to
- * be drawn, and then subsequently be arbage collected. This can significantly
+ * be drawn, and then subsequently be garbage collected. This can significantly
  * reduce performance, especially when there are many things to draw.
  * </p>
  * 
@@ -65,7 +65,7 @@ public abstract class AbstractShapeRenderer implements Renderer {
 
     /**
      * Returns the shape describing the boundary of an item. The shape's
-     * coordinates should be in abolute (item-space) coordinates.
+     * coordinates should be in absolute (item-space) coordinates.
      * @param item the item for which to get the Shape
      */
     public Shape getShape(VisualItem item) {
@@ -76,13 +76,13 @@ public abstract class AbstractShapeRenderer implements Renderer {
     }
 
     /**
-     * Retursn the stroke to use for drawing lines and shape outlines. By
+     * Returns the stroke to use for drawing lines and shape outlines. By
      * default returns the value of {@link VisualItem#getStroke()}.
      * Subclasses can override this method to implement custom stroke
      * assignment, though changing the <code>VisualItem</code>'s stroke
      * value is preferred.
      * @param item the VisualItem
-     * @return the strok to use for drawing lines and shape outlines
+     * @return the stroke to use for drawing lines and shape outlines
      */
     protected BasicStroke getStroke(VisualItem item) {
         return item.getStroke();

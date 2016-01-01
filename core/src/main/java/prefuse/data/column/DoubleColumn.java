@@ -24,27 +24,27 @@ public class DoubleColumn extends AbstractColumn {
     
     /**
      * Create a new DoubleColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public DoubleColumn(int nrows) {
-        this(nrows, nrows, 0);
+    public DoubleColumn(int nRows) {
+        this(nRows, nRows, 0);
     }
     
     /**
      * Create a new DoubleColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      * @param capacity the initial capacity of the column
      * @param defaultValue the default value for the column
      */
-    public DoubleColumn(int nrows, int capacity, double defaultValue) {
+    public DoubleColumn(int nRows, int capacity, double defaultValue) {
         super(double.class, new Double(defaultValue));
-        if ( capacity < nrows ) {
+        if ( capacity < nRows ) {
             throw new IllegalArgumentException(
                 "Capacity value can not be less than the row count.");
         }
         m_values = new double[capacity];
         Arrays.fill(m_values, defaultValue);
-        m_size = nrows;
+        m_size = nRows;
     }
     
     // ------------------------------------------------------------------------
@@ -60,16 +60,16 @@ public class DoubleColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        if ( nrows > m_values.length ) {
-            int capacity = Math.max((3*m_values.length)/2 + 1, nrows);
+    public void setMaximumRow(int nRows) {
+        if ( nRows > m_values.length ) {
+            int capacity = Math.max((3*m_values.length)/2 + 1, nRows);
             double[] values = new double[capacity];
             System.arraycopy(m_values, 0, values, 0, m_size);
             Arrays.fill(values, m_size, capacity,
                     ((Double)m_defaultValue).doubleValue());
             m_values = values;
         }
-        m_size = nrows;
+        m_size = nRows;
     }
 
     // ------------------------------------------------------------------------

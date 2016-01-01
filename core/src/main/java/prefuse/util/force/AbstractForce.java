@@ -17,9 +17,9 @@ public abstract class AbstractForce implements Force {
     /**
      * Initialize this force function. This default implementation does nothing.
      * Subclasses should override this method with any needed initialization.
-     * @param fsim the encompassing ForceSimulator
+     * @param fSim the encompassing ForceSimulator
      */
-    public void init(ForceSimulator fsim) {
+    public void init(ForceSimulator fSim) {
         // do nothing.
     }
 
@@ -67,11 +67,11 @@ public abstract class AbstractForce implements Force {
      * @see prefuse.util.force.Force#getParameterName(int)
      */
     public String getParameterName(int i) {
-        String[] pnames = getParameterNames();
-        if ( i < 0 || pnames == null || i >= pnames.length ) {
+        String[] pNames = getParameterNames();
+        if ( i < 0 || pNames == null || i >= pNames.length ) {
             throw new IndexOutOfBoundsException();
         } else {
-            return pnames[i];
+            return pNames[i];
         }
     }
 

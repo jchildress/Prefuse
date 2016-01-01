@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * <p>
  * Computes a bifocal distortion of space, magnifying a focus region of space
- * and uniformly demagnifying the rest of the space. The affect is akin to
+ * and uniformly de-magnifying the rest of the space. The affect is akin to
  * passing a magnifying glass over the data.
  * </p>
  * 
@@ -60,26 +60,26 @@ public class BifocalDistortion extends Distortion {
      * value is greater than 1, the resulting distortion can exceed the
      * display bounds.</p>
      * 
-     * @param xrange the range around the focus that should be magnified along
+     * @param xRange the range around the focus that should be magnified along
      *  the x direction. This specifies the horizontal size of the magnified 
      *  focus region, and should be a value between 0 and 1, 0 indicating no
      *  focus region and 1 indicating the whole display.
-     * @param xmag how much magnification along the x direction should be used
+     * @param xMag how much magnification along the x direction should be used
      *  in the focal area
-     * @param yrange the range around the focus that should be magnified along
+     * @param yRange the range around the focus that should be magnified along
      *  the y direction. This specifies the vertical size of the magnified 
      *  focus region, and should be a value between 0 and 1, 0 indicating no
      *  focus region and 1 indicating the whole display.
-     * @param ymag how much magnification along the y direction should be used
+     * @param yMag how much magnification along the y direction should be used
      *  in the focal area
      */
-    public BifocalDistortion(double xrange, double xmag, 
-                             double yrange, double ymag)
+    public BifocalDistortion(double xRange, double xMag,
+                             double yRange, double yMag)
     {
-        rx = xrange;
-        mx = xmag;
-        ry = yrange;
-        my = ymag;
+        rx = xRange;
+        mx = xMag;
+        ry = yRange;
+        my = yMag;
         m_distortX = !(rx == 0 || mx == 1.0);
         m_distortY = !(ry == 0 || my == 1.0);
     }
@@ -101,35 +101,35 @@ public class BifocalDistortion extends Distortion {
     /**
      * @see prefuse.action.distortion.Distortion#distortSize(java.awt.geom.Rectangle2D, double, double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
-    protected double distortSize(Rectangle2D bbox, double x, double y, 
+    protected double distortSize(Rectangle2D bBox, double x, double y,
             Point2D anchor, Rectangle2D bounds)
     {
-        boolean xmag = false, ymag = false;
+        boolean xMag = false, yMag = false;
         double m;
         
         if ( m_distortX ) {
-            double cx = bbox.getCenterX(), ax = anchor.getX();
+            double cx = bBox.getCenterX(), ax = anchor.getX();
             double minX = bounds.getMinX(), maxX = bounds.getMaxX();
             m = (cx<ax ? ax-minX : maxX-ax);
             if ( m == 0 ) m = maxX-minX;
             if ( Math.abs(cx-ax) <= rx*m )
-                xmag = true;
+                xMag = true;
         }
         
         if ( m_distortY ) {
-            double cy = bbox.getCenterY(), ay = anchor.getY();
+            double cy = bBox.getCenterY(), ay = anchor.getY();
             double minY = bounds.getMinY(), maxY = bounds.getMaxY();
             m = (cy<ay ? ay-minY : maxY-ay);
             if ( m == 0 ) m = maxY-minY;
             if ( Math.abs(cy-ay) <= ry*m )
-                ymag = true;
+                yMag = true;
         }
         
-        if ( xmag && !m_distortY ) {
+        if ( xMag && !m_distortY ) {
             return mx;
-        } else if ( ymag && !m_distortX ) {
+        } else if ( yMag && !m_distortX ) {
             return my;
-        } else if ( xmag && ymag ) {
+        } else if ( xMag && yMag ) {
             return Math.min(mx,my);
         } else {
             return Math.min((1-rx*mx)/(1-rx), (1-ry*my)/(1-ry));
@@ -143,7 +143,7 @@ public class BifocalDistortion extends Distortion {
         if ( m == 0 ) m = max-min;
         double v = x - a, s = m*r;
         if ( Math.abs(v) <= s ) {  // in focus
-            return x = v*mag + a;
+            return v*mag + a;
         } else {                   // out of focus
             double bx = r*mag;
             x = ((Math.abs(v)-s) / m) * ((1-bx)/(1-r));

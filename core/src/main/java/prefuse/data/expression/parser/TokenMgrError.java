@@ -8,12 +8,12 @@ public class TokenMgrError extends Error
     */
 
    /**
-    * Lexical error occured.
+    * Lexical error occurred.
     */
    static final int LEXICAL_ERROR = 0;
 
    /**
-    * An attempt wass made to create a second instance of a static token manager.
+    * An attempt was made to create a second instance of a static token manager.
     */
    static final int STATIC_LEXER_ERROR = 1;
 
@@ -34,11 +34,11 @@ public class TokenMgrError extends Error
    int errorCode;
 
    /**
-    * Replaces unprintable characters by their espaced (or unicode escaped)
+    * Replaces unprintable characters by their escaped (or unicode escaped)
     * equivalents in the given string
     */
    protected static final String addEscapes(String str) {
-      StringBuffer retval = new StringBuffer();
+      StringBuffer retVal = new StringBuffer();
       char ch;
       for (int i = 0; i < str.length(); i++) {
         switch (str.charAt(i))
@@ -46,52 +46,52 @@ public class TokenMgrError extends Error
            case 0 :
               continue;
            case '\b':
-              retval.append("\\b");
+              retVal.append("\\b");
               continue;
            case '\t':
-              retval.append("\\t");
+              retVal.append("\\t");
               continue;
            case '\n':
-              retval.append("\\n");
+              retVal.append("\\n");
               continue;
            case '\f':
-              retval.append("\\f");
+              retVal.append("\\f");
               continue;
            case '\r':
-              retval.append("\\r");
+              retVal.append("\\r");
               continue;
            case '\"':
-              retval.append("\\\"");
+              retVal.append("\\\"");
               continue;
            case '\'':
-              retval.append("\\\'");
+              retVal.append("\\\'");
               continue;
            case '\\':
-              retval.append("\\\\");
+              retVal.append("\\\\");
               continue;
            default:
               if ((ch = str.charAt(i)) < 0x20 || ch > 0x7e) {
                  String s = "0000" + Integer.toString(ch, 16);
-                 retval.append("\\u" + s.substring(s.length() - 4, s.length()));
+                 retVal.append("\\u" + s.substring(s.length() - 4, s.length()));
               } else {
-                 retval.append(ch);
+                 retVal.append(ch);
               }
               continue;
         }
       }
-      return retval.toString();
+      return retVal.toString();
    }
 
    /**
     * Returns a detailed message for the Error when it is thrown by the
     * token manager to indicate a lexical error.
     * Parameters : 
-    *    EOFSeen     : indicates if EOF caused the lexicl error
-    *    curLexState : lexical state in which this error occured
-    *    errorLine   : line number when the error occured
-    *    errorColumn : column number when the error occured
-    *    errorAfter  : prefix that was seen before this error occured
-    *    curchar     : the offending character
+    *    EOFSeen     : indicates if EOF caused the lexical error
+    *    curLexState : lexical state in which this error occurred
+    *    errorLine   : line number when the error occurred
+    *    errorColumn : column number when the error occurred
+    *    errorAfter  : prefix that was seen before this error occurred
+    *    curChar     : the offending character
     * Note: You can customize the lexical error message by modifying this method.
     */
    protected static String LexicalError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar) {

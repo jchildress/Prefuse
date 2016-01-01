@@ -100,7 +100,7 @@ public class GraphView extends JPanel {
         // fix selected focus nodes
         TupleSet focusGroup = m_vis.getGroup(Visualization.FOCUS_ITEMS); 
         focusGroup.addTupleSetListener(new TupleSetListener() {
-            public void tupleSetChanged(TupleSet ts, Tuple[] add, Tuple[] rem)
+            public void tupleSetChanged(TupleSet tSet, Tuple[] add, Tuple[] rem)
             {
                 for ( int i=0; i<rem.length; ++i )
                     ((VisualItem)rem[i]).setFixed(false);
@@ -108,8 +108,8 @@ public class GraphView extends JPanel {
                     ((VisualItem)add[i]).setFixed(false);
                     ((VisualItem)add[i]).setFixed(true);
                 }
-                if ( ts.getTupleCount() == 0 ) {
-                    ts.addTuple(rem[0]);
+                if ( tSet.getTupleCount() == 0 ) {
+                    tSet.addTuple(rem[0]);
                     ((VisualItem)rem[0]).setFixed(false);
                 }
                 m_vis.run("draw");

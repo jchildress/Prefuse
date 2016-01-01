@@ -33,7 +33,7 @@ public class NBodyForce extends AbstractForce {
      *   2 | 3    2 -> bottom left, 3 -> bottom right
      */
 
-    private static String[] pnames = new String[] { "GravitationalConstant", 
+    private static String[] pNames = new String[] { "GravitationalConstant",
             "Distance", "BarnesHutTheta"  };
     
     public static final float DEFAULT_GRAV_CONSTANT = -1.0f;
@@ -97,7 +97,7 @@ public class NBodyForce extends AbstractForce {
      * @see prefuse.util.force.AbstractForce#getParameterNames()
      */
     protected String[] getParameterNames() {
-        return pnames;
+        return pNames;
     } 
     
     /**
@@ -134,15 +134,15 @@ public class NBodyForce extends AbstractForce {
      * Initialize the simulation with the provided enclosing simulation. After
      * this call has been made, the simulation can be queried for the 
      * n-body force acting on a given item.
-     * @param fsim the enclosing ForceSimulator
+     * @param fSim the enclosing ForceSimulator
      */
-    public void init(ForceSimulator fsim) {
+    public void init(ForceSimulator fSim) {
         clear(); // clear internal state
         
         // compute and squarify bounds of quadtree
         float x1 = Float.MAX_VALUE, y1 = Float.MAX_VALUE;
         float x2 = Float.MIN_VALUE, y2 = Float.MIN_VALUE;
-        Iterator itemIter = fsim.getItems();
+        Iterator itemIter = fSim.getItems();
         while ( itemIter.hasNext() ) {
             ForceItem item = (ForceItem)itemIter.next();
             float x = item.location[0];
@@ -157,7 +157,7 @@ public class NBodyForce extends AbstractForce {
         setBounds(x1,y1,x2,y2);
         
         // insert items into quadtree
-        itemIter = fsim.getItems();
+        itemIter = fSim.getItems();
         while ( itemIter.hasNext() ) {
             ForceItem item = (ForceItem)itemIter.next();
             insert(item);
@@ -216,41 +216,41 @@ public class NBodyForce extends AbstractForce {
                               float x1, float y1, float x2, float y2)
     {   
         float x = p.location[0], y = p.location[1];
-        float splitx = (x1+x2)/2;
-        float splity = (y1+y2)/2;
-        int i = (x>=splitx ? 1 : 0) + (y>=splity ? 2 : 0);
+        float splitX = (x1+x2)/2;
+        float splitY = (y1+y2)/2;
+        int i = (x>=splitX ? 1 : 0) + (y>=splitY ? 2 : 0);
         // create new child node, if necessary
         if ( n.children[i] == null ) {
             n.children[i] = factory.getQuadTreeNode();
             n.hasChildren = true;
         }
         // update bounds
-        if ( i==1 || i==3 ) x1 = splitx; else x2 = splitx;
-        if ( i > 1 )        y1 = splity; else y2 = splity;
+        if ( i==1 || i==3 ) x1 = splitX; else x2 = splitX;
+        if ( i > 1 )        y1 = splitY; else y2 = splitY;
         // recurse 
         insert(p,n.children[i],x1,y1,x2,y2);        
     }
 
     private void calcMass(QuadTreeNode n) {
-        float xcom = 0, ycom = 0;
+        float xCom = 0, yCom = 0;
         n.mass = 0;
         if ( n.hasChildren ) {
             for ( int i=0; i < n.children.length; i++ ) {
                 if ( n.children[i] != null ) {
                     calcMass(n.children[i]);
                     n.mass += n.children[i].mass;
-                    xcom += n.children[i].mass * n.children[i].com[0];
-                    ycom += n.children[i].mass * n.children[i].com[1];
+                    xCom += n.children[i].mass * n.children[i].com[0];
+                    yCom += n.children[i].mass * n.children[i].com[1];
                 }
             }
         }
         if ( n.value != null ) {
             n.mass += n.value.mass;
-            xcom += n.value.mass * n.value.location[0];
-            ycom += n.value.mass * n.value.location[1];
+            xCom += n.value.mass * n.value.location[0];
+            yCom += n.value.mass * n.value.location[1];
         }
-        n.com[0] = xcom / n.mass;
-        n.com[1] = ycom / n.mass;
+        n.com[0] = xCom / n.mass;
+        n.com[1] = yCom / n.mass;
     }
 
     /**
@@ -297,13 +297,13 @@ public class NBodyForce extends AbstractForce {
             item.force[1] += v*dy;
         } else if ( n.hasChildren ) {
             // recurse for more accurate calculation
-            float splitx = (x1+x2)/2;
-            float splity = (y1+y2)/2;
+            float splitX = (x1+x2)/2;
+            float splitY = (y1+y2)/2;
             for ( int i=0; i<n.children.length; i++ ) {
                 if ( n.children[i] != null ) {
                     forceHelper(item, n.children[i],
-                        (i==1||i==3?splitx:x1), (i>1?splity:y1),
-                        (i==1||i==3?x2:splitx), (i>1?y2:splity));
+                        (i==1||i==3?splitX:x1), (i>1?splitY:y1),
+                        (i==1||i==3?x2:splitX), (i>1?y2:splitY));
                 }
             }
             if ( minDist ) return;

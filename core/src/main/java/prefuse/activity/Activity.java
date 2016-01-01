@@ -106,7 +106,7 @@ public abstract class Activity {
      * first Activity is cancelled, this one will not run.
      * 
      * This functionality is provided by using an ActivityListener to monitor
-     * the first Activity. The listener will persist across mulitple runs,
+     * the first Activity. The listener will persist across multiple runs,
      * meaning the second Activity will always be evoked upon a successful
      * finish of the first.
      * 
@@ -308,7 +308,7 @@ public abstract class Activity {
     
     /**
      * Returns a value between 0 and 1 inclusive, indicating the current
-     * position in an animation or other similarly parameterized activity.
+     * position in an animation or other similarly parametrized activity.
      * The returned value is determined by consulting this Activity's
      * pacing function.
      * @param elapsedTime the time in milliseconds since the start of this
@@ -337,12 +337,12 @@ public abstract class Activity {
     /**
      * Sets the pacing function associated with this Activity. Pacing
      * functions are used to control the pace of animations.
-     * @param pfunc this Activity's new pacing function, or null to
+     * @param pFunc this Activity's new pacing function, or null to
      *  indicate a basic, linear pace moving from 0 to 1 uniformly
      *  over time.
      */
-    public synchronized void setPacingFunction(Pacer pfunc) {
-        m_pacer = pfunc;
+    public synchronized void setPacingFunction(Pacer pFunc) {
+        m_pacer = pFunc;
     }
     
     /**

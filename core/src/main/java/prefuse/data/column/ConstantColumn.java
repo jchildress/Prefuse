@@ -31,8 +31,8 @@ public class ConstantColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        m_size = nrows;
+    public void setMaximumRow(int nRows) {
+        m_size = nRows;
     }
 
     /**
@@ -67,7 +67,7 @@ public class ConstantColumn extends AbstractColumn {
      * @see prefuse.data.column.Column#addColumnListener(prefuse.data.event.ColumnListener)
      */
     public void addColumnListener(ColumnListener listener) {
-        return; // column can't change, so nothing to listen to
+        // column can't change, so nothing to listen to
     }
 
     /**
@@ -75,7 +75,7 @@ public class ConstantColumn extends AbstractColumn {
      * @see prefuse.data.column.Column#removeColumnListener(prefuse.data.event.ColumnListener)
      */
     public void removeColumnListener(ColumnListener listener) {
-        return; // column can't change, so nothing to listen to
+        // column can't change, so nothing to listen to
     }
     
 } // end of class Constant Column

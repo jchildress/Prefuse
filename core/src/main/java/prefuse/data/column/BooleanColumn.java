@@ -25,27 +25,27 @@ public class BooleanColumn extends AbstractColumn {
     
     /**
      * Create a new BooleanColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public BooleanColumn(int nrows) {
-        this(nrows, nrows, false);
+    public BooleanColumn(int nRows) {
+        this(nRows, nRows, false);
     }
 
     /**
      * Create a new BooleanColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      * @param capacity the initial capacity of the column
      * @param defaultValue the default value for the column
      */
-    public BooleanColumn(int nrows, int capacity, boolean defaultValue) {
-        super(boolean.class, new Boolean(defaultValue));
-        if ( capacity < nrows ) {
+    public BooleanColumn(int nRows, int capacity, boolean defaultValue) {
+        super(boolean.class, Boolean.valueOf(defaultValue));
+        if ( capacity < nRows ) {
             throw new IllegalArgumentException(
                 "Capacity value can not be less than the row count.");
         }
         m_bits = new BitSet(capacity);
         m_bits.set(0, capacity, defaultValue);
-        m_size = nrows;
+        m_size = nRows;
     }
     
     // ------------------------------------------------------------------------
@@ -61,12 +61,12 @@ public class BooleanColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        if ( nrows > m_size ) {
-            m_bits.set(m_size, nrows, 
+    public void setMaximumRow(int nRows) {
+        if ( nRows > m_size ) {
+            m_bits.set(m_size, nRows,
                 ((Boolean)m_defaultValue).booleanValue());
         }
-        m_size = nrows;
+        m_size = nRows;
     }
 
     // ------------------------------------------------------------------------
@@ -76,7 +76,7 @@ public class BooleanColumn extends AbstractColumn {
      * @see prefuse.data.column.Column#get(int)
      */
     public Object get(int row) {
-        return new Boolean(getBoolean(row));
+        return Boolean.valueOf(getBoolean(row));
     }
 
     /**

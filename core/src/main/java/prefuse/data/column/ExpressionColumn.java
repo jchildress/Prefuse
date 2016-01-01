@@ -40,7 +40,7 @@ public class ExpressionColumn extends AbstractColumn {
     
     private BitSet m_valid;
     private Column m_cache;
-    private Listener m_lstnr;
+    private Listener m_listener;
     
     /**
      * Create a new ExpressionColumn.
@@ -51,14 +51,14 @@ public class ExpressionColumn extends AbstractColumn {
         super(expr.getType(table.getSchema()));
         m_table = table;
         m_expr = expr;
-        m_lstnr = new Listener();
+        m_listener = new Listener();
         
         init();
         
-        int nrows = m_table.getRowCount();
-        m_cache = ColumnFactory.getColumn(getColumnType(), nrows);
-        m_valid = new BitSet(nrows);
-        m_expr.addExpressionListener(m_lstnr);
+        int nRows = m_table.getRowCount();
+        m_cache = ColumnFactory.getColumn(getColumnType(), nRows);
+        m_valid = new BitSet(nRows);
+        m_expr.addExpressionListener(m_listener);
     }
     
     protected void init() {
@@ -68,7 +68,7 @@ public class ExpressionColumn extends AbstractColumn {
             while ( iter.hasNext() ) {
                 String field = (String)iter.next();
                 Column col = m_table.getColumn(field);
-                col.removeColumnListener(m_lstnr);
+                col.removeColumnListener(m_listener);
             }
         }
         // now get the current set of columns
@@ -90,7 +90,7 @@ public class ExpressionColumn extends AbstractColumn {
         while ( iter.hasNext() ) {
             String field = (String)iter.next();
             Column col = m_table.getColumn(field);
-            col.addColumnListener(m_lstnr);
+            col.addColumnListener(m_listener);
         }
     }
     
@@ -107,8 +107,8 @@ public class ExpressionColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        m_cache.setMaximumRow(nrows);
+    public void setMaximumRow(int nRows) {
+        m_cache.setMaximumRow(nRows);
     }
 
     // ------------------------------------------------------------------------

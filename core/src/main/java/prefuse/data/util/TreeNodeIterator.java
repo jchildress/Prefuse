@@ -18,7 +18,7 @@ public class TreeNodeIterator implements Iterator {
 
     private ArrayList m_stack;
     private Node m_root;
-    private boolean m_preorder = true;
+    private boolean m_preOrder = true;
     
     /**
      * Create a new TreeNodeIterator over the given subtree.
@@ -31,16 +31,16 @@ public class TreeNodeIterator implements Iterator {
     /**
      * Create a new TreeNodeIterator over the given subtree.
      * @param root the root of the subtree to traverse
-     * @param preorder true to use a pre-order traversal, false
+     * @param preOrder true to use a pre-order traversal, false
      *  for a post-order traversal
      */
-    public TreeNodeIterator(Node root, boolean preorder) {
-    	m_preorder = preorder;
+    public TreeNodeIterator(Node root, boolean preOrder) {
+    	m_preOrder = preOrder;
     	m_root = root;
     	m_stack = new ArrayList();
     	m_stack.add(root);
     	
-    	if (!preorder) {
+    	if (!preOrder) {
     		for (Node n = root.getChild(0); n!=null; n=n.getChild(0))
     			m_stack.add(n);
     	}
@@ -58,8 +58,8 @@ public class TreeNodeIterator implements Iterator {
      * @see java.util.Iterator#next()
      */
     public Object next() {
-    	Node c, x = null;
-    	if (m_preorder) {
+    	Node c, x;
+    	if (m_preOrder) {
     		x = (Node)m_stack.get(m_stack.size()-1);
 	    	if ( (c=x.getChild(0)) != null ) {
 	    		m_stack.add(c);

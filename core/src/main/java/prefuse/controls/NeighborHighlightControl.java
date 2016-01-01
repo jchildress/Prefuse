@@ -64,11 +64,11 @@ public class NeighborHighlightControl extends ControlAdapter {
     protected void setNeighborHighlight(NodeItem n, boolean state) {
         Iterator iter = n.edges();
         while ( iter.hasNext() ) {
-            EdgeItem eitem = (EdgeItem)iter.next();
-            NodeItem nitem = eitem.getAdjacentItem(n);
-            if (eitem.isVisible() || highlightWithInvisibleEdge) {
-                eitem.setHighlighted(state);
-                nitem.setHighlighted(state);
+            EdgeItem eItem = (EdgeItem)iter.next();
+            NodeItem nItem = eItem.getAdjacentItem(n);
+            if (eItem.isVisible() || highlightWithInvisibleEdge) {
+                eItem.setHighlighted(state);
+                nItem.setHighlighted(state);
             }
         }
         if ( activity != null )

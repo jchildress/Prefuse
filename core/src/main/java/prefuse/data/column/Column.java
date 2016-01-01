@@ -25,9 +25,9 @@ public interface Column {
     
     /**
      * Sets the number of rows in this data column
-     * @param nrows the number of rows
+     * @param nRows the number of rows
      */
-    public void setMaximumRow(int nrows);
+    public void setMaximumRow(int nRows);
     
     /**
      * Indicates if the values in this column are read-only.

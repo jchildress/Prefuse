@@ -10,9 +10,9 @@ lazy val commonJavaOptions = Seq("-source", "1.6")
 lazy val fullDescr = "A toolkit for building interactive information visualization applications"
 
 lazy val commonSettings = Project.defaultSettings ++ Seq(
-  version           := "1.0.0",
+  version           := "1.0.1-SNAPSHOT",
   organization      := "de.sciss",
-  scalaVersion      := "2.11.1",  // not used
+  scalaVersion      := "2.11.7",  // not used
   homepage          := Some(url(s"https://github.com/Sciss/$baseName")),
   licenses          := Seq("BSD License" -> url("http://prefuse.org/license-prefuse.txt")),
   crossPaths        := false,   // this is just a Java project
@@ -22,7 +22,7 @@ lazy val commonSettings = Project.defaultSettings ++ Seq(
   // ---- publishing to Maven Central ----
   publishMavenStyle := true,
   publishTo := {
-    Some(if (version.value endsWith "-SNAPSHOT")
+    Some(if (isSnapshot.value)
       "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
     else
       "Sonatype Releases"  at "https://oss.sonatype.org/service/local/staging/deploy/maven2"
@@ -80,8 +80,8 @@ lazy val core: Project = Project(
     description := fullDescr,
     libraryDependencies ++= Seq(
       "lucene"       % "lucene"               % "1.4.3",
-      "com.novocode" % "junit-interface"      % "0.10"  % "test",
-      "mysql"        % "mysql-connector-java" % "5.1.6" % "test"
+      "com.novocode" % "junit-interface"      % "0.11"   % "test",
+      "mysql"        % "mysql-connector-java" % "5.1.38" % "test"
     )
   )
 )

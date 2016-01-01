@@ -16,9 +16,9 @@ import prefuse.util.collections.IntIterator;
 public class RowManager {
 
     protected Table m_table;
-    private IntIntSortedMap m_openrows;
-    private int m_firstid = 0;
-    private int m_curid = -1;
+    private IntIntSortedMap m_openRows;
+    private int m_firstId = 0;
+    private int m_curId = -1;
     
     // ------------------------------------------------------------------------
     // Constructor
@@ -47,7 +47,7 @@ public class RowManager {
      * @return the minimum row
      */
     public int getMinimumRow() {
-        return m_firstid;
+        return m_firstId;
     }
 
     /**
@@ -55,7 +55,7 @@ public class RowManager {
      * @return the maximum row
      */
     public int getMaximumRow() {
-        return m_curid;
+        return m_curId;
     }
     
     /**
@@ -63,8 +63,8 @@ public class RowManager {
      * @return the number of rows being used by the table
      */
     public int getRowCount() {
-        return 1 + m_curid - m_firstid 
-            - (m_openrows==null ? 0 : m_openrows.size());
+        return 1 + m_curId - m_firstId
+            - (m_openRows ==null ? 0 : m_openRows.size());
     }
     
     /**
@@ -74,8 +74,8 @@ public class RowManager {
      * it is an illegal value or is currently free
      */
     public boolean isValidRow(int row) {
-        return ( row >= m_firstid && row <=m_curid && 
-                (m_openrows == null || !m_openrows.containsKey(row)) );
+        return ( row >= m_firstId && row <= m_curId &&
+                (m_openRows == null || !m_openRows.containsKey(row)) );
     }
     
     // ------------------------------------------------------------------------
@@ -85,9 +85,9 @@ public class RowManager {
      * Clear the row manager status, marking all rows as available.
      */
     public void clear() {
-        m_openrows = null;
-        m_firstid = 0;
-        m_curid = -1;
+        m_openRows = null;
+        m_firstId = 0;
+        m_curId = -1;
     }
     
     /**
@@ -97,11 +97,11 @@ public class RowManager {
      */
     public int addRow() {
         int r;
-        if ( m_openrows == null || m_openrows.isEmpty() ) {
-            r = ( m_firstid == 0 ? ++m_curid : --m_firstid );
+        if ( m_openRows == null || m_openRows.isEmpty() ) {
+            r = ( m_firstId == 0 ? ++m_curId : --m_firstId);
         } else {
-            int key = m_openrows.firstKey();
-            r = m_openrows.remove(key);
+            int key = m_openRows.firstKey();
+            r = m_openRows.remove(key);
         }
         return r;
     }
@@ -115,16 +115,16 @@ public class RowManager {
     public boolean releaseRow(int row) {
         if ( row < 0 ) {
             return false;
-        } else if ( m_openrows != null && m_openrows.containsKey(row) ) {
+        } else if ( m_openRows != null && m_openRows.containsKey(row) ) {
             return false;
-        } else if ( row == m_curid ) {
-            --m_curid;
-        } else if ( row == m_firstid ) {
-            ++m_firstid;
+        } else if ( row == m_curId) {
+            --m_curId;
+        } else if ( row == m_firstId) {
+            ++m_firstId;
         } else {
-            if ( m_openrows == null )
-                m_openrows = new IntIntTreeMap(false);
-            m_openrows.put(row, row);
+            if ( m_openRows == null )
+                m_openRows = new IntIntTreeMap(false);
+            m_openRows.put(row, row);
         }
         return true;
     }
@@ -225,10 +225,10 @@ public class RowManager {
 
         public RowIterator(boolean reverse) {
             this.reverse = reverse;
-            next = advance(reverse ? m_curid : m_firstid);
+            next = advance(reverse ? m_curId : m_firstId);
         }
         public boolean hasNext() {
-            return ( reverse ? next >= 0 : next <= m_curid );
+            return ( reverse ? next >= 0 : next <= m_curId);
         }
         public int nextInt() {
             // advance the iterator
@@ -240,12 +240,12 @@ public class RowManager {
             m_table.removeRow(last);
         }
         private final int advance(int idx) {
-            if ( m_openrows == null )
+            if ( m_openRows == null )
                 return idx;
             else if ( reverse )
-                for (; idx >= 0 && m_openrows.containsKey(idx); --idx);
+                for (; idx >= 0 && m_openRows.containsKey(idx); --idx);
             else
-                for (; idx <= m_curid && m_openrows.containsKey(idx); ++idx);
+                for (; idx <= m_curId && m_openRows.containsKey(idx); ++idx);
             return idx;
         }
     } // end of inner class RowIterator

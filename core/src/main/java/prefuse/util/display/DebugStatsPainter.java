@@ -6,7 +6,7 @@ import prefuse.Display;
 import prefuse.util.PrefuseLib;
 
 /**
- * PinatListener that paints useful debugging statistics over a prefuse
+ * PaintListener that paints useful debugging statistics over a prefuse
  * display. This includes the current frame rate, the number of visible
  * items, memory usage, and display navigation information.
  * 

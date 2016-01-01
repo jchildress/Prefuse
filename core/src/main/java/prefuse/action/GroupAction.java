@@ -3,7 +3,7 @@ package prefuse.action;
 import prefuse.Visualization;
 
 /**
- * An Action that can be parameterized to process a particular group of items.
+ * An Action that can be parametrized to process a particular group of items.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */

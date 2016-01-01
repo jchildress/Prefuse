@@ -274,7 +274,7 @@ public class Display extends JComponent {
         try {
             registerKeyboardAction(new ExportDisplayAction(this),
              "export display", KeyStroke.getKeyStroke("ctrl E"), WHEN_FOCUSED);
-        } catch (SecurityException se) {
+        } catch (SecurityException ignored) {
         }
     }
     
@@ -367,7 +367,7 @@ public class Display extends JComponent {
     }
     
     /**
-     * Set the Visualiztion associated with this Display. This Display
+     * Set the Visualization associated with this Display. This Display
      * will render the items contained in the provided visualization. If this
      * Display is already associated with a different Visualization, the
      * Display unregisters itself with the previous one.
@@ -569,7 +569,7 @@ public class Display extends JComponent {
      * reported bounds. In this case, there is usually a bug in the Renderer.
      * One reported problem arises from Java itself, however, which
      * inaccurately redraws images outside of their reported bounds. If you
-     * have a visulization with a number of images and are seeing rendering
+     * have a visualization with a number of images and are seeing rendering
      * artifacts, try disabling damage/redraw.
      * @return true if damage/redraw optimizations are enabled, false
      * otherwise (in which case the entire Display is redrawn upon a repaint)
@@ -592,7 +592,7 @@ public class Display extends JComponent {
      * reported bounds. In this case, there is usually a bug in the Renderer.
      * One reported problem arises from Java itself, however, which
      * inaccurately redraws images outside of their reported bounds. If you
-     * have a visulization with a number of images and are seeing rendering
+     * have a visualization with a number of images and are seeing rendering
      * artifacts, try disabling damage/redraw.
      * @param b true to enable damage/redraw optimizations, false otherwise
      * (in which case the entire Display will be redrawn upon a repaint)
@@ -633,7 +633,7 @@ public class Display extends JComponent {
      * Returns the bounds, in absolute (item-space) coordinates, of the total
      * bounds occupied by all currently visible VisualItems. This method
      * allocates a new Rectangle2D instance for the result.
-     * @return the bounding box of all visibile VisualItems
+     * @return the bounding box of all visible VisualItems
      * @see #getItemBounds(Rectangle2D)
      */
     public synchronized Rectangle2D getItemBounds() {
@@ -644,7 +644,7 @@ public class Display extends JComponent {
      * Returns the bounds, in absolute (item-space) coordinates, of the total
      * bounds occupied by all currently visible VisualItems.
      * @param b the Rectangle2D to use to store the return value
-     * @return the bounding box of all visibile VisualItems
+     * @return the bounding box of all visible VisualItems
      */
     public synchronized Rectangle2D getItemBounds(Rectangle2D b) {
         b.setFrameFromDiagonal(m_bounds.getMinX(), m_bounds.getMinY(),
@@ -975,7 +975,7 @@ public class Display extends JComponent {
     /**
      * Set the 2D AffineTransform (e.g., scale, shear, pan, rotate) used by
      * this display before rendering visual items. The provided transform
-     * must be invertible, otherwise an expection will be thrown. For simple
+     * must be invertible, otherwise an exception will be thrown. For simple
      * panning and zooming transforms, you can instead use the provided
      * pan() and zoom() methods.
      */
@@ -1057,21 +1057,21 @@ public class Display extends JComponent {
     public synchronized void pan(double dx, double dy) {
         m_tmpPoint.setLocation(dx, dy);
         m_itransform.transform(m_tmpPoint, m_tmpPoint);
-        double panx = m_tmpPoint.getX();
-        double pany = m_tmpPoint.getY();
+        double panX = m_tmpPoint.getX();
+        double panY = m_tmpPoint.getY();
         m_tmpPoint.setLocation(0, 0);
         m_itransform.transform(m_tmpPoint, m_tmpPoint);
-        panx -= m_tmpPoint.getX();
-        pany -= m_tmpPoint.getY();
-        panAbs(panx, pany);
+        panX -= m_tmpPoint.getX();
+        panY -= m_tmpPoint.getY();
+        panAbs(panX, panY);
 
     }
     
     /**
      * Pans the view provided by this display in absolute (i.e. item-space)
      * coordinates.
-     * @param dx the amount to pan along the x-dimension, in absolute co-ords
-     * @param dy the amount to pan along the y-dimension, in absolute co-ords
+     * @param dx the amount to pan along the x-dimension, in absolute coordinates
+     * @param dy the amount to pan along the y-dimension, in absolute coordinates
      */
     public synchronized void panAbs(double dx, double dy) {
         damageReport();
@@ -1084,7 +1084,7 @@ public class Display extends JComponent {
     /**
      * Pans the display view to center on the provided point in 
      * screen (pixel) coordinates.
-     * @param p the point to center on, in screen co-ords
+     * @param p the point to center on, in screen coordinates
      */
     public synchronized void panTo(Point2D p) {
         m_itransform.transform(p, m_tmpPoint);
@@ -1094,7 +1094,7 @@ public class Display extends JComponent {
     /**
      * Pans the display view to center on the provided point in 
      * absolute (i.e. item-space) coordinates.
-     * @param p the point to center on, in absolute co-ords
+     * @param p the point to center on, in absolute coordinates
      */
     public synchronized void panToAbs(Point2D p) {
         double sx = m_transform.getScaleX();
@@ -1132,7 +1132,7 @@ public class Display extends JComponent {
      *  (i.e. item-space) co-ordinates
      * @param scale the amount to zoom by
      */
-    public synchronized void zoomAbs(final Point2D p, double scale) {;
+    public synchronized void zoomAbs(final Point2D p, double scale) {
         double zx = p.getX(), zy = p.getY();
         damageReport();
         m_transform.translate(zx, zy);
@@ -1180,16 +1180,16 @@ public class Display extends JComponent {
      * @param duration the duration of the animation, in milliseconds
      */
     public synchronized void animatePan(double dx, double dy, long duration) {
-        double panx = dx / m_transform.getScaleX();
-        double pany = dy / m_transform.getScaleY();
-        animatePanAbs(panx,pany,duration);
+        double panX = dx / m_transform.getScaleX();
+        double panY = dy / m_transform.getScaleY();
+        animatePanAbs(panX,panY,duration);
     }
     
     /**
      * Animate a pan along the specified distance in absolute (item-space)
      * co-ordinates using the provided duration.
-     * @param dx the amount to pan along the x-dimension, in absolute co-ords
-     * @param dy the amount to pan along the y-dimension, in absolute co-ords
+     * @param dx the amount to pan along the x-dimension, in absolute coordinates
+     * @param dy the amount to pan along the y-dimension, in absolute coordinates
      * @param duration the duration of the animation, in milliseconds
      */
     public synchronized void animatePanAbs(double dx, double dy, long duration) {
@@ -1396,10 +1396,10 @@ public class Display extends JComponent {
      */
     protected void firePrePaint(Graphics2D g) {
         if ( m_painters != null && m_painters.size() > 0 ) {
-            Object[] lstnrs = m_painters.getArray();
-            for ( int i=0; i<lstnrs.length; ++i ) {
+            Object[] listeners = m_painters.getArray();
+            for ( int i=0; i<listeners.length; ++i ) {
                 try {
-                    ((PaintListener)lstnrs[i]).prePaint(this, g);
+                    ((PaintListener)listeners[i]).prePaint(this, g);
                 } catch ( Exception e ) {
                     s_logger.warning(
                         "Exception thrown by PaintListener: " + e + "\n" +
@@ -1415,10 +1415,10 @@ public class Display extends JComponent {
      */
     protected void firePostPaint(Graphics2D g) {
         if ( m_painters != null && m_painters.size() > 0 ) {
-            Object[] lstnrs = m_painters.getArray();
-            for ( int i=0; i<lstnrs.length; ++i ) {
+            Object[] listeners = m_painters.getArray();
+            for ( int i=0; i<listeners.length; ++i ) {
                 try {
-                    ((PaintListener)lstnrs[i]).postPaint(this, g);
+                    ((PaintListener)listeners[i]).postPaint(this, g);
                 } catch ( Exception e ) {
                     s_logger.warning(
                         "Exception thrown by PaintListener: " + e + "\n" +
@@ -1461,10 +1461,10 @@ public class Display extends JComponent {
             return; // nothing to do
         
         if ( m_bounders != null && m_bounders.size() > 0 ) {
-            Object[] lstnrs = m_bounders.getArray();
-            for ( int i=0; i<lstnrs.length; ++i ) {
+            Object[] listeners = m_bounders.getArray();
+            for ( int i=0; i<listeners.length; ++i ) {
                 try {
-                    ((ItemBoundsListener)lstnrs[i]).itemBoundsChanged(this);
+                    ((ItemBoundsListener)listeners[i]).itemBoundsChanged(this);
                 } catch ( Exception e ) {
                     s_logger.warning(
                         "Exception thrown by ItemBoundsListener: " + e + "\n" +
@@ -1685,9 +1685,9 @@ public class Display extends JComponent {
         // Fire Event Notifications
         
         private void fireItemDragged(VisualItem item, MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemDragged(item, e);
@@ -1700,9 +1700,9 @@ public class Display extends JComponent {
         }
 
         private void fireItemMoved(VisualItem item, MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemMoved(item, e);
@@ -1715,9 +1715,9 @@ public class Display extends JComponent {
         }
 
         private void fireItemWheelMoved(VisualItem item, MouseWheelEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemWheelMoved(item, e);
@@ -1730,9 +1730,9 @@ public class Display extends JComponent {
         }
 
         private void fireItemClicked(VisualItem item, MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemClicked(item, e);
@@ -1745,9 +1745,9 @@ public class Display extends JComponent {
         }
 
         private void fireItemPressed(VisualItem item, MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemPressed(item, e);
@@ -1760,9 +1760,9 @@ public class Display extends JComponent {
         }
 
         private void fireItemReleased(VisualItem item, MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemReleased(item, e);
@@ -1776,9 +1776,9 @@ public class Display extends JComponent {
 
         private void fireItemEntered(VisualItem item, MouseEvent e) {
             item.setHover(true);
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemEntered(item, e);
@@ -1792,9 +1792,9 @@ public class Display extends JComponent {
 
         private void fireItemExited(VisualItem item, MouseEvent e) {
             if ( item.isValid() ) item.setHover(false);
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemExited(item, e);
@@ -1807,11 +1807,11 @@ public class Display extends JComponent {
         }
 
         private void fireItemKeyPressed(VisualItem item, KeyEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            if (lstnrs.length == 0)
+            Object[] listeners = m_controls.getArray();
+            if (listeners.length == 0)
                 return;
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemKeyPressed(item, e);
@@ -1824,9 +1824,9 @@ public class Display extends JComponent {
         }
 
         private void fireItemKeyReleased(VisualItem item, KeyEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemKeyReleased(item, e);
@@ -1839,9 +1839,9 @@ public class Display extends JComponent {
         }
 
         private void fireItemKeyTyped(VisualItem item, KeyEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.itemKeyTyped(item, e);
@@ -1854,9 +1854,9 @@ public class Display extends JComponent {
         }
 
         private void fireMouseEntered(MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mouseEntered(e);
@@ -1869,9 +1869,9 @@ public class Display extends JComponent {
         }
 
         private void fireMouseExited(MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mouseExited(e);
@@ -1884,9 +1884,9 @@ public class Display extends JComponent {
         }
 
         private void fireMousePressed(MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mousePressed(e);
@@ -1899,9 +1899,9 @@ public class Display extends JComponent {
         }
 
         private void fireMouseReleased(MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mouseReleased(e);
@@ -1914,9 +1914,9 @@ public class Display extends JComponent {
         }
 
         private void fireMouseClicked(MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mouseClicked(e);
@@ -1929,9 +1929,9 @@ public class Display extends JComponent {
         }
 
         private void fireMouseDragged(MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mouseDragged(e);
@@ -1944,9 +1944,9 @@ public class Display extends JComponent {
         }
 
         private void fireMouseMoved(MouseEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mouseMoved(e);
@@ -1959,9 +1959,9 @@ public class Display extends JComponent {
         }
 
         private void fireMouseWheelMoved(MouseWheelEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.mouseWheelMoved(e);
@@ -1974,9 +1974,9 @@ public class Display extends JComponent {
         }
 
         private void fireKeyPressed(KeyEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.keyPressed(e);
@@ -1989,9 +1989,9 @@ public class Display extends JComponent {
         }
 
         private void fireKeyReleased(KeyEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.keyReleased(e);
@@ -2004,9 +2004,9 @@ public class Display extends JComponent {
         }
 
         private void fireKeyTyped(KeyEvent e) {
-            Object[] lstnrs = m_controls.getArray();
-            for (int i = 0; i < lstnrs.length; ++i) {
-                Control ctrl = (Control) lstnrs[i];
+            Object[] listeners = m_controls.getArray();
+            for (int i = 0; i < listeners.length; ++i) {
+                Control ctrl = (Control) listeners[i];
                 if (ctrl.isEnabled())
                     try {
                         ctrl.keyTyped(e);
@@ -2044,7 +2044,7 @@ public class Display extends JComponent {
     
     /**
      * Edit text for the given VisualItem and attribute. Presents a text
-     * editing widget spaning the item's bounding box. Use stopEditing()
+     * editing widget spanning the item's bounding box. Use stopEditing()
      * to hide the text widget. When stopEditing() is called, the data field
      * will automatically be updated with the VisualItem.
      * @param item the VisualItem to edit
@@ -2073,7 +2073,7 @@ public class Display extends JComponent {
     
     /**
      * Edit text for the given VisualItem and field. Presents a text
-     * editing widget spaning the given bounding box. Use stopEditing()
+     * editing widget spanning the given bounding box. Use stopEditing()
      * to hide the text widget. When stopEditing() is called, the field
      * will automatically be updated with the VisualItem.
      * @param item the VisualItem to edit

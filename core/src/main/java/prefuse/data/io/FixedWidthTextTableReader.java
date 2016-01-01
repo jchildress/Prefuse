@@ -70,18 +70,18 @@ public class FixedWidthTextTableReader extends AbstractTextTableReader {
             throws IOException, DataParseException
     {
         String line;
-        int lineno = 0;
+        int lineNo = 0;
         
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         while ( (line=br.readLine()) != null ) {
             // increment the line number
-            ++lineno;
+            ++lineNo;
             
             // split on tab character
             for (int i=0; i<m_schema.getColumnCount(); ++i) {
             	int idx0 = m_schema.getColumnStart(i);
             	int idx1 = m_schema.getColumnEnd(i);
-            	trl.readValue(lineno, i+1, line.substring(idx0, idx1));
+            	trl.readValue(lineNo, i+1, line.substring(idx0, idx1));
             }
         }
     }

@@ -21,7 +21,7 @@ import prefuse.util.collections.IntIterator;
 /**
  * Factory class that creates optimized filter iterators. When possible,
  * this factory will attempt to create an optimized query plan by using
- * available indexes, in many incrasing performance by only visiting
+ * available indexes, in many increasing performance by only visiting
  * the tuples which will pass the filter condition.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
@@ -72,7 +72,7 @@ public class FilterIteratorFactory {
      */
     public static IntIterator rows(Table t, Predicate p) {
         // attempt to generate an optimized query plan
-        IntIterator iter = null;
+        IntIterator iter;
         iter = getOptimizedIterator(t, p);
         
         // optimization fails, scan the entire table
@@ -224,8 +224,8 @@ public class FilterIteratorFactory {
         if ( index == null || !cmp.equals(index.getComparator()) )
             return null;
         
-        Class ltype = lit.getClass();
-        if ( ltype == int.class ) {
+        Class lType = lit.getClass();
+        if ( lType == int.class ) {
             int val = lit.getInt(null); // literal value, so null is safe
             switch ( operation ) {
             case ComparisonPredicate.LT:
@@ -241,7 +241,7 @@ public class FilterIteratorFactory {
             default:
                 throw new IllegalStateException(); // should never occur
             }
-        } else if ( ltype == long.class ) {
+        } else if ( lType == long.class ) {
             long val = lit.getLong(null); // literal value, so null is safe
             switch ( operation ) {
             case ComparisonPredicate.LT:
@@ -257,7 +257,7 @@ public class FilterIteratorFactory {
             default:
                 throw new IllegalStateException(); // should never occur
             }
-        } else if ( ltype == float.class ) {
+        } else if ( lType == float.class ) {
             float val = lit.getFloat(null); // literal value, so null is safe
             switch ( operation ) {
             case ComparisonPredicate.LT:
@@ -273,7 +273,7 @@ public class FilterIteratorFactory {
             default:
                 throw new IllegalStateException(); // should never occur
             }
-        } else if ( ltype == double.class ) {
+        } else if ( lType == double.class ) {
             double val = lit.getDouble(null); // literal value, so null is safe
             switch ( operation ) {
             case ComparisonPredicate.LT:
@@ -333,7 +333,7 @@ public class FilterIteratorFactory {
             return null;
         
         int operation = rp.getOperation();
-        Class ltype = t.getColumnType(col.getColumnName());
+        Class lType = t.getColumnType(col.getColumnName());
         
         // TODO safety check literal types
         
@@ -357,13 +357,13 @@ public class FilterIteratorFactory {
         }
         
         // get the indexed rows
-        if ( ltype == int.class ) {
+        if ( lType == int.class ) {
             return index.rows(l.getInt(null), r.getInt(null), indexType);
-        } else if ( ltype == long.class ) {
+        } else if ( lType == long.class ) {
             return index.rows(l.getLong(null), r.getLong(null), indexType);
-        } else if ( ltype == float.class ) {
+        } else if ( lType == float.class ) {
             return index.rows(l.getFloat(null), r.getFloat(null), indexType);
-        } else if ( ltype == double.class ) {
+        } else if ( lType == double.class ) {
             return index.rows(l.getDouble(null), r.getDouble(null), indexType);
         } else {
             return index.rows(l.get(null), r.get(null), indexType);

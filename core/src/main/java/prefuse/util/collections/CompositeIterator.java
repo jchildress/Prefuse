@@ -10,24 +10,24 @@ import java.util.NoSuchElementException;
  */
 public class CompositeIterator implements Iterator {
 
-    private Iterator[] m_iters;
+    private Iterator[] m_iterators;
     private int m_cur;
     
     public CompositeIterator(int size) {
-        m_iters = new Iterator[size];
+        m_iterators = new Iterator[size];
     }
     
     public CompositeIterator(Iterator iter1, Iterator iter2) {
         this(new Iterator[] {iter1, iter2});
     }
     
-    public CompositeIterator(Iterator[] iters) {
-        m_iters = iters;
+    public CompositeIterator(Iterator[] iterators) {
+        m_iterators = iterators;
         m_cur = 0;
     }
 
     public void setIterator(int idx, Iterator iter) {
-        m_iters[idx] = iter;
+        m_iterators[idx] = iter;
     }
     
     /**
@@ -43,7 +43,7 @@ public class CompositeIterator implements Iterator {
      */
     public Object next() {
         if ( hasNext() ) {
-            return m_iters[m_cur].next();
+            return m_iterators[m_cur].next();
         } else {
             throw new NoSuchElementException();
         }
@@ -53,16 +53,16 @@ public class CompositeIterator implements Iterator {
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
-        if ( m_iters == null )
+        if ( m_iterators == null )
             return false;
         
         while ( true ) {
-            if ( m_cur >= m_iters.length ) {
-                m_iters = null;
+            if ( m_cur >= m_iterators.length ) {
+                m_iterators = null;
                 return false;
-            } if ( m_iters[m_cur] == null ) {
+            } if ( m_iterators[m_cur] == null ) {
                 ++m_cur;
-            } else if ( m_iters[m_cur].hasNext() ) {
+            } else if ( m_iterators[m_cur].hasNext() ) {
                 return true;
             } else {
                 ++m_cur;

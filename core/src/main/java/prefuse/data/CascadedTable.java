@@ -178,9 +178,9 @@ public class CascadedTable extends Table {
         
         m_pnames.clear();
 
-        Iterator pcols = m_parent.getColumnNames();
-        for ( int i=0, j=m_columns.size(); pcols.hasNext(); ++i ) {
-            String name = (String)pcols.next();
+        Iterator pCols = m_parent.getColumnNames();
+        for ( int i=0, j=m_columns.size(); pCols.hasNext(); ++i ) {
+            String name = (String)pCols.next();
             Column col  = m_parent.getColumn(i);
             
             if ( m_colFilter.include(col, name) && !m_names.contains(name) ) {
@@ -216,22 +216,22 @@ public class CascadedTable extends Table {
     public void filterRows() {
         if ( m_parent == null ) return;
         
-        CascadedRowManager rowman = (CascadedRowManager)m_rows;
+        CascadedRowManager rowMan = (CascadedRowManager)m_rows;
         IntIterator crows = m_rows.rows();
         while ( crows.hasNext() ) {
             int crow = crows.nextInt();
             if ( !m_rowFilter.getBoolean(
-                    m_parent.getTuple(rowman.getParentRow(crow))) )
+                    m_parent.getTuple(rowMan.getParentRow(crow))) )
             {
                 removeCascadedRow(crow);
             }
         }
         
-        Iterator ptuples = m_parent.tuples(m_rowFilter);
-        while ( ptuples.hasNext() ) {
-            Tuple pt = (Tuple)ptuples.next();
+        Iterator pTuples = m_parent.tuples(m_rowFilter);
+        while ( pTuples.hasNext() ) {
+            Tuple pt = (Tuple)pTuples.next();
             int prow = pt.getRow();
-            if ( rowman.getChildRow(prow) == -1 )
+            if ( rowMan.getChildRow(prow) == -1 )
                 addCascadedRow(prow);
         }
     }
@@ -354,12 +354,12 @@ public class CascadedTable extends Table {
     /**
      * @see prefuse.data.Table#addRows(int)
      */
-    public void addRows(int nrows) {
+    public void addRows(int nRows) {
         if ( m_parent != null ) {
             throw new IllegalStateException(
                 "Add rows not supported for CascadedTable.");
         } else {
-            super.addRows(nrows);
+            super.addRows(nRows);
         }
     }
     
@@ -490,7 +490,7 @@ public class CascadedTable extends Table {
             if ( t != m_parent )
                 return;
             
-            CascadedRowManager rowman = (CascadedRowManager)m_rows;
+            CascadedRowManager rowMan = (CascadedRowManager)m_rows;
             
             // switch on the event type
             switch ( type ) {
@@ -503,8 +503,8 @@ public class CascadedTable extends Table {
                 }
                 
                 // process each update, check if filtered state changes
-                for ( int r=start, cr=-1; r<=end; ++r ) {
-                    if ( (cr=rowman.getChildRow(r)) != -1 ) {
+                for (int r = start, cr; r<=end; ++r ) {
+                    if ( (cr=rowMan.getChildRow(r)) != -1 ) {
                         // the parent row has a corresponding row in this table
                         if ( m_rowFilter.getBoolean(m_parent.getTuple(r)) ) {
                             // row still passes the filter, check the column
@@ -518,7 +518,7 @@ public class CascadedTable extends Table {
                     } else {
                         // does it now pass the filter due to the update?
                         if ( m_rowFilter.getBoolean(m_parent.getTuple(r)) ) {
-                            if ( (cr=rowman.getChildRow(r)) < 0 )
+                            if ( rowMan.getChildRow(r) < 0 )
                                 addCascadedRow(r);
                         }
                     }
@@ -529,8 +529,8 @@ public class CascadedTable extends Table {
             {
                 if ( col == EventConstants.ALL_COLUMNS ) {
                     // entire rows deleted
-                    for ( int r=start, cr=-1; r<=end; ++r ) {
-                        if ( (cr=rowman.getChildRow(r)) != -1 )
+                    for (int r = start, cr; r<=end; ++r ) {
+                        if ( (cr=rowMan.getChildRow(r)) != -1 )
                             removeCascadedRow(cr);
                     }
                 } else {
@@ -544,7 +544,7 @@ public class CascadedTable extends Table {
                     // entire rows added
                     for ( int r=start; r<=end; ++r ) {
                         if ( m_rowFilter.getBoolean(m_parent.getTuple(r)) ) {
-                            if ( rowman.getChildRow(r) < 0 )
+                            if ( rowMan.getChildRow(r) < 0 )
                                 addCascadedRow(r);
                         }
                     }

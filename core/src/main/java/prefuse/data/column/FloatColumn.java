@@ -6,7 +6,7 @@ import prefuse.data.DataReadOnlyException;
 import prefuse.data.DataTypeException;
 
 /**
- * Column instance for sotring flaot values.
+ * Column instance for storing float values.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
@@ -24,27 +24,27 @@ public class FloatColumn extends AbstractColumn {
     
     /**
      * Create a new FloatColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public FloatColumn(int nrows) {
-        this(nrows, nrows, 0f);
+    public FloatColumn(int nRows) {
+        this(nRows, nRows, 0f);
     }
     
     /**
      * Create a new FloatColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      * @param capacity the initial capacity of the column
      * @param defaultValue the default value for the column
      */
-    public FloatColumn(int nrows, int capacity, float defaultValue) {
+    public FloatColumn(int nRows, int capacity, float defaultValue) {
         super(float.class, new Float(defaultValue));
-        if ( capacity < nrows ) {
+        if ( capacity < nRows ) {
             throw new IllegalArgumentException(
                 "Capacity value can not be less than the row count.");
         }
         m_values = new float[capacity];
         Arrays.fill(m_values, defaultValue);
-        m_size = nrows;
+        m_size = nRows;
     }
     
     // ------------------------------------------------------------------------
@@ -60,16 +60,16 @@ public class FloatColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        if ( nrows > m_values.length ) {
-            int capacity = Math.max((3*m_values.length)/2 + 1, nrows);
+    public void setMaximumRow(int nRows) {
+        if ( nRows > m_values.length ) {
+            int capacity = Math.max((3*m_values.length)/2 + 1, nRows);
             float[] values = new float[capacity];
             System.arraycopy(m_values, 0, values, 0, m_size);
             Arrays.fill(values, m_size, capacity,
                     ((Float)m_defaultValue).floatValue());
             m_values = values;
         }
-        m_size = nrows;
+        m_size = nRows;
     }
 
     // ------------------------------------------------------------------------

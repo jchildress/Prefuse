@@ -29,14 +29,14 @@ public class IntArrayParser implements DataParser {
               "This class can only format Objects of type int[].");
         
         int[] values = (int[])value;
-        StringBuffer sbuf = new StringBuffer();
-        sbuf.append('[');
+        StringBuffer sBuf = new StringBuffer();
+        sBuf.append('[');
         for ( int i=0; i<values.length; ++i ) {
-            if ( i > 0 ) sbuf.append(", ");
-            sbuf.append(values[i]);
+            if ( i > 0 ) sBuf.append(", ");
+            sBuf.append(values[i]);
         }
-        sbuf.append(']');
-        return sbuf.toString();
+        sBuf.append(']');
+        return sBuf.toString();
     }
     
     /**

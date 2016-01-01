@@ -39,7 +39,7 @@ public class TupleComparator implements Comparator {
      * @param ascend true to sort in ascending order, false for descending
      * @param c the comparator to use. Note that for primitive types,
      * this should be an instance of LiteralComparator, otherwise
-     * subequent errors will occur.
+     * subsequent errors will occur.
      */
     public TupleComparator(String field, Class type, 
                            boolean ascend, Comparator c)

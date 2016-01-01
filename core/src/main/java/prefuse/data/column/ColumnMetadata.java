@@ -34,7 +34,7 @@ public class ColumnMetadata implements ColumnListener {
     private int m_median;
     private int m_unique;
     private Double m_mean;
-    private Double m_stdev;
+    private Double m_stdDev;
     private Double m_sum;
     private Object[] m_ordinalA;
     private Map m_ordinalM;
@@ -86,7 +86,7 @@ public class ColumnMetadata implements ColumnListener {
         m_median = -1;
         m_unique = -1;
         m_mean   = null;
-        m_stdev  = null;
+        m_stdDev = null;
         m_sum    = null;
         m_ordinalA = null;
         m_ordinalM = null;
@@ -246,11 +246,11 @@ public class ColumnMetadata implements ColumnListener {
      */
     public double getDeviation() {
         accessCheck();
-        if ( m_stdev == null && m_dynamic ) {
-            m_stdev = new Double(
+        if ( m_stdDev == null && m_dynamic ) {
+            m_stdDev = new Double(
                     DataLib.deviation(m_table.tuples(), m_field, getMean()));
         }
-        return m_stdev.doubleValue();
+        return m_stdDev.doubleValue();
     }
     
     /**

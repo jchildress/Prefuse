@@ -22,7 +22,7 @@ import org.apache.lucene.store.RAMDirectory;
  * Adapter class for interfacing with the Lucene search engine. By default,
  * instances of this class use an in-memory search index for English language
  * text, for use within a single application session. The class can, however,
- * be parameterized for any number of other configurations, including accessing
+ * be parametrized for any number of other configurations, including accessing
  * persistent search indices.
  *  
  * @version 1.0
@@ -162,7 +162,7 @@ public class LuceneSearcher {
      * @param query the search query
      * @return the search Hits
      * @throws ParseException if the query is not parsed successfully
-     * @throws IOException if an input/ouput error occurs
+     * @throws IOException if an input/output error occurs
      * @throws IllegalStateException if the searcher is in write mode
      */
     public Hits search(String query) throws ParseException, IOException {
@@ -188,7 +188,7 @@ public class LuceneSearcher {
      * @param query the search query
      * @return the number of matches to the query
      * @throws ParseException if the query is not parsed successfully
-     * @throws IOException if an input/ouput error occurs
+     * @throws IOException if an input/output error occurs
      * @throws IllegalStateException if the searcher is in write mode
      */
     public int numHits(String query) throws ParseException, IOException {
@@ -262,7 +262,7 @@ public class LuceneSearcher {
     /**
      * Returns the Lucene IndexReader. See Lucene documentation
      * for more details.
-     * @return teturns the IndexReader.
+     * @return the IndexReader.
      */
     public IndexReader getIndexReader() {
         return reader;

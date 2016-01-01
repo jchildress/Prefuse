@@ -26,8 +26,8 @@ public class FontLib {
      * @return the requested Font instance
      */
     public static Font getFont(String name, double size) {
-        int isize = (int)Math.floor(size);
-        return getFont(name, Font.PLAIN, isize);
+        int iSize = (int)Math.floor(size);
+        return getFont(name, Font.PLAIN, iSize);
     }
     
     /**
@@ -41,8 +41,8 @@ public class FontLib {
      * @return the requested Font instance
      */
     public static Font getFont(String name, int style, double size) {
-        int isize = (int)Math.floor(size);
-        return getFont(name, style, isize);
+        int iSize = (int)Math.floor(size);
+        return getFont(name, style, iSize);
     }
     
     /**
@@ -57,7 +57,7 @@ public class FontLib {
      */
     public static Font getFont(String name, int style, int size) {
         int key = (name.hashCode()<<8)+(size<<2)+style;
-        Font f = null;
+        Font f;
         if ( (f=(Font)fontMap.get(key)) == null ) {
             f = new Font(name, style, size);
             fontMap.put(key, f);

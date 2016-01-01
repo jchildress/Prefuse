@@ -14,7 +14,7 @@ import prefuse.visual.VisualItem;
 public class ToolTipControl extends ControlAdapter {
 
     private String[] label;
-    private StringBuffer sbuf;
+    private StringBuffer sBuf;
     
     /**
      * Create a new ToolTipControl.
@@ -32,7 +32,7 @@ public class ToolTipControl extends ControlAdapter {
     public ToolTipControl(String[] fields) {
         label = fields;
         if ( fields.length > 1 )
-            sbuf = new StringBuffer();
+            sBuf = new StringBuffer();
     }
     
     /**
@@ -46,17 +46,17 @@ public class ToolTipControl extends ControlAdapter {
                 d.setToolTipText(item.getString(label[0]));
             }
         } else {
-            sbuf.delete(0, sbuf.length());
+            sBuf.delete(0, sBuf.length());
             for ( int i=0; i<label.length; ++i ) {
                 if ( item.canGetString(label[i]) ) {
-                    if ( sbuf.length() > 0 )
-                        sbuf.append("; ");
-                    sbuf.append(item.getString(label[i]));
+                    if ( sBuf.length() > 0 )
+                        sBuf.append("; ");
+                    sBuf.append(item.getString(label[i]));
                 }
             }
             // show tool tip only, if at least one field is available
-            if (sbuf.length() > 0) {
-                d.setToolTipText(sbuf.toString());
+            if (sBuf.length() > 0) {
+                d.setToolTipText(sBuf.toString());
             }
         }
     }

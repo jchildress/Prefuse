@@ -34,33 +34,33 @@ public class ObjectColumn extends AbstractColumn {
     
     /**
      * Create a new ObjectColumn. The type is assumed to be Object. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public ObjectColumn(int nrows) {
-        this(Object.class, nrows, nrows, null);
+    public ObjectColumn(int nRows) {
+        this(Object.class, nRows, nRows, null);
     }
     
     /**
      * Create a new ObjectColumn.
      * @param type the data type of Objects in this column 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public ObjectColumn(Class type, int nrows) {
-        this(type, nrows, nrows, null);
+    public ObjectColumn(Class type, int nRows) {
+        this(type, nRows, nRows, null);
     }
     
     /**
      * Create a new ObjectColumn.
      * @param type the data type of Objects in this column 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      * @param capacity the initial capacity of the column
      * @param defaultValue the default value for the column. If this value
      * is cloneable, it will be cloned when assigned as defaultValue, otherwise
      * the input reference will be used for every default value.
      */
-    public ObjectColumn(Class type, int nrows, int capacity, Object defaultValue) {
+    public ObjectColumn(Class type, int nRows, int capacity, Object defaultValue) {
         super(type, defaultValue);
-        if ( capacity < nrows ) {
+        if ( capacity < nRows ) {
             throw new IllegalArgumentException(
                 "Capacity value can not be less than the row count.");
         }
@@ -82,7 +82,7 @@ public class ObjectColumn extends AbstractColumn {
             }
             Arrays.fill(m_values, defaultValue);
         }
-        m_size = nrows;
+        m_size = nRows;
     }
     
     // ------------------------------------------------------------------------
@@ -98,9 +98,9 @@ public class ObjectColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        if ( nrows > m_values.length ) {
-            int capacity = Math.max((3*m_values.length)/2 + 1, nrows);
+    public void setMaximumRow(int nRows) {
+        if ( nRows > m_values.length ) {
+            int capacity = Math.max((3*m_values.length)/2 + 1, nRows);
             Object[] values = new Object[capacity];
             System.arraycopy(m_values, 0, values, 0, m_size);
             try {
@@ -116,7 +116,7 @@ public class ObjectColumn extends AbstractColumn {
             }
             m_values = values;
         }
-        m_size = nrows;
+        m_size = nRows;
     }
 
     // ------------------------------------------------------------------------

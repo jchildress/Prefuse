@@ -60,9 +60,9 @@ public class UniqueRowIterator extends IntIterator {
     public int nextInt() {
         if ( m_next == -1 )
             throw new NoSuchElementException();
-        int retval = m_next;
+        int retVal = m_next;
         advance();
-        return retval;
+        return retVal;
     }
     
     /**

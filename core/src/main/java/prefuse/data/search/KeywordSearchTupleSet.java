@@ -128,7 +128,7 @@ public class KeywordSearchTupleSet extends SearchTupleSet {
     }
 
     /**
-     * Returns false, as unindexing values is not currently supported.
+     * Returns false, as un-indexing values is not currently supported.
      * @see prefuse.data.search.SearchTupleSet#isUnindexSupported()
      */
     public boolean isUnindexSupported() {
@@ -136,7 +136,7 @@ public class KeywordSearchTupleSet extends SearchTupleSet {
     }
     
     /**
-     * This method throws an exception, as unidexing is not supported.
+     * This method throws an exception, as un-idexing is not supported.
      * @see prefuse.data.search.SearchTupleSet#unindex(prefuse.data.Tuple, java.lang.String)
      * @throws UnsupportedOperationException
      */

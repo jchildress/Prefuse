@@ -18,14 +18,14 @@ public interface SQLDataHandler {
      * Java data value and storing it in a Table.
      * @param t the Table in which to store the result value
      * @param trow the Table row to add to
-     * @param rset the ResultSet to read the SQL value from, assumed
+     * @param rSet the ResultSet to read the SQL value from, assumed
      * to be set to the desired row
-     * @param rcol the column index of the data value in the row set.
+     * @param rCol the column index of the data value in the row set.
      * This is also used to look up the column name, which is used
      * to access the correct data field of the Table.
      * @throws SQLException if an error occurs accessing the ResultSet
      */
-    public void process(Table t, int trow, ResultSet rset, int rcol)
+    public void process(Table t, int trow, ResultSet rSet, int rCol)
         throws SQLException;
     
     /**

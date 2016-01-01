@@ -84,7 +84,7 @@ public class GraphView extends JPrefuseApplet {
         
         TupleSet focusGroup = vis.getGroup(Visualization.FOCUS_ITEMS); 
         focusGroup.addTupleSetListener(new TupleSetListener() {
-            public void tupleSetChanged(TupleSet ts, Tuple[] add, Tuple[] rem)
+            public void tupleSetChanged(TupleSet tSet, Tuple[] add, Tuple[] rem)
             {
                 for ( int i=0; i<rem.length; ++i )
                     ((VisualItem)rem[i]).setFixed(false);

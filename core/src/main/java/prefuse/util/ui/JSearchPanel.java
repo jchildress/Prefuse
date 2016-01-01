@@ -236,7 +236,7 @@ public class JSearchPanel extends JPanel
             
             // add a listener to dynamically build search index
             source.addTupleSetListener(new TupleSetListener() {
-                public void tupleSetChanged(TupleSet tset, 
+                public void tupleSetChanged(TupleSet tSet,
                         Tuple[] add, Tuple[] rem)
                 {
                     if ( add != null ) {

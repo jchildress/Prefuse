@@ -26,99 +26,99 @@ public class ColumnFactory {
     /**
      * Get a new column of the given type.
      * @param type the column data type
-     * @param nrows the number of rows to include in the column
+     * @param nRows the number of rows to include in the column
      * @return the new column
      */
-    public static final Column getColumn(Class type, int nrows) {
-        return getColumn(type, nrows, nrows, null);
+    public static final Column getColumn(Class type, int nRows) {
+        return getColumn(type, nRows, nRows, null);
     }
 
     /**
      * Get a new column of the given type.
      * @param type the column data type
-     * @param nrows the number of rows to include in the column
+     * @param nRows the number of rows to include in the column
      * @param defaultValue the default value for the column
      * @return the new column
      */
-    public static final Column getColumn(Class type, int nrows, 
+    public static final Column getColumn(Class type, int nRows,
                                          Object defaultValue)
     {
-        return getColumn(type, nrows, nrows, defaultValue);
+        return getColumn(type, nRows, nRows, defaultValue);
     }
     
     /**
      * Get a new column of the given type.
      * @param type the column data type
-     * @param nrows the number of rows to include in the column
+     * @param nRows the number of rows to include in the column
      * @param nnz the number of expected non-zero entries (NOTE: currently
      * this value is not being used)
      * @param defaultValue the default value for the column
      * @return the new column
      */
-    public static final Column getColumn(Class type, int nrows, int nnz,
+    public static final Column getColumn(Class type, int nRows, int nnz,
                                          Object defaultValue)
     {
         if ( type == byte.class )
         {
             if ( defaultValue == null ) {
-                return new ByteColumn(nrows);
+                return new ByteColumn(nRows);
             } else {
                 byte def = ((Number)defaultValue).byteValue();
-                return new ByteColumn(nrows, nrows, def);
+                return new ByteColumn(nRows, nRows, def);
             }
         }
         if ( type == int.class )
         {
             if ( defaultValue == null ) {
-                return new IntColumn(nrows);
+                return new IntColumn(nRows);
             } else {
                 int def = ((Number)defaultValue).intValue();
-                return new IntColumn(nrows, nrows, def);
+                return new IntColumn(nRows, nRows, def);
             }
         }
         else if ( type == long.class )
         {
             if ( defaultValue == null ) {
-                return new LongColumn(nrows);
+                return new LongColumn(nRows);
             } else {
                 long def = ((Number)defaultValue).longValue();
-                return new LongColumn(nrows, nrows, def);
+                return new LongColumn(nRows, nRows, def);
             }
         }
         else if ( type == float.class )
         {
             if ( defaultValue == null ) {
-                return new FloatColumn(nrows);
+                return new FloatColumn(nRows);
             } else {
                 float def = ((Number)defaultValue).floatValue();
-                return new FloatColumn(nrows, nrows, def);
+                return new FloatColumn(nRows, nRows, def);
             }
         }
         else if ( type == double.class )
         {
             if ( defaultValue == null ) {
-                return new DoubleColumn(nrows);
+                return new DoubleColumn(nRows);
             } else {
                 double def = ((Number)defaultValue).doubleValue();
-                return new DoubleColumn(nrows, nrows, def);
+                return new DoubleColumn(nRows, nRows, def);
             }
         }
         else if ( type == boolean.class )
         {
             if ( defaultValue == null ) {
-                return new BooleanColumn(nrows);
+                return new BooleanColumn(nRows);
             } else {
                 boolean def = ((Boolean)defaultValue).booleanValue();
-                return new BooleanColumn(nrows, nrows, def);
+                return new BooleanColumn(nRows, nRows, def);
             }
         }
         else if ( Date.class.isAssignableFrom(type) )
         {
             if ( defaultValue == null ) {
-                return new DateColumn(type, nrows);
+                return new DateColumn(type, nRows);
             } else {
                 Date d = ((Date)defaultValue);
-                return new DateColumn(type, nrows, nrows, d.getTime());
+                return new DateColumn(type, nRows, nRows, d.getTime());
             }
         }
         else if ( type == byte.class 
@@ -130,7 +130,7 @@ public class ColumnFactory {
         }
         else
         {
-            return new ObjectColumn(type, nrows, nrows, defaultValue);
+            return new ObjectColumn(type, nRows, nRows, defaultValue);
         }
     }
     
@@ -147,11 +147,11 @@ public class ColumnFactory {
     /**
      * Get a new column of a constant value.
      * @param type the column data type
-     * @param dflt the default constant value for the column
+     * @param dFlt the default constant value for the column
      * @return the new column
      */
-    public static final Column getConstantColumn(Class type, Object dflt) {
-        return new ConstantColumn(type, dflt);
+    public static final Column getConstantColumn(Class type, Object dFlt) {
+        return new ConstantColumn(type, dFlt);
     }
     
 } // end of class ColumnFactory

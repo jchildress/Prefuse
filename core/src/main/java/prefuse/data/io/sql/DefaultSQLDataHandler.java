@@ -68,82 +68,82 @@ public class DefaultSQLDataHandler implements SQLDataHandler {
     /**
      * @see prefuse.data.io.sql.SQLDataHandler#process(prefuse.data.Table, int, java.sql.ResultSet, int)
      */
-    public void process(Table t, int trow, ResultSet rset, int rcol)
+    public void process(Table t, int trow, ResultSet rSet, int rCol)
         throws SQLException
     {
-        ResultSetMetaData metadata = rset.getMetaData();
-        String field = metadata.getColumnName(rcol);
-        int type = metadata.getColumnType(rcol);
+        ResultSetMetaData metadata = rSet.getMetaData();
+        String field = metadata.getColumnName(rCol);
+        int type = metadata.getColumnType(rCol);
         
         switch ( type ) {
         case Types.ARRAY:
-            t.set(trow, field, rset.getArray(rcol));
+            t.set(trow, field, rSet.getArray(rCol));
             break;
             
         case Types.BIGINT:
-            t.setLong(trow, field, rset.getLong(rcol));
+            t.setLong(trow, field, rSet.getLong(rCol));
             break;
             
         case Types.BINARY:
         case Types.LONGVARBINARY:
         case Types.VARBINARY:
-            t.set(trow, field, rset.getBytes(rcol));
+            t.set(trow, field, rSet.getBytes(rCol));
             break;
             
         case Types.BIT:
         case Types.BOOLEAN:
-            t.setBoolean(trow, field, rset.getBoolean(rcol));
+            t.setBoolean(trow, field, rSet.getBoolean(rCol));
             break;            
             
         case Types.BLOB:
-            t.set(trow, field, rset.getBlob(rcol));
+            t.set(trow, field, rSet.getBlob(rCol));
             break;
         
         case Types.CHAR:
         case Types.LONGVARCHAR:
         case Types.VARCHAR:
-            t.setString(trow, field, rset.getString(rcol));
+            t.setString(trow, field, rSet.getString(rCol));
             break;
             
         case Types.CLOB:
-            t.set(trow, field, rset.getClob(rcol));
+            t.set(trow, field, rSet.getClob(rCol));
             break;
         
         case Types.DATE:
-            t.setDate(trow, field, rset.getDate(rcol));
+            t.setDate(trow, field, rSet.getDate(rCol));
             break;
         
         case Types.DECIMAL:
         case Types.DOUBLE:
         case Types.FLOAT:
         case Types.NUMERIC:
-            t.setDouble(trow, field, rset.getDouble(rcol));
+            t.setDouble(trow, field, rSet.getDouble(rCol));
             break;
             
         case Types.INTEGER:
         case Types.SMALLINT:
         case Types.TINYINT:
-            t.setInt(trow, field, rset.getInt(rcol));
+            t.setInt(trow, field, rSet.getInt(rCol));
             break;
             
         case Types.JAVA_OBJECT:
-            t.set(trow, field, rset.getObject(rcol));
+            t.set(trow, field, rSet.getObject(rCol));
             break;
                         
         case Types.REAL:
-            t.setFloat(trow, field, rset.getFloat(rcol));
+            t.setFloat(trow, field, rSet.getFloat(rCol));
             break;
             
         case Types.REF:
-            t.set(trow, field, rset.getRef(rcol));
+            t.set(trow, field, rSet.getRef(rCol));
             break;
                         
         case Types.TIME:
-            t.setDate(trow, field, rset.getTime(rcol));
+            t.setDate(trow, field, rSet.getTime(rCol));
             break;
             
         case Types.TIMESTAMP:
-            t.setDate(trow, field, rset.getTimestamp(rcol));
+            t.setDate(trow, field, rSet.getTimestamp(rCol));
             break;
             
         case Types.DATALINK:
@@ -153,7 +153,7 @@ public class DefaultSQLDataHandler implements SQLDataHandler {
         case Types.STRUCT:
         default:
             if ( !m_ignoreUnknownTypes ) {
-                t.set(trow, field, rset.getObject(rcol));
+                t.set(trow, field, rSet.getObject(rCol));
             }
             break;
         }

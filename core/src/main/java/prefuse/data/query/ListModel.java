@@ -20,7 +20,7 @@ public class ListModel extends DefaultListSelectionModel
     implements MutableComboBoxModel
 {
     private ArrayList m_items = new ArrayList();
-    private CopyOnWriteArrayList m_lstnrs = new CopyOnWriteArrayList();
+    private CopyOnWriteArrayList m_listeners = new CopyOnWriteArrayList();
     
     /**
      * Create an empty ListModel.
@@ -117,8 +117,8 @@ public class ListModel extends DefaultListSelectionModel
      */
     public void removeElementAt(int idx) {
         if ( !isMultipleSelection() && idx == getMinSelectionIndex() ) {
-            int sidx = ( idx==0 ? getSize()==1 ? -1 : idx+1 : idx-1 );
-            Object sel = ( sidx == -1 ? null : m_items.get(sidx) );
+            int sIdx = ( idx==0 ? getSize()==1 ? -1 : idx+1 : idx-1 );
+            Object sel = ( sIdx == -1 ? null : m_items.get(sIdx) );
             setSelectedItem(sel);
         }
     
@@ -133,26 +133,26 @@ public class ListModel extends DefaultListSelectionModel
      * @see javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener)
      */
     public void addListDataListener(ListDataListener l) {
-        if ( !m_lstnrs.contains(l) )
-            m_lstnrs.add(l);
+        if ( !m_listeners.contains(l) )
+            m_listeners.add(l);
     }
     
     /**
      * @see javax.swing.ListModel#removeListDataListener(javax.swing.event.ListDataListener)
      */
     public void removeListDataListener(ListDataListener l) {
-        m_lstnrs.remove(l);
+        m_listeners.remove(l);
     }
     
     /**
      * Fires a change notification in response to changes in the ListModel.
      */
     protected void fireDataEvent(Object src, int type, int idx0, int idx1) {
-        Object[] lstnrs = m_lstnrs.getArray();
-        if ( lstnrs.length > 0 ) {
+        Object[] listeners = m_listeners.getArray();
+        if ( listeners.length > 0 ) {
             ListDataEvent e = new ListDataEvent(src, type, idx0, idx1);
-            for ( int i=0; i<lstnrs.length; ++i ) {
-                ((ListDataListener)lstnrs[i]).contentsChanged(e);
+            for ( int i=0; i<listeners.length; ++i ) {
+                ((ListDataListener)listeners[i]).contentsChanged(e);
             }
         }
     }

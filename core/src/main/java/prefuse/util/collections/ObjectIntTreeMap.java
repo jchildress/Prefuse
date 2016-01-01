@@ -169,10 +169,10 @@ public class ObjectIntTreeMap extends AbstractTreeMap
         if ( fromKey == toKey && (fromKey == MIN_KEY || fromKey == MAX_KEY) )
             return Collections.EMPTY_LIST.iterator();
         
-        boolean bmin = (fromKey == MIN_KEY || toKey == MAX_KEY);
-        boolean bmax = (fromKey == MAX_KEY || toKey == MIN_KEY);
+        boolean bMin = (fromKey == MIN_KEY || toKey == MAX_KEY);
+        boolean bMax = (fromKey == MAX_KEY || toKey == MIN_KEY);
         
-        if ( !bmax && (bmin || cmp.compare(fromKey, toKey) <= 0) ) {
+        if ( !bMax && (bMin || cmp.compare(fromKey, toKey) <= 0) ) {
             start = findCeiling(fromKey, (fromInc ? 0 : Integer.MAX_VALUE));
             end = findCeiling(toKey, (toInc? Integer.MAX_VALUE : 0));
         } else {

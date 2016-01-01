@@ -80,7 +80,7 @@ public abstract class Distortion extends Layout {
             
             // compute distortion if we have a distortion focus
             if ( anchor != null ) {
-                Rectangle2D bbox = item.getBounds();
+                Rectangle2D bBox = item.getBounds();
                 double x = item.getX();
                 double y = item.getY();
                 
@@ -92,7 +92,7 @@ public abstract class Distortion extends Layout {
                 
                 // size distortion
                 if ( m_distortSize ) {
-                    double sz = distortSize(bbox, x, y, anchor, bounds);
+                    double sz = distortSize(bBox, x, y, anchor, bounds);
                     item.setSize(sz*item.getSize());
                 }
             }
@@ -108,7 +108,7 @@ public abstract class Distortion extends Layout {
      * @return the corrected anchor point
      */
     protected Point2D correct(Point2D anchor, Rectangle2D bounds) {
-        if ( anchor == null ) return anchor;
+        if ( anchor == null ) return null;
         double x = anchor.getX(), y = anchor.getY();
         double x1 = bounds.getMinX(), y1 = bounds.getMinY();
         double x2 = bounds.getMaxX(), y2 = bounds.getMaxY();
@@ -139,14 +139,14 @@ public abstract class Distortion extends Layout {
     
     /**
      * Returns the scaling factor by which to transform the size of an item.
-     * @param bbox the bounding box of the undistorted item
+     * @param bBox the bounding box of the undistorted item
      * @param x the x-coordinate of the distorted item
      * @param y the y-coordinate of the distorted item
      * @param anchor the anchor or focus point of the display
      * @param bounds the layout bounds
      * @return the scaling factor by which to change the size
      */
-    protected abstract double distortSize(Rectangle2D bbox, double x, double y, 
+    protected abstract double distortSize(Rectangle2D bBox, double x, double y,
             Point2D anchor, Rectangle2D bounds);
 
 } // end of abstract class Distortion

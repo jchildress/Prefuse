@@ -23,7 +23,7 @@ public class FilterRowIterator extends IntIterator {
     /**
      * Create a new FilterRowIterator.
      * @param rows an iterator over table rows
-     * @param t the whos rows are being iterated over
+     * @param t the table whose rows are being iterated over
      * @param p the filter predicate to use
      */
     public FilterRowIterator(IntIterator rows, Table t, Predicate p) {
@@ -52,9 +52,9 @@ public class FilterRowIterator extends IntIterator {
         if ( !hasNext() ) {
             throw new NoSuchElementException("No more elements");
         }
-        int retval = next;
+        int retVal = next;
         next = advance();
-        return retval;
+        return retVal;
     }
     
     /**

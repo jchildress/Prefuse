@@ -20,9 +20,9 @@ import javax.swing.SwingConstants;
 public class JFastLabel extends JComponent {
 
     private String m_text;
-    private int m_valign = SwingConstants.TOP;
-    private int m_halign = SwingConstants.LEFT;
-    private int m_fheight = -1;
+    private int m_vAlign = SwingConstants.TOP;
+    private int m_hAlign = SwingConstants.LEFT;
+    private int m_fHeight = -1;
     private boolean m_quality = false;
     
     /**
@@ -63,7 +63,7 @@ public class JFastLabel extends JComponent {
      */
     public void setFont(Font f) {
         super.setFont(f);
-        m_fheight = -1;
+        m_fHeight = -1;
     }
     
     /**
@@ -72,8 +72,8 @@ public class JFastLabel extends JComponent {
      * @see javax.swing.SwingConstants
      */
     public void setVerticalAlignment(int align) {
-        m_valign = align;
-        m_fheight = -1;
+        m_vAlign = align;
+        m_fHeight = -1;
     }
     
     /**
@@ -82,7 +82,7 @@ public class JFastLabel extends JComponent {
      * @see javax.swing.SwingConstants
      */
     public void setHorizontalAlignment(int align) {
-        m_halign = align;
+        m_hAlign = align;
     }
     
     /**
@@ -110,12 +110,12 @@ public class JFastLabel extends JComponent {
         Insets ins = getInsets();
         int w = getWidth()-ins.left-ins.right;
         int h = getHeight()-ins.top-ins.bottom;
-        if ( m_fheight == -1 ) {
+        if ( m_fHeight == -1 ) {
             FontMetrics fm = g.getFontMetrics(getFont());
-            if ( m_valign == SwingConstants.BOTTOM )
-                m_fheight = fm.getDescent();
-            else if ( m_valign == SwingConstants.TOP )
-                m_fheight = fm.getAscent();
+            if ( m_vAlign == SwingConstants.BOTTOM )
+                m_fHeight = fm.getDescent();
+            else if ( m_vAlign == SwingConstants.TOP )
+                m_fHeight = fm.getAscent();
         }
         g.setColor(getBackground());
         g.fillRect(ins.left,ins.top,w,h);
@@ -125,13 +125,13 @@ public class JFastLabel extends JComponent {
         
         g.setFont(getFont());
         g.setColor(getForeground());
-        if ( m_valign == SwingConstants.BOTTOM ) {
-            h = h-m_fheight-ins.bottom;
+        if ( m_vAlign == SwingConstants.BOTTOM ) {
+            h = h- m_fHeight -ins.bottom;
         } else {
-            h = ins.top+m_fheight;
+            h = ins.top+ m_fHeight;
         }
         
-        switch ( m_halign ) {
+        switch (m_hAlign) {
         case SwingConstants.RIGHT: {
             FontMetrics fm = g.getFontMetrics(getFont());
             w = w-ins.right-fm.stringWidth(m_text);

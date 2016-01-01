@@ -37,22 +37,22 @@ public class FisheyeDistortion extends Distortion {
     /**
      * Create a new FisheyeDistortion with the given distortion factor
      * for use along both the x and y directions.
-     * @param dfactor the distortion factor (same for both axes)
+     * @param dFactor the distortion factor (same for both axes)
      */
-    public FisheyeDistortion(double dfactor) {
-        this(dfactor, dfactor);
+    public FisheyeDistortion(double dFactor) {
+        this(dFactor, dFactor);
     }
     
     /**
      * Create a new FisheyeDistortion with the given distortion factors
      * along the x and y directions.
-     * @param xfactor the distortion factor along the x axis
-     * @param yfactor the distortion factor along the y axis
+     * @param xFactor the distortion factor along the x axis
+     * @param yFactor the distortion factor along the y axis
      */
-    public FisheyeDistortion(double xfactor, double yfactor) {
+    public FisheyeDistortion(double xFactor, double yFactor) {
         super();
-        dx = xfactor;
-        dy = yfactor;
+        dx = xFactor;
+        dy = yFactor;
         m_distortX = dx > 0;
         m_distortY = dy > 0;
     }
@@ -108,30 +108,30 @@ public class FisheyeDistortion extends Distortion {
     /**
      * @see prefuse.action.distortion.Distortion#distortSize(java.awt.geom.Rectangle2D, double, double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
-    protected double distortSize(Rectangle2D bbox, double x, double y, 
-            Point2D anchor, Rectangle2D bounds)
+    protected double distortSize(Rectangle2D bBox, double x, double y,
+                                 Point2D anchor, Rectangle2D bounds)
     { 
         if ( !m_distortX && !m_distortY ) return 1.;
         double fx=1, fy=1;
 
         if ( m_distortX ) {
             double ax = anchor.getX();
-            double minX = bbox.getMinX(), maxX = bbox.getMaxX();
+            double minX = bBox.getMinX(), maxX = bBox.getMaxX();
             double xx = (Math.abs(minX-ax) > Math.abs(maxX-ax) ? minX : maxX);
             if ( xx < bounds.getMinX() || xx > bounds.getMaxX() )
                 xx = (xx==minX ? maxX : minX);
             fx = fisheye(xx,ax,dx,bounds.getMinX(),bounds.getMaxX());
-            fx = Math.abs(x-fx)/bbox.getWidth();
+            fx = Math.abs(x-fx)/ bBox.getWidth();
         }
 
         if ( m_distortY ) {
             double ay = anchor.getY();
-            double minY = bbox.getMinY(), maxY = bbox.getMaxY();
+            double minY = bBox.getMinY(), maxY = bBox.getMaxY();
             double yy = (Math.abs(minY-ay) > Math.abs(maxY-ay) ? minY : maxY);
             if ( yy < bounds.getMinY() || yy > bounds.getMaxY() )
                 yy = (yy==minY ? maxY : minY);
             fy = fisheye(yy,ay,dy,bounds.getMinY(),bounds.getMaxY());
-            fy = Math.abs(y-fy)/bbox.getHeight();
+            fy = Math.abs(y-fy)/ bBox.getHeight();
         }
         
         double sf = (!m_distortY ? fx : (!m_distortX ? fy : Math.min(fx,fy)));

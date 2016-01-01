@@ -52,7 +52,7 @@ public class Clip {
     /**
      * Set the clip contents, and set the status to valid and in use.
      * @param x the minimum x-coordinate
-     * @param y the minimum y-coorindate
+     * @param y the minimum y-coordinate
      * @param w the clip width
      * @param h the clip height
      */
@@ -78,28 +78,28 @@ public class Clip {
         at.transform(clip,0,clip,0,4);
         
         // make safe against rotation
-        double xmin = clip[0], ymin = clip[1];
-        double xmax = clip[6], ymax = clip[7];
+        double xMin = clip[0], yMin = clip[1];
+        double xMax = clip[6], yMax = clip[7];
         for ( int i=0; i<7; i+=2 ) {
-            if ( clip[i] < xmin )
-                xmin = clip[i];
-            if ( clip[i] > xmax )
-                xmax = clip[i];
-            if ( clip[i+1] < ymin )
-                ymin = clip[i+1];
-            if ( clip[i+1] > ymax )
-                ymax = clip[i+1];
+            if ( clip[i] < xMin )
+                xMin = clip[i];
+            if ( clip[i] > xMax )
+                xMax = clip[i];
+            if ( clip[i+1] < yMin )
+                yMin = clip[i+1];
+            if ( clip[i+1] > yMax )
+                yMax = clip[i+1];
         }
-        clip[0] = xmin; clip[1] = ymin;
-        clip[6] = xmax; clip[7] = ymax;
+        clip[0] = xMin; clip[1] = yMin;
+        clip[6] = xMax; clip[7] = yMax;
     }
     
     /**
      * Limit the clip such that it fits within the specified region.
      * @param x1 the minimum x-coordinate
-     * @param y1 the minimum y-coorindate
+     * @param y1 the minimum y-coordinate
      * @param x2 the maximum x-coordinate
-     * @param y2 the maximum y-coorindate
+     * @param y2 the maximum y-coordinate
      */
     public void limit(double x1, double y1, double x2, double y2) {
         clip[0] = Math.max(clip[0],x1);
@@ -166,13 +166,13 @@ public class Clip {
         if ( status == INVALID )
             return;
         
-        double minx = r.getMinX();
-        double miny = r.getMinY();
-        double maxx = r.getMaxX();
-        double maxy = r.getMaxY();
+        double minX = r.getMinX();
+        double minY = r.getMinY();
+        double maxX = r.getMaxX();
+        double maxY = r.getMaxY();
         
-        if ( Double.isNaN(minx) || Double.isNaN(miny) ||
-             Double.isNaN(maxx) || Double.isNaN(maxy) ) {
+        if ( Double.isNaN(minX) || Double.isNaN(minY) ||
+             Double.isNaN(maxX) || Double.isNaN(maxY) ) {
             Logger.getLogger(getClass().getName()).warning(
                 "Union with invalid clip region: "+r);
             return;
@@ -183,10 +183,10 @@ public class Clip {
             status = INUSE;
             return;
         }
-        clip[0] = Math.min(clip[0], minx);
-        clip[1] = Math.min(clip[1], miny);
-        clip[6] = Math.max(clip[6], maxx);
-        clip[7] = Math.max(clip[7], maxy);
+        clip[0] = Math.min(clip[0], minX);
+        clip[1] = Math.min(clip[1], minY);
+        clip[6] = Math.max(clip[6], maxX);
+        clip[7] = Math.max(clip[7], maxY);
     }
     
     /**

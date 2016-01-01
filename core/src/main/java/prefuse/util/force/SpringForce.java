@@ -8,7 +8,7 @@ package prefuse.util.force;
  */
 public class SpringForce extends AbstractForce {
 
-    private static String[] pnames 
+    private static String[] pNames
         = new String[] { "SpringCoefficient", "DefaultSpringLength" };
     
     public static final float DEFAULT_SPRING_COEFF = 1E-4f;
@@ -54,7 +54,7 @@ public class SpringForce extends AbstractForce {
      * @see prefuse.util.force.AbstractForce#getParameterNames()
      */
     protected String[] getParameterNames() {
-        return pnames;
+        return pNames;
     } 
     
     /**

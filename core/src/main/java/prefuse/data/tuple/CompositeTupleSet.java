@@ -35,7 +35,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
     private Map m_map;   // map names to tuple sets
     private Set m_sets;  // support quick reverse lookup
     private int m_count; // count of total tuples
-    private Listener m_lstnr;
+    private Listener m_listener;
     
     /**
      * Create a new, empty CompositeTupleSet
@@ -48,7 +48,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
         m_map = new LinkedHashMap();
         m_sets = new HashSet();
         m_count = 0;
-        m_lstnr = listen ? new Listener() : null;
+        m_listener = listen ? new Listener() : null;
     }
     
     /**
@@ -63,8 +63,8 @@ public class CompositeTupleSet extends AbstractTupleSet {
         m_map.put(name, set);
         m_sets.add(set);
         m_count += set.getTupleCount();
-        if ( m_lstnr != null )
-            set.addTupleSetListener(m_lstnr);
+        if ( m_listener != null )
+            set.addTupleSetListener(m_listener);
     }
     
     /**
@@ -120,8 +120,8 @@ public class CompositeTupleSet extends AbstractTupleSet {
         TupleSet ts = (TupleSet)m_map.remove(name);
         if ( ts != null ) {
             m_sets.remove(ts);
-            if ( m_lstnr != null )
-                ts.removeTupleSetListener(m_lstnr);
+            if ( m_listener != null )
+                ts.removeTupleSetListener(m_listener);
         }
         return ts;
     }
@@ -136,8 +136,8 @@ public class CompositeTupleSet extends AbstractTupleSet {
             TupleSet ts = (TupleSet)entry.getValue();
             sets.remove();
             m_sets.remove(ts);
-            if ( m_lstnr != null )
-                ts.removeTupleSetListener(m_lstnr);
+            if ( m_listener != null )
+                ts.removeTupleSetListener(m_listener);
         }
         m_count = 0;
     }
@@ -208,7 +208,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      * @see prefuse.data.tuple.TupleSet#getTupleCount()
      */
     public int getTupleCount() {
-        if ( m_lstnr != null ) {
+        if ( m_listener != null ) {
             return m_count;
         } else {
             int count = 0;
@@ -349,7 +349,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      * the total tuple count appropriately.
      */
     private class Listener implements TupleSetListener {
-        public void tupleSetChanged(TupleSet tset, Tuple[] add, Tuple[] rem) {
+        public void tupleSetChanged(TupleSet tSet, Tuple[] add, Tuple[] rem) {
             m_count += add.length - rem.length;
             fireTupleEvent(add, rem);
         }

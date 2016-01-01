@@ -31,7 +31,7 @@ public class ListQueryBinding extends DynamicQueryBinding {
     
     private Class m_type;
     private ListModel m_model;
-    private Listener m_lstnr;
+    private Listener m_listener;
     private boolean m_includeAll;
     
     /**
@@ -53,7 +53,7 @@ public class ListQueryBinding extends DynamicQueryBinding {
     public ListQueryBinding(TupleSet ts, String field, boolean includeAllOption) {
         super(ts, field);
         m_type = DataLib.inferType(ts, field);
-        m_lstnr = new Listener();
+        m_listener = new Listener();
         m_includeAll = includeAllOption;
         initPredicate();
         initModel();
@@ -68,10 +68,10 @@ public class ListQueryBinding extends DynamicQueryBinding {
     
     private void initModel() {        
         if ( m_model != null )
-            m_model.removeListSelectionListener(m_lstnr);
+            m_model.removeListSelectionListener(m_listener);
         
         // set up data / selection model
-        Object[] o = null;
+        Object[] o;
         if ( m_tuples instanceof Table ) {
             ColumnMetadata md = ((Table)m_tuples).getMetadata(m_field);
             o = md.getOrdinalArray();
@@ -79,7 +79,7 @@ public class ListQueryBinding extends DynamicQueryBinding {
             o = DataLib.ordinalArray(m_tuples.tuples(), m_field);
         }
         m_model = new ListModel(o);
-        m_model.addListSelectionListener(m_lstnr);
+        m_model.addListSelectionListener(m_listener);
         if ( m_includeAll ) {
             m_model.insertElementAt(ALL, 0);
             m_model.setSelectedItem(ALL);

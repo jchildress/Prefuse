@@ -19,29 +19,30 @@ public abstract class AbstractColumnProjection implements ColumnProjection {
     /**
      * @see prefuse.data.util.ColumnProjection#addProjectionListener(prefuse.data.event.ProjectionListener)
      */
-    public void addProjectionListener(ProjectionListener lstnr) {
+    public void addProjectionListener(ProjectionListener listener) {
         if ( m_listeners == null )
             m_listeners = new CopyOnWriteArrayList();
-        if ( !m_listeners.contains(lstnr) )
-            m_listeners.add(lstnr);
+        if ( !m_listeners.contains(listener) )
+            m_listeners.add(listener);
     }
 
     /**
      * @see prefuse.data.util.ColumnProjection#removeProjectionListener(prefuse.data.event.ProjectionListener)
      */
-    public void removeProjectionListener(ProjectionListener lstnr) {
-        if ( m_listeners != null )
-            m_listeners.remove(lstnr);
-        if ( m_listeners.size() == 0 )
-            m_listeners = null;
+    public void removeProjectionListener(ProjectionListener listener) {
+        if ( m_listeners != null ) {
+            m_listeners.remove(listener);
+            if (m_listeners.size() == 0)
+                m_listeners = null;
+        }
     }
     
     public void fireUpdate() {
         if ( m_listeners == null )
             return;
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i ) {
-            ((ProjectionListener)lstnrs[i]).projectionChanged(this);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i ) {
+            ((ProjectionListener)listeners[i]).projectionChanged(this);
         }
     }
     

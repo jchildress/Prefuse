@@ -26,9 +26,9 @@ public abstract class AbstractExpression
     /**
      * @see prefuse.data.expression.Expression#addExpressionListener(prefuse.data.event.ExpressionListener)
      */
-    public final void addExpressionListener(ExpressionListener lstnr) {
-        if ( !m_listeners.contains(lstnr) ) {
-            m_listeners.add(lstnr);
+    public final void addExpressionListener(ExpressionListener listener) {
+        if ( !m_listeners.contains(listener) ) {
+            m_listeners.add(listener);
             addChildListeners();
         }
     }
@@ -36,8 +36,8 @@ public abstract class AbstractExpression
     /**
      * @see prefuse.data.expression.Expression#removeExpressionListener(prefuse.data.event.ExpressionListener)
      */
-    public final void removeExpressionListener(ExpressionListener lstnr) {
-        m_listeners.remove(lstnr);
+    public final void removeExpressionListener(ExpressionListener listener) {
+        m_listeners.remove(listener);
         if ( m_listeners.size() == 0 )
             removeChildListeners();
     }
@@ -54,9 +54,9 @@ public abstract class AbstractExpression
      * Fire an expression change.
      */
     protected final void fireExpressionChange() {
-        Object[] lstnrs = m_listeners.getArray();
-        for ( int i=0; i<lstnrs.length; ++i ) {
-            ((ExpressionListener)lstnrs[i]).expressionChanged(this);
+        Object[] listeners = m_listeners.getArray();
+        for ( int i=0; i<listeners.length; ++i ) {
+            ((ExpressionListener)listeners[i]).expressionChanged(this);
         }
     }
     

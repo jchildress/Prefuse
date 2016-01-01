@@ -23,7 +23,7 @@ import prefuse.visual.VisualTupleSet;
 public class SearchQueryBinding extends DynamicQueryBinding {
 
     private SearchTupleSet m_set;
-    private Listener m_lstnr;
+    private Listener m_listener;
     private Object m_lock;
     
     /**
@@ -46,12 +46,12 @@ public class SearchQueryBinding extends DynamicQueryBinding {
      */
     public SearchQueryBinding(TupleSet ts, String field, SearchTupleSet set) {
         super(ts, field);
-        m_lstnr = new Listener();
+        m_listener = new Listener();
         setPredicate(new SearchBindingPredicate());
         
         m_set = set;
         m_set.index(ts.tuples(), field);
-        m_set.addTupleSetListener(m_lstnr);
+        m_set.addTupleSetListener(m_listener);
         
         if ( ts instanceof VisualTupleSet )
             m_lock = ((VisualTupleSet)ts).getVisualization();
@@ -115,7 +115,7 @@ public class SearchQueryBinding extends DynamicQueryBinding {
     }
     
     private class Listener implements TupleSetListener {
-        public void tupleSetChanged(TupleSet tset, Tuple[] added, Tuple[] removed) {
+        public void tupleSetChanged(TupleSet tSet, Tuple[] added, Tuple[] removed) {
             ((SearchBindingPredicate)getPredicate()).touch();
         }        
     }

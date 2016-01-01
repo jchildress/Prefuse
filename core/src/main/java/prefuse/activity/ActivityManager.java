@@ -9,7 +9,7 @@ import prefuse.util.PrefuseConfig;
  * <p>The ActivityManager is responsible for scheduling and running timed 
  * activities that perform data processing and animation.</p>
  * 
- * <p>The AcivityManager runs in its own separate thread of execution, and
+ * <p>The ActivityManager runs in its own separate thread of execution, and
  * one instance is used to schedule activities from any number of currently
  * active visualizations. The class is implemented as a singleton; the single
  * instance of this class is interacted with through static methods. These
@@ -75,7 +75,7 @@ public class ActivityManager extends Thread {
     }
     
     /**
-     * Stops the activity manager thread. All scheduled actvities are
+     * Stops the activity manager thread. All scheduled activities are
      * canceled, and then the thread is then notified to stop running.
      */
     public static void stopThread() {
@@ -139,7 +139,7 @@ public class ActivityManager extends Thread {
      * first Activity is cancelled, the second one will not run.
      * 
      * This functionality is provided by using an ActivityListener to monitor
-     * the first Activity. The listener will persist across mulitple runs,
+     * the first Activity. The listener will persist across multiple runs,
      * meaning the second Activity will always be evoked upon a successful
      * finish of the first.
      * 
@@ -169,7 +169,7 @@ public class ActivityManager extends Thread {
     }
     
     /**
-     * Stops the activity manager thread. All scheduled actvities are
+     * Stops the activity manager thread. All scheduled activities are
      * canceled, and then the thread is then notified to stop running.
      */
     private synchronized void _stop() {
@@ -187,7 +187,7 @@ public class ActivityManager extends Thread {
      */
     private void _schedule(Activity a, long startTime) {
         if ( a.isScheduled() ) {
-        	try { notifyAll(); } catch ( Exception e ) {}
+        	try { notifyAll(); } catch ( Exception ignored) {}
             return; // already scheduled, do nothing
         }
         a.setStartTime(startTime);
@@ -226,7 +226,7 @@ public class ActivityManager extends Thread {
      * first Activity is cancelled, the second one will not run.
      * 
      * This functionality is provided by using an ActivityListener to monitor
-     * the first Activity. The listener will persist across mulitple runs,
+     * the first Activity. The listener will persist across multiple runs,
      * meaning the second Activity will always be evoked upon a successful
      * finish of the first.
      * 
@@ -241,7 +241,7 @@ public class ActivityManager extends Thread {
     /**
      * Cancels an action, called by an Activity when it is cancelled. 
      * Application code should not call this method! Instead, use 
-     * Activity.cancel() to stop a sheduled or running Activity.
+     * Activity.cancel() to stop a scheduled or running Activity.
      * @param a The Activity to cancel
      */
     private void _cancelActivity(Activity a){
@@ -283,7 +283,7 @@ public class ActivityManager extends Thread {
      * Removes an Activity from this manager, called by an
      * Activity when it finishes or is cancelled. Application 
      * code should not call this method! Instead, use 
-     * Activity.cancel() to stop a sheduled or running Activity.
+     * Activity.cancel() to stop a scheduled or running Activity.
      * @param a
      * @return true if the activity was found and removed, false
      *  if the activity is not scheduled with this manager.
@@ -375,13 +375,13 @@ public class ActivityManager extends Thread {
                 // determine the next time we should run
                 try {
                     synchronized (this) { wait(t); }
-                } catch (InterruptedException e) { }
+                } catch (InterruptedException ignored) { }
                 
             } else {
                 // nothing to do, chill out until notified
                 try {
                     synchronized (this) { wait(); }
-                } catch (InterruptedException e) { }
+                } catch (InterruptedException ignored) { }
             }
         }
     }

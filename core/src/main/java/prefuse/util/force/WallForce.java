@@ -10,7 +10,7 @@ import java.awt.geom.Line2D;
  */
 public class WallForce extends AbstractForce {
 
-    private static String[] pnames = new String[] { "GravitationalConstant" };
+    private static String[] pNames = new String[] { "GravitationalConstant" };
     
     public static final float DEFAULT_GRAV_CONSTANT = -0.1f;
     public static final float DEFAULT_MIN_GRAV_CONSTANT = -1.0f;
@@ -67,7 +67,7 @@ public class WallForce extends AbstractForce {
      * @see prefuse.util.force.AbstractForce#getParameterNames()
      */
     protected String[] getParameterNames() {
-        return pnames;
+        return pNames;
     }
     
     /**

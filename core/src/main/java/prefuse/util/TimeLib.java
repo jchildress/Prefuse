@@ -15,7 +15,7 @@ import java.util.GregorianCalendar;
  */
 public class TimeLib {
 
-    /** Represents a millenium, 1000 years. */
+    /** Represents a millennium, 1000 years. */
     public static final int MILLENIUM = -1000;
     /** Represents a century, 100 years */
     public static final int CENTURY   = -100;

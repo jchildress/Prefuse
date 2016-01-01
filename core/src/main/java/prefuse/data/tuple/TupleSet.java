@@ -170,33 +170,33 @@ public interface TupleSet {
     /**
      * Add a PropertyChangeListener to be notified of changes to the properties
      * bounds to this TupleSet.
-     * @param lstnr the PropertyChangeListener to add
+     * @param listener the PropertyChangeListener to add
      */
-    public void addPropertyChangeListener(PropertyChangeListener lstnr);
+    public void addPropertyChangeListener(PropertyChangeListener listener);
 
     /**
      * Add a PropertyChangeListener to be notified of changes to a
      * specific property bound to this TupleSet.
      * @param key the specific key for which to listen to properties changes
-     * @param lstnr the PropertyChangeListener to add
+     * @param listener the PropertyChangeListener to add
      */
     public void addPropertyChangeListener(String key, 
-                                          PropertyChangeListener lstnr);
+                                          PropertyChangeListener listener);
 
     /**
      * Remove a PropertyChangeListener from this TupleSet.
-     * @param lstnr the PropertyChangeListener to remove
+     * @param listener the PropertyChangeListener to remove
      */
-    public void removePropertyChangeListener(PropertyChangeListener lstnr);
+    public void removePropertyChangeListener(PropertyChangeListener listener);
     
     /**
      * Remove a PropertyChangeListener from this TupleSet for a specific
      * bound property.
      * @param key the specific key for which to remove the listener
-     * @param lstnr the PropertyChangeListener to remove
+     * @param listener the PropertyChangeListener to remove
      */
     public void removePropertyChangeListener(String key,
-                                             PropertyChangeListener lstnr);
+                                             PropertyChangeListener listener);
     
     /**
      * Set an arbitrary client property with this TupleSet

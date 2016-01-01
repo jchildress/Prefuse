@@ -47,9 +47,9 @@ public class FilterIterator implements Iterator {
         if ( !hasNext() ) {
             throw new NoSuchElementException("No more elements");
         }
-        Tuple retval = next;
+        Tuple retVal = next;
         next = advance();
-        return retval;
+        return retVal;
     }
     
     /**

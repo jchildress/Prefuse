@@ -42,12 +42,12 @@ public abstract class AbstractHashMap {
     protected int highWaterMark;
 
     /**
-     * The minimum load factor for the hashtable.
+     * The minimum load factor for the hash-table.
      */
     protected double minLoadFactor;
 
     /**
-     * The maximum load factor for the hashtable.
+     * The maximum load factor for the hash-table.
      */
     protected double maxLoadFactor;
 
@@ -164,7 +164,7 @@ public abstract class AbstractHashMap {
      * 
      * @param desiredCapacity
      *            the capacity desired by the user.
-     * @return the capacity which should be used for a hashtable.
+     * @return the capacity which should be used for a hash-table.
      */
     protected int nextPrime(int desiredCapacity) {
         return PrimeFinder.nextPrime(desiredCapacity);

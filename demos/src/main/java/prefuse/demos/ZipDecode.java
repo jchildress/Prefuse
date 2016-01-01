@@ -187,7 +187,7 @@ public class ZipDecode extends Display implements Constants {
         
         // create the listener that collects search results into a focus set
         search.addTupleSetListener(new TupleSetListener() {
-            public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
+            public void tupleSetChanged(TupleSet tSet, Tuple[] add, Tuple[] rem) {
                 m_vis.cancel("animate");
                 
                 // invalidate changed tuples, add them all to the focus set

@@ -254,9 +254,9 @@ public class AggregateTable extends VisualTable {
             return m_next != null;
         }
         public Object next() {
-            Tuple retval = m_next;
+            Tuple retVal = m_next;
             advance();
-            return retval;
+            return retVal;
         }
         private void advance() {
             while ( m_rows.hasNext() ) {

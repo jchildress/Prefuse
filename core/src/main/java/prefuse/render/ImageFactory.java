@@ -218,7 +218,7 @@ public class ImageFactory {
     }
     
     /**
-     * <p>Preloads images for use in a visualization. Images to load are
+     * <p>Pre-loads images for use in a visualization. Images to load are
      * determined by taking objects from the given iterator and retrieving
      * the value of the specified field. The items in the iterator must
      * be instances of the {@link prefuse.data.Tuple} class.</p>
@@ -231,10 +231,10 @@ public class ImageFactory {
      * @param field the data field that contains the image location
      */
     public void preloadImages(Iterator iter, String field) {
-        boolean synch = m_asynch;
+        boolean sync = m_asynch;
         m_asynch = false;
         
-        String loc = null;
+        String loc;
         while ( iter.hasNext() && imageCache.size() <= m_imageCacheSize ) {
             // get the string describing the image location
             Tuple t = (Tuple)iter.next();
@@ -243,7 +243,7 @@ public class ImageFactory {
                 getImage(loc);
             }
         }
-        m_asynch = synch;
+        m_asynch = sync;
     }
     
     /**

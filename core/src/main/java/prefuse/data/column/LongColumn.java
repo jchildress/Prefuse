@@ -24,27 +24,27 @@ public class LongColumn extends AbstractColumn {
 
     /**
      * Create a new LongColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public LongColumn(int nrows) {
-        this(nrows, nrows, 0L);
+    public LongColumn(int nRows) {
+        this(nRows, nRows, 0L);
     }
     
     /**
      * Create a new LongColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      * @param capacity the initial capacity of the column
      * @param defaultValue the default value for the column
      */
-    public LongColumn(int nrows, int capacity, long defaultValue) {
+    public LongColumn(int nRows, int capacity, long defaultValue) {
         super(long.class, new Long(defaultValue));
-        if ( capacity < nrows ) {
+        if ( capacity < nRows ) {
             throw new IllegalArgumentException(
                 "Capacity value can not be less than the row count.");
         }
         m_values = new long[capacity];
         Arrays.fill(m_values, defaultValue);
-        m_size = nrows;
+        m_size = nRows;
     }
     
     // ------------------------------------------------------------------------
@@ -60,16 +60,16 @@ public class LongColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        if ( nrows > m_values.length ) {
-            int capacity = Math.max((3*m_values.length)/2 + 1, nrows);
+    public void setMaximumRow(int nRows) {
+        if ( nRows > m_values.length ) {
+            int capacity = Math.max((3*m_values.length)/2 + 1, nRows);
             long[] values = new long[capacity];
             System.arraycopy(m_values, 0, values, 0, m_size);
             Arrays.fill(values, m_size, capacity,
                     ((Long)m_defaultValue).longValue());
             m_values = values;
         }
-        m_size = nrows;
+        m_size = nRows;
     }
 
     // ------------------------------------------------------------------------

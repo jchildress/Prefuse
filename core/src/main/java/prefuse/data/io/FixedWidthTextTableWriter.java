@@ -102,14 +102,14 @@ public class FixedWidthTextTableWriter extends AbstractTableWriter {
      * Pads or truncates a string as necessary to fit within the column length.
      */
     private static String pack(String value, int len, boolean prepend, char pad) {
-    	int vlen = value.length();
-    	if (vlen < len) {
-    		StringBuffer sbuf = new StringBuffer();
-    		if (prepend) sbuf.append(value);
-    		for (int i=len; i<vlen; ++i)
-    			sbuf.append(pad);
-    		if (!prepend) sbuf.append(value);
-    		return sbuf.toString();
+    	int vLen = value.length();
+    	if (vLen < len) {
+    		StringBuffer sBuf = new StringBuffer();
+    		if (prepend) sBuf.append(value);
+    		for (int i=len; i<vLen; ++i)
+    			sBuf.append(pad);
+    		if (!prepend) sBuf.append(value);
+    		return sBuf.toString();
     	} else {
     		return value.substring(0, len);
     	}

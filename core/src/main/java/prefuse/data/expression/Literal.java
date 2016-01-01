@@ -4,7 +4,7 @@ import prefuse.data.Tuple;
 import prefuse.util.TypeLib;
 
 /**
- * Abstarct base class for a Literal Expression that evaluates to a
+ * Abstract base class for a Literal Expression that evaluates to a
  * constant value.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
@@ -85,4 +85,4 @@ public abstract class Literal extends AbstractExpression {
         }
     }
     
-} // end of abstarct class Literal
+} // end of abstract class Literal

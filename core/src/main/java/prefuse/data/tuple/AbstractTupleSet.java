@@ -86,13 +86,13 @@ public abstract class AbstractTupleSet implements TupleSet {
      */
     protected void fireTupleEvent(Table t, int start, int end, int type) {
         if ( m_tupleListeners != null && m_tupleListeners.size() > 0 ) {
-            Object[] lstnrs = m_tupleListeners.getArray();
+            Object[] listeners = m_tupleListeners.getArray();
             Tuple[] tuples = new Tuple[end-start+1];
             for ( int i=0, r=start; r <= end; ++r, ++i ) {
                 tuples[i] = t.getTuple(r);
             }
-            for ( int i=0; i<lstnrs.length; ++i ) {
-                TupleSetListener tsl = (TupleSetListener)lstnrs[i];
+            for ( int i=0; i<listeners.length; ++i ) {
+                TupleSetListener tsl = (TupleSetListener)listeners[i];
                 if ( type == EventConstants.INSERT ) {
                     tsl.tupleSetChanged(this, tuples, EMPTY_ARRAY);
                 } else {
@@ -111,10 +111,10 @@ public abstract class AbstractTupleSet implements TupleSet {
      */
     protected void fireTupleEvent(Tuple t, int type) {
         if ( m_tupleListeners != null && m_tupleListeners.size() > 0 ) {
-            Object[] lstnrs = m_tupleListeners.getArray();
+            Object[] listeners = m_tupleListeners.getArray();
             Tuple[] ts = new Tuple[] {t};
-            for ( int i=0; i<lstnrs.length; ++i ) {
-                TupleSetListener tsl = (TupleSetListener)lstnrs[i];
+            for ( int i=0; i<listeners.length; ++i ) {
+                TupleSetListener tsl = (TupleSetListener)listeners[i];
                 if ( type == EventConstants.INSERT ) {
                     tsl.tupleSetChanged(this, ts, EMPTY_ARRAY);
                 } else {
@@ -131,11 +131,11 @@ public abstract class AbstractTupleSet implements TupleSet {
      */
     protected void fireTupleEvent(Tuple[] added, Tuple[] removed) {
         if ( m_tupleListeners != null && m_tupleListeners.size() > 0 ) {
-            Object[] lstnrs = m_tupleListeners.getArray();
+            Object[] listeners = m_tupleListeners.getArray();
             added = added==null ? EMPTY_ARRAY : added;
             removed = removed==null ? EMPTY_ARRAY : removed;
-            for ( int i=0; i<lstnrs.length; ++i ) {
-                TupleSetListener tsl = (TupleSetListener)lstnrs[i];
+            for ( int i=0; i<listeners.length; ++i ) {
+                TupleSetListener tsl = (TupleSetListener)listeners[i];
                 tsl.tupleSetChanged(this, added, removed);
             }
         }
@@ -161,7 +161,7 @@ public abstract class AbstractTupleSet implements TupleSet {
                     addColumn(schema.getColumnName(i), 
                               schema.getColumnType(i),
                               schema.getDefault(i));
-                } catch ( IllegalArgumentException iae ) {}
+                } catch ( IllegalArgumentException ignored) {}
             }
         } else {
             throw new UnsupportedOperationException();
@@ -208,50 +208,50 @@ public abstract class AbstractTupleSet implements TupleSet {
     /**
      * @see prefuse.data.tuple.TupleSet#addPropertyChangeListener(java.beans.PropertyChangeListener)
      */
-    public void addPropertyChangeListener(PropertyChangeListener lstnr) {
-        if ( lstnr == null ) return;
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        if ( listener == null ) return;
         if ( m_propSupport == null )
             m_propSupport = new SwingPropertyChangeSupport(this);
-        m_propSupport.addPropertyChangeListener(lstnr);
+        m_propSupport.addPropertyChangeListener(listener);
     }
     
     /**
      * @see prefuse.data.tuple.TupleSet#addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener(String key, 
-                                          PropertyChangeListener lstnr)
+                                          PropertyChangeListener listener)
     {
-        if ( lstnr == null ) return;
+        if ( listener == null ) return;
         if ( m_propSupport == null )
             m_propSupport = new SwingPropertyChangeSupport(this);
-        m_propSupport.addPropertyChangeListener(key, lstnr);
+        m_propSupport.addPropertyChangeListener(key, listener);
     }
     
     /**
      * @see prefuse.data.tuple.TupleSet#removePropertyChangeListener(java.beans.PropertyChangeListener)
      */
-    public void removePropertyChangeListener(PropertyChangeListener lstnr) {
-        if ( lstnr == null ) return;
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        if ( listener == null ) return;
         if ( m_propSupport == null ) return;
-        m_propSupport.removePropertyChangeListener(lstnr);
+        m_propSupport.removePropertyChangeListener(listener);
     }
     
     /**
      * @see prefuse.data.tuple.TupleSet#removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener(String key,
-                                             PropertyChangeListener lstnr)
+                                             PropertyChangeListener listener)
     {
-        if ( lstnr == null ) return;
+        if ( listener == null ) return;
         if ( m_propSupport == null ) return;
-        m_propSupport.removePropertyChangeListener(key, lstnr);
+        m_propSupport.removePropertyChangeListener(key, listener);
     }
     
     /**
      * @see prefuse.data.tuple.TupleSet#putClientProperty(java.lang.String, java.lang.Object)
      */
     public void putClientProperty(String key, Object value) {
-        Object prev = null;
+        Object prev;
         if ( m_props == null && value == null ) {
             // nothing to do
             return;

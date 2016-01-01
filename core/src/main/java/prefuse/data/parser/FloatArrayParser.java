@@ -29,14 +29,14 @@ public class FloatArrayParser implements DataParser {
               "This class can only format Objects of type float[].");
         
         float[] values = (float[])value;
-        StringBuffer sbuf = new StringBuffer();
-        sbuf.append('[');
+        StringBuffer sBuf = new StringBuffer();
+        sBuf.append('[');
         for ( int i=0; i<values.length; ++i ) {
-            if ( i > 0 ) sbuf.append(", ");
-            sbuf.append(values[i]).append('f');
+            if ( i > 0 ) sBuf.append(", ");
+            sBuf.append(values[i]).append('f');
         }
-        sbuf.append(']');
-        return sbuf.toString();
+        sBuf.append(']');
+        return sBuf.toString();
     }
     
     /**

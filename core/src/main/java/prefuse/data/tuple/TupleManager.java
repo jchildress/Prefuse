@@ -61,11 +61,11 @@ public class TupleManager {
      * Ensure the tuple array exists.
      */
     private void ensureTupleArray(int row) {
-        int nrows = Math.max(m_table.getRowCount(), row+1);
+        int nRows = Math.max(m_table.getRowCount(), row+1);
         if ( m_tuples == null ) {
-            m_tuples = new TableTuple[nrows];
-        } else if ( m_tuples.length < nrows ) {
-            int capacity = Math.max((3*m_tuples.length)/2 + 1, nrows);
+            m_tuples = new TableTuple[nRows];
+        } else if ( m_tuples.length < nRows ) {
+            int capacity = Math.max((3*m_tuples.length)/2 + 1, nRows);
             TableTuple[] tuples = new TableTuple[capacity];
             System.arraycopy(m_tuples, 0, tuples, 0, m_tuples.length);
             m_tuples = tuples;

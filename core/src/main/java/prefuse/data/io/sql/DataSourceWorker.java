@@ -91,7 +91,7 @@ public class DataSourceWorker extends Thread {
                 // nothing to do, chill out until notified
                 try {
                     synchronized (this) { wait(); }
-                } catch (InterruptedException ex) { }
+                } catch (InterruptedException ignored) { }
             }
         }
     }

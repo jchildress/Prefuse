@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Updates velocity and position data using the 4th-Order Runge-Kutta method.
  * It is slower but more accurate than other techniques such as Euler's Method.
- * The technique requires re-evaluating forces 4 times for a given timestep.
+ * The technique requires re-evaluating forces 4 times for a given time step.
  *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
@@ -14,7 +14,7 @@ public class RungeKuttaIntegrator implements Integrator {
     /**
      * @see prefuse.util.force.Integrator#integrate(prefuse.util.force.ForceSimulator, long)
      */
-    public void integrate(ForceSimulator sim, long timestep) {
+    public void integrate(ForceSimulator sim, long timeStep) {
         float speedLimit = sim.getSpeedLimit();
         float vx, vy, v, coeff;
         float[][] k, l;
@@ -22,13 +22,13 @@ public class RungeKuttaIntegrator implements Integrator {
         Iterator iter = sim.getItems();
         while ( iter.hasNext() ) {
             ForceItem item = (ForceItem)iter.next();
-            coeff = timestep / item.mass;
+            coeff = timeStep / item.mass;
             k = item.k;
             l = item.l;
             item.plocation[0] = item.location[0];
             item.plocation[1] = item.location[1];
-            k[0][0] = timestep*item.velocity[0];
-            k[0][1] = timestep*item.velocity[1];
+            k[0][0] = timeStep *item.velocity[0];
+            k[0][1] = timeStep *item.velocity[1];
             l[0][0] = coeff*item.force[0];
             l[0][1] = coeff*item.force[1];
         
@@ -43,7 +43,7 @@ public class RungeKuttaIntegrator implements Integrator {
         iter = sim.getItems();
         while ( iter.hasNext() ) {
             ForceItem item = (ForceItem)iter.next();
-            coeff = timestep / item.mass;
+            coeff = timeStep / item.mass;
             k = item.k;
             l = item.l;
             vx = item.velocity[0] + .5f*l[0][0];
@@ -53,8 +53,8 @@ public class RungeKuttaIntegrator implements Integrator {
                 vx = speedLimit * vx / v;
                 vy = speedLimit * vy / v;
             }
-            k[1][0] = timestep*vx;
-            k[1][1] = timestep*vy;
+            k[1][0] = timeStep *vx;
+            k[1][1] = timeStep *vy;
             l[1][0] = coeff*item.force[0];
             l[1][1] = coeff*item.force[1];
         
@@ -69,7 +69,7 @@ public class RungeKuttaIntegrator implements Integrator {
         iter = sim.getItems();
         while ( iter.hasNext() ) {
             ForceItem item = (ForceItem)iter.next();
-            coeff = timestep / item.mass;
+            coeff = timeStep / item.mass;
             k = item.k;
             l = item.l;
             vx = item.velocity[0] + .5f*l[1][0];
@@ -79,8 +79,8 @@ public class RungeKuttaIntegrator implements Integrator {
                 vx = speedLimit * vx / v;
                 vy = speedLimit * vy / v;
             }
-            k[2][0] = timestep*vx;
-            k[2][1] = timestep*vy;
+            k[2][0] = timeStep *vx;
+            k[2][1] = timeStep *vy;
             l[2][0] = coeff*item.force[0];
             l[2][1] = coeff*item.force[1];
         
@@ -95,7 +95,7 @@ public class RungeKuttaIntegrator implements Integrator {
         iter = sim.getItems();
         while ( iter.hasNext() ) {
             ForceItem item = (ForceItem)iter.next();
-            coeff = timestep / item.mass;
+            coeff = timeStep / item.mass;
             k = item.k;
             l = item.l;
             float[] p = item.plocation;
@@ -106,8 +106,8 @@ public class RungeKuttaIntegrator implements Integrator {
                 vx = speedLimit * vx / v;
                 vy = speedLimit * vy / v;
             }
-            k[3][0] = timestep*vx;
-            k[3][1] = timestep*vy;
+            k[3][0] = timeStep *vx;
+            k[3][1] = timeStep *vy;
             l[3][0] = coeff*item.force[0];
             l[3][1] = coeff*item.force[1];
             item.location[0] = p[0] + (k[0][0]+k[3][0])/6.0f + (k[1][0]+k[2][0])/3.0f;

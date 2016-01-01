@@ -7,7 +7,7 @@ package prefuse.util.force;
  */
 public class DragForce extends AbstractForce {
 
-    private static String[] pnames = new String[] { "DragCoefficient" };
+    private static String[] pNames = new String[] { "DragCoefficient" };
     
     public static final float DEFAULT_DRAG_COEFF = 0.01f;
     public static final float DEFAULT_MIN_DRAG_COEFF = 0.0f;
@@ -43,7 +43,7 @@ public class DragForce extends AbstractForce {
      * @see prefuse.util.force.AbstractForce#getParameterNames()
      */
     protected String[] getParameterNames() {
-        return pnames;
+        return pNames;
     }
     
     /**

@@ -91,7 +91,7 @@ public class StrokeLib {
             float miterLimit, float[] dashes, float dashPhase)
     {
         int key = getStrokeKey(width,cap,join,miterLimit,dashes,dashPhase);
-        BasicStroke s = null;
+        BasicStroke s;
         if ( (s=(BasicStroke)strokeMap.get(key)) == null ) {
             s = new BasicStroke(width, cap, join, 
                                 miterLimit, dashes, dashPhase);

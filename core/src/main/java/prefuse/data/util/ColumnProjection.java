@@ -23,14 +23,14 @@ public interface ColumnProjection {
     
     /**
      * Add a listener to this column projection
-     * @param lstnr the listener to add
+     * @param listener the listener to add
      */
-    public void addProjectionListener(ProjectionListener lstnr);
+    public void addProjectionListener(ProjectionListener listener);
     
     /**
      * Remove a listener from this column projection
-     * @param lstnr the listener to remove
+     * @param listener the listener to remove
      */
-    public void removeProjectionListener(ProjectionListener lstnr);
+    public void removeProjectionListener(ProjectionListener listener);
     
 } // end of interface ColumnProjection

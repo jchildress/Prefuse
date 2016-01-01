@@ -23,12 +23,12 @@ public class ForceConfigAction extends AbstractAction {
     /**
      * Create a new ForceConfigAction.
      * @param frame the parent frame for which to create the dialog
-     * @param fsim the force simulator to configure
+     * @param fSim the force simulator to configure
      */
-    public ForceConfigAction(JFrame frame, ForceSimulator fsim) {
+    public ForceConfigAction(JFrame frame, ForceSimulator fSim) {
         dialog = new JDialog(frame, false);
         dialog.setTitle("Configure Force Simulator");
-        JPanel forcePanel = new JForcePanel(fsim);
+        JPanel forcePanel = new JForcePanel(fSim);
         dialog.getContentPane().add(forcePanel);
         dialog.pack();
     }

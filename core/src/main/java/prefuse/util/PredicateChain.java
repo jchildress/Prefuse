@@ -71,24 +71,24 @@ public class PredicateChain {
         IfExpression prev = null;
         Expression expr = m_head;
         while ( expr instanceof IfExpression ) {
-            IfExpression ifex = (IfExpression)expr;
-            Predicate test = (Predicate)ifex.getTestPredicate();
+            IfExpression ifEx = (IfExpression)expr;
+            Predicate test = ifEx.getTestPredicate();
             if ( p.equals(test) ) {
-                Expression elseex = ifex.getElseExpression();
-                ifex.setElseExpression(new ObjectLiteral(null));
+                Expression elseEx = ifEx.getElseExpression();
+                ifEx.setElseExpression(new ObjectLiteral(null));
                 if ( prev != null ) {
-                    prev.setElseExpression(elseex);
-                    if ( ifex == m_tail )
+                    prev.setElseExpression(elseEx);
+                    if ( ifEx == m_tail )
                         m_tail = prev;
                 } else {
-                    m_head = elseex;
-                    if ( ifex == m_tail )
+                    m_head = elseEx;
+                    if ( ifEx == m_tail )
                         m_tail = null;
                 }
                 return true;
             } else {
-                prev = ifex;
-                expr = ifex.getElseExpression();
+                prev = ifEx;
+                expr = ifEx.getElseExpression();
             }
         }
         return false;

@@ -91,14 +91,14 @@ public interface Expression {
     
     /**
      * Add a listener to this Expression.
-     * @param lstnr the expression listener to add
+     * @param listener the expression listener to add
      */
-    public void addExpressionListener(ExpressionListener lstnr);
+    public void addExpressionListener(ExpressionListener listener);
     
     /**
      * Remove a listener to this Expression.
-     * @param lstnr the expression listener to remove
+     * @param listener the expression listener to remove
      */
-    public void removeExpressionListener(ExpressionListener lstnr);
+    public void removeExpressionListener(ExpressionListener listener);
     
 } // end of interface Expression

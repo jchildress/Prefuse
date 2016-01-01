@@ -22,7 +22,7 @@ public abstract class UpdateListener
     implements ExpressionListener, TupleSetListener, ComponentListener
 {
     /**
-     * Generic update routine triggerred by any of the other callbacks.
+     * Generic update routine triggered by any of the other callbacks.
      * @param source a source object, either the Expression, TupleSet,
      * or Component that triggered this update event.
      */
@@ -38,8 +38,8 @@ public abstract class UpdateListener
     /**
      * @see prefuse.data.event.TupleSetListener#tupleSetChanged(prefuse.data.tuple.TupleSet, prefuse.data.Tuple[], prefuse.data.Tuple[])
      */
-    public void tupleSetChanged(TupleSet tset, Tuple[] added, Tuple[] removed) {
-        update(tset);
+    public void tupleSetChanged(TupleSet tSet, Tuple[] added, Tuple[] removed) {
+        update(tSet);
     }
     
     /**

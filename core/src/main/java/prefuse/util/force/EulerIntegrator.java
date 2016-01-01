@@ -15,14 +15,14 @@ public class EulerIntegrator implements Integrator {
     /**
      * @see prefuse.util.force.Integrator#integrate(prefuse.util.force.ForceSimulator, long)
      */
-    public void integrate(ForceSimulator sim, long timestep) {
+    public void integrate(ForceSimulator sim, long timeStep) {
         float speedLimit = sim.getSpeedLimit();
         Iterator iter = sim.getItems();
         while ( iter.hasNext() ) {
             ForceItem item = (ForceItem)iter.next();
-            item.location[0] += timestep * item.velocity[0];
-            item.location[1] += timestep * item.velocity[1];
-            float coeff = timestep / item.mass;
+            item.location[0] += timeStep * item.velocity[0];
+            item.location[1] += timeStep * item.velocity[1];
+            float coeff = timeStep / item.mass;
             item.velocity[0] += coeff * item.force[0];
             item.velocity[1] += coeff * item.force[1];
             float vx = item.velocity[0];

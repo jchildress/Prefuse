@@ -59,7 +59,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
      * @see prefuse.render.AbstractShapeRenderer#getRawShape(prefuse.visual.VisualItem)
      */
     protected Shape getRawShape(VisualItem item) {
-        int stype = item.getShape();
+        int sType = item.getShape();
         double x = item.getX();
         if ( Double.isNaN(x) || Double.isInfinite(x) )
             x = 0;
@@ -74,7 +74,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
             y = y-width/2;
         }
         
-        switch ( stype ) {
+        switch ( sType ) {
         case Constants.SHAPE_NONE:
             return null;
         case Constants.SHAPE_RECTANGLE:
@@ -98,12 +98,12 @@ public class ShapeRenderer extends AbstractShapeRenderer {
         case Constants.SHAPE_DIAMOND:
             return diamond((float)x, (float)y, (float)width);
         default:
-            throw new IllegalStateException("Unknown shape type: "+stype);
+            throw new IllegalStateException("Unknown shape type: "+sType);
         }
     }
 
     /**
-     * Returns a rectangle of the given dimenisions.
+     * Returns a rectangle of the given dimensions.
      */
     public Shape rectangle(double x, double y, double width, double height) {
         m_rect.setFrame(x, y, width, height);
@@ -111,7 +111,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
 
     /**
-     * Returns an ellipse of the given dimenisions.
+     * Returns an ellipse of the given dimensions.
      */
     public Shape ellipse(double x, double y, double width, double height) {
         m_ellipse.setFrame(x, y, width, height);
@@ -119,7 +119,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Returns a up-pointing triangle of the given dimenisions.
+     * Returns a up-pointing triangle of the given dimensions.
      */
     public Shape triangle_up(float x, float y, float height) {
         m_path.reset();
@@ -131,7 +131,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Returns a down-pointing triangle of the given dimenisions.
+     * Returns a down-pointing triangle of the given dimensions.
      */
     public Shape triangle_down(float x, float y, float height) {
         m_path.reset();
@@ -143,7 +143,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Returns a left-pointing triangle of the given dimenisions.
+     * Returns a left-pointing triangle of the given dimensions.
      */
     public Shape triangle_left(float x, float y, float height) {
         m_path.reset();
@@ -155,7 +155,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Returns a right-pointing triangle of the given dimenisions.
+     * Returns a right-pointing triangle of the given dimensions.
      */
     public Shape triangle_right(float x, float y, float height) {
         m_path.reset();
@@ -167,7 +167,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Returns a cross shape of the given dimenisions.
+     * Returns a cross shape of the given dimensions.
      */
     public Shape cross(float x, float y, float height) {
         float h14 = 3*height/8, h34 = 5*height/8;
@@ -189,7 +189,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
 
     /**
-     * Returns a star shape of the given dimenisions.
+     * Returns a star shape of the given dimensions.
      */
     public Shape star(float x, float y, float height) {
         float s = (float)(height/(2*Math.sin(Math.toRadians(54))));
@@ -216,7 +216,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
 
     /**
-     * Returns a hexagon shape of the given dimenisions.
+     * Returns a hexagon shape of the given dimensions.
      */
     public Shape hexagon(float x, float y, float height) {
         float width = height/2;  
@@ -233,7 +233,7 @@ public class ShapeRenderer extends AbstractShapeRenderer {
     }
 
     /**
-     * Returns a diamond shape of the given dimenisions.
+     * Returns a diamond shape of the given dimensions.
      */
     public Shape diamond(float x, float y, float height) {
         m_path.reset();

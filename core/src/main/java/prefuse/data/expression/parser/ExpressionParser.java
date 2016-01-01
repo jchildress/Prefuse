@@ -139,7 +139,7 @@ import prefuse.util.StringLib;
  *     Raise <code>x</code> to the exponent <code>y</code>
  * </li>
  * <li><strong><code>x % y</code> (modulo)</strong><br/>
- *     Return the remainder of <code>x</code> divded by <code>y</code>
+ *     Return the remainder of <code>x</code> divided by <code>y</code>
  * </li>
  * <li><strong><code>x = y, x == y</code> (equality)</strong><br/>
  *     Indicates if <code>x</code> and <code>y</code> are equal
@@ -177,7 +177,7 @@ import prefuse.util.StringLib;
  *     <code>y</code>
  * </li>
  * <li><strong><code>()</code> (parentheses)</strong><br/>
- *     Groups expressions together to enfore a particular order of evaluation. For example,
+ *     Groups expressions together to enforce a particular order of evaluation. For example,
  *     <code>1+2*3</code> evaluates to <code>7</code>, while <code>(1+2)*3</code> evaluates
  *     to <code>9</code>.
  * </li>
@@ -557,11 +557,11 @@ public class ExpressionParser implements ExpressionParserConstants {
         String escapes = "tnrbf\\\"'";
         String chars = "\t\n\r\b\f\\\"'";
 
-        StringBuffer sbuf = null;
+        StringBuffer sBuf = null;
 
         while ( (idx=s.indexOf('\\',base)) != -1) {
-            if ( sbuf != null )
-                sbuf.append(s.substring(base, idx));
+            if ( sBuf != null )
+                sBuf.append(s.substring(base, idx));
 
             if (idx+1 == len) break;
 
@@ -569,25 +569,25 @@ public class ExpressionParser implements ExpressionParserConstants {
             char c = s.charAt(idx+1);
 
             // find the index of the escape character
-            int cidx = escapes.indexOf(c);
-            if (cidx == -1) {
+            int cIdx = escapes.indexOf(c);
+            if (cIdx == -1) {
                 // no match, so continue
-                sbuf.append('\\');
-                sbuf.append(c);
+                sBuf.append('\\');
+                sBuf.append(c);
             } else {
                 // replace escape sequence with true char
-                if ( sbuf == null )
-                    sbuf = new StringBuffer(s.substring(base, idx));
-                sbuf.append(chars.charAt(cidx));
+                if ( sBuf == null )
+                    sBuf = new StringBuffer(s.substring(base, idx));
+                sBuf.append(chars.charAt(cIdx));
             }
 
             // skip over escape sequence
             base = idx + 2;
         }
-        if ( sbuf != null && base < len )
-            sbuf.append(s.substring(base));
+        if ( sBuf != null && base < len )
+            sBuf.append(s.substring(base));
 
-        return ( sbuf == null ? s : sbuf.toString() );
+        return ( sBuf == null ? s : sBuf.toString() );
     }
 
   // ----------------------------------------------------------------------------
@@ -1281,12 +1281,12 @@ public class ExpressionParser implements ExpressionParserConstants {
       return (jj_ntk = jj_nt.kind);
   }
 
-  static private java.util.Vector jj_expentries = new java.util.Vector();
-  static private int[] jj_expentry;
+  static private java.util.Vector jj_expEntries = new java.util.Vector();
+  static private int[] jj_expEntry;
   static private int jj_kind = -1;
 
   static public ParseException generateParseException() {
-    jj_expentries.removeAllElements();
+    jj_expEntries.removeAllElements();
     boolean[] la1tokens = new boolean[44];
     for (int i = 0; i < 44; i++) {
       la1tokens[i] = false;
@@ -1309,16 +1309,16 @@ public class ExpressionParser implements ExpressionParserConstants {
     }
     for (int i = 0; i < 44; i++) {
       if (la1tokens[i]) {
-        jj_expentry = new int[1];
-        jj_expentry[0] = i;
-        jj_expentries.addElement(jj_expentry);
+        jj_expEntry = new int[1];
+        jj_expEntry[0] = i;
+        jj_expEntries.addElement(jj_expEntry);
       }
     }
-    int[][] exptokseq = new int[jj_expentries.size()][];
-    for (int i = 0; i < jj_expentries.size(); i++) {
-      exptokseq[i] = (int[])jj_expentries.elementAt(i);
+    int[][] expTokSeq = new int[jj_expEntries.size()][];
+    for (int i = 0; i < jj_expEntries.size(); i++) {
+      expTokSeq[i] = (int[]) jj_expEntries.elementAt(i);
     }
-    return new ParseException(token, exptokseq, tokenImage);
+    return new ParseException(token, expTokSeq, tokenImage);
   }
 
   static final public void enable_tracing() {

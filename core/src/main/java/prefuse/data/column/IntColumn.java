@@ -24,27 +24,27 @@ public class IntColumn extends AbstractColumn {
 
     /**
      * Create a new IntColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      */
-    public IntColumn(int nrows) {
-        this(nrows, nrows, -1);
+    public IntColumn(int nRows) {
+        this(nRows, nRows, -1);
     }
     
     /**
      * Create a new IntColumn. 
-     * @param nrows the initial size of the column
+     * @param nRows the initial size of the column
      * @param capacity the initial capacity of the column
      * @param defaultValue the default value for the column
      */
-    public IntColumn(int nrows, int capacity, int defaultValue) {
+    public IntColumn(int nRows, int capacity, int defaultValue) {
         super(int.class, new Integer(defaultValue));
-        if ( capacity < nrows ) {
+        if ( capacity < nRows ) {
             throw new IllegalArgumentException(
                 "Capacity value can not be less than the row count.");
         }
         m_values = new int[capacity];
         Arrays.fill(m_values, defaultValue);
-        m_size = nrows;
+        m_size = nRows;
     }
     
     // ------------------------------------------------------------------------
@@ -60,16 +60,16 @@ public class IntColumn extends AbstractColumn {
     /**
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
-    public void setMaximumRow(int nrows) {
-        if ( nrows > m_values.length ) {
-            int capacity = Math.max((3*m_values.length)/2 + 1, nrows);
+    public void setMaximumRow(int nRows) {
+        if ( nRows > m_values.length ) {
+            int capacity = Math.max((3*m_values.length)/2 + 1, nRows);
             int[] values = new int[capacity];
             System.arraycopy(m_values, 0, values, 0, m_size);
             Arrays.fill(values, m_size, capacity,
                     ((Integer)m_defaultValue).intValue());
             m_values = values;
         }
-        m_size = nrows;
+        m_size = nRows;
     }
 
     // ------------------------------------------------------------------------

@@ -18,7 +18,7 @@ import prefuse.util.collections.IntIterator;
 public class PrefuseTableModel implements TableModel, TableListener {
     
     private CopyOnWriteArrayList m_listeners = new CopyOnWriteArrayList();
-    private int[] m_rowmap;
+    private int[] m_rowMap;
     private Table m_table;
     
     /**
@@ -34,10 +34,10 @@ public class PrefuseTableModel implements TableModel, TableListener {
      * by this model.
      */
     private void initRowMap() {
-        m_rowmap = new int[m_table.getRowCount()];
+        m_rowMap = new int[m_table.getRowCount()];
         IntIterator rows = m_table.rows();
         for ( int i=0; rows.hasNext(); ++i ) {
-            m_rowmap[i] = rows.nextInt();
+            m_rowMap[i] = rows.nextInt();
         }
     }
     
@@ -47,9 +47,9 @@ public class PrefuseTableModel implements TableModel, TableListener {
      * @return the corresponding prefuse table row
      */
     private int getRow(int rowIndex) {
-        if ( m_rowmap == null )
+        if ( m_rowMap == null )
             initRowMap();
-        return m_rowmap[rowIndex];
+        return m_rowMap[rowIndex];
     }
     
     // --------------------------------------------------------------------
@@ -122,16 +122,16 @@ public class PrefuseTableModel implements TableModel, TableListener {
      */
     public void tableChanged(Table t, int start, int end, int col, int type) {
         if ( type == EventConstants.INSERT || type == EventConstants.DELETE )
-            m_rowmap = null; // invalidate row map
+            m_rowMap = null; // invalidate row map
         
-        Object[] lstnrs = m_listeners.getArray();
-        if ( lstnrs.length == 0 )
+        Object[] listeners = m_listeners.getArray();
+        if ( listeners.length == 0 )
             return;
         
         TableModelEvent evt 
             = new TableModelEvent(this, start, end, col, type);
-        for ( int i=0; i<lstnrs.length; ++i ) {
-            ((TableModelListener)lstnrs[i]).tableChanged(evt);
+        for ( int i=0; i<listeners.length; ++i ) {
+            ((TableModelListener)listeners[i]).tableChanged(evt);
         }
     }
     

@@ -24,8 +24,8 @@ public class AxisRenderer extends AbstractShapeRenderer {
     private Line2D      m_line = new Line2D.Double();
     private Rectangle2D m_box  = new Rectangle2D.Double();
     
-    private int m_xalign;
-    private int m_yalign;
+    private int m_xAlign;
+    private int m_yAlign;
     private int m_ascent;
     
     /**
@@ -38,36 +38,36 @@ public class AxisRenderer extends AbstractShapeRenderer {
     
     /**
      * Create a new AxisRenderer.
-     * @param xalign the horizontal alignment for the axis label. One of
+     * @param xAlign the horizontal alignment for the axis label. One of
      * {@link prefuse.Constants#LEFT}, {@link prefuse.Constants#RIGHT},
      * or {@link prefuse.Constants#CENTER}.
-     * @param yalign the vertical alignment for the axis label. One of
+     * @param yAlign the vertical alignment for the axis label. One of
      * {@link prefuse.Constants#TOP}, {@link prefuse.Constants#BOTTOM},
      * or {@link prefuse.Constants#CENTER}.
      */
-    public AxisRenderer(int xalign, int yalign) {
-        m_xalign = xalign;
-        m_yalign = yalign;
+    public AxisRenderer(int xAlign, int yAlign) {
+        m_xAlign = xAlign;
+        m_yAlign = yAlign;
     }
     
     /**
      * Set the horizontal alignment of axis labels.
-     * @param xalign the horizontal alignment for the axis label. One of
+     * @param xAlign the horizontal alignment for the axis label. One of
      * {@link prefuse.Constants#LEFT}, {@link prefuse.Constants#RIGHT},
      * or {@link prefuse.Constants#CENTER}.
      */
-    public void setHorizontalAlignment(int xalign) {
-        m_xalign = xalign;
+    public void setHorizontalAlignment(int xAlign) {
+        m_xAlign = xAlign;
     }
     
     /**
      * Set the vertical alignment of axis labels.
-     * @param yalign the vertical alignment for the axis label. One of
+     * @param yAlign the vertical alignment for the axis label. One of
      * {@link prefuse.Constants#TOP}, {@link prefuse.Constants#BOTTOM},
      * or {@link prefuse.Constants#CENTER}.
      */
-    public void setVerticalAlignment(int yalign) {
-        m_yalign = yalign;
+    public void setVerticalAlignment(int yAlign) {
+        m_yAlign = yAlign;
     }
     
     /**
@@ -93,8 +93,8 @@ public class AxisRenderer extends AbstractShapeRenderer {
         
         double tx, ty;
         
-        // get text x-coord
-        switch ( m_xalign ) {
+        // get text x-coordinate
+        switch (m_xAlign) {
         case Constants.FAR_RIGHT:
             tx = x2 + 2;
             break;
@@ -111,8 +111,8 @@ public class AxisRenderer extends AbstractShapeRenderer {
         default:
             tx = x1;
         }
-        // get text y-coord
-        switch ( m_yalign ) {
+        // get text y-coordinate
+        switch (m_yAlign) {
         case Constants.FAR_TOP:
             ty = y1-h;
             break;

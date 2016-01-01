@@ -5,7 +5,7 @@ import java.util.EventListener;
 import prefuse.data.Graph;
 
 /**
- * Listner interface for monitoring changes to a graph or tree structure.
+ * Listener interface for monitoring changes to a graph or tree structure.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */

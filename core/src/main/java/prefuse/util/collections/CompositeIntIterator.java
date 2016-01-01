@@ -10,15 +10,15 @@ import java.util.NoSuchElementException;
  */
 public class CompositeIntIterator extends IntIterator {
 
-    private IntIterator[] m_iters;
+    private IntIterator[] m_iterators;
     private int m_cur;
     
     public CompositeIntIterator(IntIterator iter1, IntIterator iter2) {
         this(new IntIterator[] { iter1, iter2 });
     }
     
-    public CompositeIntIterator(IntIterator[] iters) {
-        m_iters = iters;
+    public CompositeIntIterator(IntIterator[] iterators) {
+        m_iterators = iterators;
         m_cur = 0;
     }
     
@@ -27,7 +27,7 @@ public class CompositeIntIterator extends IntIterator {
      */
     public int nextInt() {
         if ( hasNext() ) {
-            return m_iters[m_cur].nextInt();
+            return m_iterators[m_cur].nextInt();
         } else {
             throw new NoSuchElementException();
         }
@@ -37,14 +37,14 @@ public class CompositeIntIterator extends IntIterator {
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
-        if ( m_iters == null )
+        if ( m_iterators == null )
             return false;
         
         while ( true ) {
-            if ( m_iters[m_cur].hasNext() ) {
+            if ( m_iterators[m_cur].hasNext() ) {
                 return true;
-            } else if ( ++m_cur >= m_iters.length ) {
-                m_iters = null;
+            } else if ( ++m_cur >= m_iterators.length ) {
+                m_iterators = null;
                 return false;
             }
         }

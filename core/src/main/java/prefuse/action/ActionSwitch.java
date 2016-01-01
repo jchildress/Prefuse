@@ -40,7 +40,7 @@ public class ActionSwitch extends CompositeAction {
     
     /**
      * Returns the current switch value, indicating the index of the Action
-     * that will be executed in reponse to run() invocations.
+     * that will be executed in response to run() invocations.
      * @return the switch value
      */
     public int getSwitchValue() {

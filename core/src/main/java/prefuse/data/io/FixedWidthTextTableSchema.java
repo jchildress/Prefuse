@@ -33,13 +33,13 @@ public class FixedWidthTextTableSchema {
 	}
 	
 	private void ensureCapacity(int cap) {
-		String[] nnames = new String[names.length+1];
-		System.arraycopy(names, 0, nnames, 0, names.length);
-		names = nnames;
+		String[] nNames = new String[names.length+1];
+		System.arraycopy(names, 0, nNames, 0, names.length);
+		names = nNames;
 		
-		int[] ncols = new int[cols.length+1];
-		System.arraycopy(cols, 0, ncols, 0, cols.length);
-		cols = ncols;
+		int[] nCols = new int[cols.length+1];
+		System.arraycopy(cols, 0, nCols, 0, cols.length);
+		cols = nCols;
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class FixedWidthTextTableSchema {
 	
 	/**
 	 * Returns the number of columns in this schema.
-	 * @return the numner of columns
+	 * @return the number of columns
 	 */
 	public int getColumnCount() {
 		return names.length;

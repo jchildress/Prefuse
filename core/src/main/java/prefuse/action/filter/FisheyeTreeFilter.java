@@ -171,9 +171,9 @@ public class FisheyeTreeFilter extends GroupAction {
     /**
      * Visit a specific node and update its degree-of-interest.
      */
-    private void visit(NodeItem n, NodeItem c, int doi, int ldist) {
+    private void visit(NodeItem n, NodeItem c, int doi, int lDist) {
         PrefuseLib.updateVisible(n, true);
-        double localDOI = -ldist / Math.min(1000.0, m_divisor);
+        double localDOI = -lDist / Math.min(1000.0, m_divisor);
         n.setDOI(doi+localDOI);
         
         if ( c != null ) {
@@ -192,10 +192,10 @@ public class FisheyeTreeFilter extends GroupAction {
     }
     
     /**
-     * Traverse tree descendents.
+     * Traverse tree descendants.
      */
     private void visitDescendants(NodeItem p, NodeItem skip) {
-        int lidx = ( skip == null ? 0 : p.getChildIndex(skip) );
+        int lIdx = ( skip == null ? 0 : p.getChildIndex(skip) );
         
         Iterator children = p.children();
         
@@ -206,7 +206,7 @@ public class FisheyeTreeFilter extends GroupAction {
             if ( c == skip ) { continue; }             
             
             int doi = (int)(p.getDOI()-1);            
-            visit(c, c, doi, Math.abs(lidx-i));      
+            visit(c, c, doi, Math.abs(lIdx-i));
             if ( doi > m_threshold )
                 visitDescendants(c, null);   
         }

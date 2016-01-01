@@ -25,7 +25,7 @@ import prefuse.util.ui.ValuedRangeModel;
 public class RangeQueryBinding extends DynamicQueryBinding {
 
     private Class m_type;
-    private Listener m_lstnr;
+    private Listener m_listener;
     private ValuedRangeModel m_model;
     private boolean m_ordinal;
     
@@ -57,7 +57,7 @@ public class RangeQueryBinding extends DynamicQueryBinding {
         super(ts, field);
         m_type = DataLib.inferType(ts, field);
         m_ordinal = forceOrdinal;
-        m_lstnr = new Listener();
+        m_listener = new Listener();
         initPredicate();
         initModel();
     }
@@ -77,10 +77,10 @@ public class RangeQueryBinding extends DynamicQueryBinding {
     
     public void initModel() {
         if ( m_model != null )
-            m_model.removeChangeListener(m_lstnr);
+            m_model.removeChangeListener(m_listener);
         
         // set up data / selection model
-        ValuedRangeModel model = null;
+        ValuedRangeModel model;
         if ( TypeLib.isNumericType(m_type) && !m_ordinal ) {
             Number min = (Number)DataLib.min(m_tuples, m_field).get(m_field);
             Number max = (Number)DataLib.max(m_tuples, m_field).get(m_field);
@@ -90,7 +90,7 @@ public class RangeQueryBinding extends DynamicQueryBinding {
                         DataLib.ordinalArray(m_tuples, m_field));
         }
         m_model = model;
-        m_model.addChangeListener(m_lstnr);
+        m_model.addChangeListener(m_listener);
     }
 
     /**

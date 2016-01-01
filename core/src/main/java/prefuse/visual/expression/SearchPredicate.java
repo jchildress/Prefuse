@@ -66,8 +66,8 @@ public class SearchPredicate extends InGroupPredicate {
         SearchTupleSet search = (SearchTupleSet)vis.getGroup(group);
         if ( search == null && incEmpty )
             return true;
-        
-        String query = search.getQuery();
+
+        String query = search != null ? search.getQuery() : null;
         return (incEmpty && (query==null || query.length()==0)) 
                 || vis.isInGroup(item, group);
     }

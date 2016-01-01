@@ -29,14 +29,14 @@ public class LongArrayParser implements DataParser {
               "This class can only format Objects of type long[].");
         
         long[] values = (long[])value;
-        StringBuffer sbuf = new StringBuffer();
-        sbuf.append('[');
+        StringBuffer sBuf = new StringBuffer();
+        sBuf.append('[');
         for ( int i=0; i<values.length; ++i ) {
-            if ( i > 0 ) sbuf.append(", ");
-            sbuf.append(values[i]).append('L');
+            if ( i > 0 ) sBuf.append(", ");
+            sBuf.append(values[i]).append('L');
         }
-        sbuf.append(']');
-        return sbuf.toString();
+        sBuf.append(']');
+        return sBuf.toString();
     }
     
     /**

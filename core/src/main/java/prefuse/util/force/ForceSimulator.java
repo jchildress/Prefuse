@@ -14,9 +14,9 @@ public class ForceSimulator {
 
     private ArrayList items;
     private ArrayList springs;
-    private Force[] iforces;
-    private Force[] sforces;
-    private int iflen, sflen;
+    private Force[] iForces;
+    private Force[] sForces;
+    private int ifLen, sfLen;
     private Integrator integrator;
     private float speedLimit = 1.0f;
     
@@ -30,14 +30,14 @@ public class ForceSimulator {
 
     /**
      * Create a new, empty ForceSimulator.
-     * @param integr the Integrator to use
+     * @param integrator the Integrator to use
      */
-    public ForceSimulator(Integrator integr) {
-        integrator = integr;
-        iforces = new Force[5];
-        sforces = new Force[5];
-        iflen = 0;
-        sflen = 0;
+    public ForceSimulator(Integrator integrator) {
+        this.integrator = integrator;
+        iForces = new Force[5];
+        sForces = new Force[5];
+        ifLen = 0;
+        sfLen = 0;
         items = new ArrayList();
         springs = new ArrayList();
     }
@@ -70,10 +70,10 @@ public class ForceSimulator {
     
     /**
      * Set the Integrator used by this simulator.
-     * @param intgr the Integrator to use
+     * @param integrator the Integrator to use
      */
-    public void setIntegrator(Integrator intgr) {
-        integrator = intgr;
+    public void setIntegrator(Integrator integrator) {
+        this.integrator = integrator;
     }
     
     /**
@@ -82,10 +82,10 @@ public class ForceSimulator {
      */
     public void clear() {
         items.clear();
-        Iterator siter = springs.iterator();
+        Iterator sIter = springs.iterator();
         Spring.SpringFactory f = Spring.getFactory();
-        while ( siter.hasNext() )
-            f.reclaim((Spring)siter.next());
+        while ( sIter.hasNext() )
+            f.reclaim((Spring)sIter.next());
         springs.clear();
     }
     
@@ -95,22 +95,22 @@ public class ForceSimulator {
      */
     public void addForce(Force f) {
         if ( f.isItemForce() ) {
-            if ( iforces.length == iflen ) {
+            if ( iForces.length == ifLen) {
                 // resize necessary
-                Force[] newf = new Force[iflen+10];
-                System.arraycopy(iforces, 0, newf, 0, iforces.length);
-                iforces = newf;
+                Force[] newF = new Force[ifLen +10];
+                System.arraycopy(iForces, 0, newF, 0, iForces.length);
+                iForces = newF;
             }
-            iforces[iflen++] = f;
+            iForces[ifLen++] = f;
         }
         if ( f.isSpringForce() ) {
-            if ( sforces.length == sflen ) {
+            if ( sForces.length == sfLen) {
                 // resize necessary
-                Force[] newf = new Force[sflen+10];
-                System.arraycopy(sforces, 0, newf, 0, sforces.length);
-                sforces = newf;
+                Force[] newF = new Force[sfLen +10];
+                System.arraycopy(sForces, 0, newF, 0, sForces.length);
+                sForces = newF;
             }
-            sforces[sflen++] = f;
+            sForces[sfLen++] = f;
         }
     }
     
@@ -119,9 +119,9 @@ public class ForceSimulator {
      * @return an array of Force functions
      */
     public Force[] getForces() {
-        Force[] rv = new Force[iflen+sflen];
-        System.arraycopy(iforces, 0, rv, 0, iflen);
-        System.arraycopy(sforces, 0, rv, iflen, sflen);
+        Force[] rv = new Force[ifLen + sfLen];
+        System.arraycopy(iForces, 0, rv, 0, ifLen);
+        System.arraycopy(sForces, 0, rv, ifLen, sfLen);
         return rv;
     }
     
@@ -195,34 +195,34 @@ public class ForceSimulator {
     }
     
     /**
-     * Run the simulator for one timestep.
-     * @param timestep the span of the timestep for which to run the simulator
+     * Run the simulator for one time step.
+     * @param timeStep the span of the time step for which to run the simulator
      */
-    public void runSimulator(long timestep) {
+    public void runSimulator(long timeStep) {
         accumulate();
-        integrator.integrate(this, timestep);
+        integrator.integrate(this, timeStep);
     }
     
     /**
      * Accumulate all forces acting on the items in this simulation
      */
     public void accumulate() {
-        for ( int i = 0; i < iflen; i++ )
-            iforces[i].init(this);
-        for ( int i = 0; i < sflen; i++ )
-            sforces[i].init(this);
+        for (int i = 0; i < ifLen; i++ )
+            iForces[i].init(this);
+        for (int i = 0; i < sfLen; i++ )
+            sForces[i].init(this);
         Iterator itemIter = items.iterator();
         while ( itemIter.hasNext() ) {
             ForceItem item = (ForceItem)itemIter.next();
             item.force[0] = 0.0f; item.force[1] = 0.0f;
-            for ( int i = 0; i < iflen; i++ )
-                iforces[i].getForce(item);
+            for (int i = 0; i < ifLen; i++ )
+                iForces[i].getForce(item);
         }
         Iterator springIter = springs.iterator();
         while ( springIter.hasNext() ) {
             Spring s = (Spring)springIter.next();
-            for ( int i = 0; i < sflen; i++ ) {
-                sforces[i].getForce(s);
+            for (int i = 0; i < sfLen; i++ ) {
+                sForces[i].getForce(s);
             }
         }
     }

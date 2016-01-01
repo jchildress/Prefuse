@@ -65,7 +65,7 @@ public interface Index {
     public void index();
     
     /**
-     * Dispose of an index, deregistering all listeners.
+     * Dispose of an index, de-registering all listeners.
      */
     public void dispose();
     

@@ -31,9 +31,9 @@ public class ByteArrayList {
     private void ensureCapacity(int cap) {
         if ( m_bytes.length < cap ) {
             int capacity = Math.max((3*m_bytes.length)/2 + 1, cap);
-            byte[] nbytes = new byte[capacity];
-            System.arraycopy(m_bytes, 0, nbytes, 0, m_size);
-            m_bytes = nbytes;
+            byte[] nBytes = new byte[capacity];
+            System.arraycopy(m_bytes, 0, nBytes, 0, m_size);
+            m_bytes = nBytes;
         }
     }
     

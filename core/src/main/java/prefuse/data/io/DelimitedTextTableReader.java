@@ -69,17 +69,17 @@ public class DelimitedTextTableReader extends AbstractTextTableReader {
             throws IOException, DataParseException
     {
         String line;
-        int lineno   = 0;
+        int lineNo   = 0;
         
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         while ( (line=br.readLine()) != null ) {
             // increment the line number
-            ++lineno;
+            ++lineNo;
             
             // split on tab character
             String[] cols = line.split(m_delim);
             for ( int i=0; i<cols.length; ++i ) {
-                trl.readValue(lineno, i+1, cols[i]);
+                trl.readValue(lineNo, i+1, cols[i]);
             }
         }
     }

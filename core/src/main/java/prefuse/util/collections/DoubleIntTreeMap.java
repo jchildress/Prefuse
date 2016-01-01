@@ -256,9 +256,9 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
 
         public int hashCode() {
             long k = Double.doubleToLongBits(key);
-            int khash = (int)(k^(k>>>32));
-            int vhash = val;
-            return khash ^ vhash ^ order;
+            int kHash = (int)(k^(k>>>32));
+            int vHash = val;
+            return kHash ^ vHash ^ order;
         }
 
         public String toString() {

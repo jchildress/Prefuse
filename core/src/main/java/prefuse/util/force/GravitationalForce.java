@@ -10,7 +10,7 @@ package prefuse.util.force;
  */
 public class GravitationalForce extends AbstractForce {
 
-    private static final String[] pnames
+    private static final String[] pNames
         = { "GravitationalConstant", "Direction" };
     
     public static final int GRAVITATIONAL_CONST = 0;
@@ -58,7 +58,7 @@ public class GravitationalForce extends AbstractForce {
      * @see prefuse.util.force.AbstractForce#getParameterNames()
      */
     protected String[] getParameterNames() {
-        return pnames;
+        return pNames;
     }
     
     /**

@@ -170,4 +170,4 @@ public interface Control extends EventListener,
      */
     public void keyTyped(KeyEvent e);
 
-} // end of inteface ControlListener
+} // end of interface ControlListener

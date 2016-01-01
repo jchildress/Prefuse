@@ -85,13 +85,13 @@ public class PrefuseConfig extends Properties {
         
         // direct logging file directory, as set by config properties
         // default of java.util.Logger is to output to standard error
-        String logdir = getProperty("util.logdir");
-        String logfile = getProperty("util.logfile");
-        if ( logdir != null ) {
+        String logDir = getProperty("util.logdir");
+        String logFile = getProperty("util.logfile");
+        if ( logDir != null ) {
             try {
                 Logger logger = Logger.getLogger("prefuse");
                 logger.setUseParentHandlers(false);
-                Handler fileHandler = new FileHandler(logdir+"/"+logfile);
+                Handler fileHandler = new FileHandler(logDir+"/"+logFile);
                 fileHandler.setFormatter(new SimpleFormatter());
                 logger.addHandler(fileHandler);
             } catch ( IOException e ) {
