@@ -65,7 +65,7 @@ public class ConnectionFactory {
      * @param driver the database driver to use, must resolve to a valid Java
      * class on the current classpath.
      * @param url the url for the database, of the form
-     * "jdbc:<database_sub_protocol>://&lt;hostname&gt;/&lt;database_name&gt;
+     * "jdbc:&lt;database_sub_protocol&gt;://&lt;hostname&gt;/&lt;database_name&gt;
      * @param user the database username
      * @param password the database password
      * @param handler the sql data handler to use
@@ -87,7 +87,7 @@ public class ConnectionFactory {
      * @param driver the database driver to use, must resolve to a valid Java
      * class on the current classpath.
      * @param url the url for the database, of the form
-     * "jdbc:<database_sub_protocol>://&lt;hostname&gt;/&lt;database_name&gt;
+     * "jdbc:&lt;database_sub_protocol&gt;://&lt;hostname&gt;/&lt;database_name&gt;
      * @param user the database username
      * @param password the database password
      * @return a DatabaseDataSource for interacting with the database

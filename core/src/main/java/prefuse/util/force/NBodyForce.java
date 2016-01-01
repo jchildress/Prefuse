@@ -16,11 +16,12 @@ import java.util.Random;
  * paper <i>A Hierarchical  O(n log n) force calculation algorithm</i>, Nature, 
  *  v.324, December 1986. For more details on the algorithm, see one of
  *  the following links --
+ * </p>
  * <ul>
  *   <li><a href="http://www.cs.berkeley.edu/~demmel/cs267/lecture26/lecture26.html">James Demmel's UC Berkeley lecture notes</a>
  *   <li><a href="http://www.physics.gmu.edu/~large/lr_forces/desc/bh/bhdesc.html">Description of the Barnes-Hut algorithm</a>
  *   <li><a href="http://www.ifa.hawaii.edu/~barnes/treecode/treeguide.html">Joshua Barnes' recent implementation</a>
- * </ul></p>
+ * </ul>
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
@@ -28,9 +29,9 @@ public class NBodyForce extends AbstractForce {
 
     /* 
      * The indexing scheme for quadtree child nodes goes row by row.
-     *   0 | 1    0 -> top left,    1 -> top right
+     *   0 | 1    0 -> top left,    1 -&gt; top right
      *  -------
-     *   2 | 3    2 -> bottom left, 3 -> bottom right
+     *   2 | 3    2 -> bottom left, 3 -&gt; bottom right
      */
 
     private static String[] pNames = new String[] { "GravitationalConstant",

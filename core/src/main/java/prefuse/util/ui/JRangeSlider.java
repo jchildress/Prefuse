@@ -149,7 +149,7 @@ public class JRangeSlider extends JComponent
     
     /** 
      * Returns the current "low" value shown by the range slider's bar. The low
-     * value meets the constraint minimum <= lowValue <= highValue <= maximum. 
+     * value meets the constraint minimum &lt;= lowValue &lt;= highValue &lt;= maximum.
      */
     public int getLowValue() {
         return model.getValue();
@@ -169,7 +169,7 @@ public class JRangeSlider extends JComponent
 
     /** 
      * Returns the current "high" value shown by the range slider's bar. The high
-     * value meets the constraint minimum <= lowValue <= highValue <= maximum. 
+     * value meets the constraint minimum &lt;= lowValue &lt;= highValue &lt;= maximum.
      */
     public int getHighValue() {
         return model.getValue()+model.getExtent();

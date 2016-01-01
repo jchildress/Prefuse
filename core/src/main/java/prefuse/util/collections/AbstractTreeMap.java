@@ -521,7 +521,8 @@ public abstract class AbstractTreeMap implements IntSortedMap {
             if (!hasNext())
                 throw new NoSuchElementException();
             if (modCount != expectedModCount)
-                throw new ConcurrentModificationException();
+                throw new ConcurrentModificationException(
+                        "modCount = " + modCount + "; expectedModCount = " + expectedModCount);
             lastReturned = next;
             next = reverse ? predecessor(next) : successor(next);
             /// XXX DEBUG

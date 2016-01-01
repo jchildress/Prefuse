@@ -21,6 +21,7 @@ import prefuse.util.io.IOLib;
  * 
  * <p>
  * Some of the supported configuration properties include:
+ * </p>
  * <ul>
  * <li><code>activity.threadPriority</code> - the thread priority of the
  * ActivityManager thread. The value should be between 1 and 10, with 5 being
@@ -38,8 +39,7 @@ import prefuse.util.io.IOLib;
  * prefuse log files. The default is "prefuse_log_%g.txt", where the %g
  * indicates a unique number for the log file.</li>
  * </ul>
- * </p>
- * 
+ *
  * <p>
  * Application creators are welcome to add their own custom properties
  * to the configuration files and use the PrefuseConfig instance to

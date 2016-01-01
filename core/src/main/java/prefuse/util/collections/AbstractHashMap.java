@@ -29,7 +29,7 @@ public abstract class AbstractHashMap {
 
     /**
      * The table capacity c=table.length always satisfies the invariant
-     * <tt>c * minLoadFactor <= s <= c * maxLoadFactor</tt>, where s=size()
+     * <tt>c * minLoadFactor &lt;= s &lt;= c * maxLoadFactor</tt>, where s=size()
      * is the number of associations currently contained. The term "c *
      * minLoadFactor" is called the "lowWaterMark", "c * maxLoadFactor" is
      * called the "highWaterMark". In other words, the table capacity (and
@@ -67,7 +67,7 @@ public abstract class AbstractHashMap {
     /**
      * Chooses a new prime table capacity optimized for growing that
      * (approximately) satisfies the invariant
-     * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at
+     * <tt>c * minLoadFactor &lt;= size &lt;= c * maxLoadFactor</tt> and has at
      * least one FREE slot for the given size.
      */
     protected int chooseGrowCapacity(int size, double minLoad, double maxLoad) {
@@ -103,7 +103,7 @@ public abstract class AbstractHashMap {
     /**
      * Chooses a new prime table capacity neither favoring shrinking nor
      * growing, that (approximately) satisfies the invariant
-     * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at
+     * <tt>c * minLoadFactor &lt;= size &lt;= c * maxLoadFactor</tt> and has at
      * least one FREE slot for the given size.
      */
     protected int chooseMeanCapacity(int size, double minLoad, double maxLoad) {
@@ -114,7 +114,7 @@ public abstract class AbstractHashMap {
     /**
      * Chooses a new prime table capacity optimized for shrinking that
      * (approximately) satisfies the invariant
-     * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at
+     * <tt>c * minLoadFactor &lt;= size &lt;= c * maxLoadFactor</tt> and has at
      * least one FREE slot for the given size.
      */
     protected int chooseShrinkCapacity(int size, double minLoad, double maxLoad) {
@@ -182,7 +182,7 @@ public abstract class AbstractHashMap {
      *            the maxLoadFactor of the receiver.
      * @throws IllegalArgumentException
      *             if
-     *             <tt>initialCapacity < 0 || (minLoadFactor < 0.0 || minLoadFactor >= 1.0) || (maxLoadFactor <= 0.0 || maxLoadFactor >= 1.0) || (minLoadFactor >= maxLoadFactor)</tt>.
+     *             <tt>initialCapacity &lt; 0 || (minLoadFactor &lt; 0.0 || minLoadFactor &gt;= 1.0) || (maxLoadFactor &lt;= 0.0 || maxLoadFactor &gt;= 1.0) || (minLoadFactor &gt;= maxLoadFactor)</tt>.
      */
     protected void setUp(int initialCapacity, double minLoadFactor,
             double maxLoadFactor) {

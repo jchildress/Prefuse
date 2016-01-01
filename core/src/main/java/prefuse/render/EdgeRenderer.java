@@ -127,7 +127,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
         if ( e.isDirected() && m_edgeArrow != Constants.EDGE_ARROW_NONE ) {
             // get starting and ending edge endpoints
             boolean forward = (m_edgeArrow == Constants.EDGE_ARROW_FORWARD);
-            Point2D start = null, end = null;
+            Point2D start, end;
             start = m_tmpPoints[forward?0:1];
             end   = m_tmpPoints[forward?1:0];
             
@@ -151,7 +151,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
         }
         
         // create the edge shape
-        Shape shape = null;
+        Shape shape;
         double n1x = m_tmpPoints[0].getX();
         double n1y = m_tmpPoints[0].getY();
         double n2x = m_tmpPoints[1].getX();
@@ -266,8 +266,8 @@ public class EdgeRenderer extends AbstractShapeRenderer {
         }
         GraphicsLib.setBounds(item, shape, getStroke(item));
         if ( m_curArrow != null ) {
-            Rectangle2D bbox = (Rectangle2D)item.get(VisualItem.BOUNDS);
-            Rectangle2D.union(bbox, m_curArrow.getBounds2D(), bbox);
+            Rectangle2D bBox = (Rectangle2D)item.get(VisualItem.BOUNDS);
+            Rectangle2D.union(bBox, m_curArrow.getBounds2D(), bBox);
         }
     }
 
@@ -290,7 +290,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      * scaled by the current line width
      * determined by the {@link #getLineWidth(VisualItem)} method. Subclasses
      * may override this method to perform custom stroke assignment, but should
-     * respect the line width paremeter stored in the {@link #m_curWidth}
+     * respect the line width parameter stored in the {@link #m_curWidth}
      * member variable, which caches the result of <code>getLineWidth</code>.
      * @see prefuse.render.AbstractShapeRenderer#getStroke(prefuse.visual.VisualItem)
      */
@@ -304,14 +304,14 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      * To reduce object initialization, the entries of the Point2D array are
      * already initialized, so use the <tt>Point2D.setLocation()</tt> method rather than
      * <tt>new Point2D.Double()</tt> to more efficiently set custom control points.
-     * @param eitem the EdgeItem we are determining the control points for
-     * @param cp array of Point2D's (length >= 2) in which to return the control points
+     * @param eItem the EdgeItem we are determining the control points for
+     * @param cp array of Point2D's (length &gt;= 2) in which to return the control points
      * @param x1 the x co-ordinate of the first node this edge connects to
      * @param y1 the y co-ordinate of the first node this edge connects to
      * @param x2 the x co-ordinate of the second node this edge connects to
      * @param y2 the y co-ordinate of the second node this edge connects to
      */
-    protected void getCurveControlPoints(EdgeItem eitem, Point2D[] cp, 
+    protected void getCurveControlPoints(EdgeItem eItem, Point2D[] cp,
                     double x1, double y1, double x2, double y2) 
     {
         double dx = x2-x1, dy = y2-y1;      
@@ -422,7 +422,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Get the horizontal aligment of the edge mount point with the first node.
+     * Get the horizontal alignment of the edge mount point with the first node.
      * @return the horizontal alignment, one of {@link prefuse.Constants#LEFT},
      * {@link prefuse.Constants#RIGHT}, or {@link prefuse.Constants#CENTER}.
      */
@@ -431,7 +431,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Get the vertical aligment of the edge mount point with the first node.
+     * Get the vertical alignment of the edge mount point with the first node.
      * @return the vertical alignment, one of {@link prefuse.Constants#TOP},
      * {@link prefuse.Constants#BOTTOM}, or {@link prefuse.Constants#CENTER}.
      */
@@ -440,7 +440,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
 
     /**
-     * Get the horizontal aligment of the edge mount point with the second
+     * Get the horizontal alignment of the edge mount point with the second
      * node.
      * @return the horizontal alignment, one of {@link prefuse.Constants#LEFT},
      * {@link prefuse.Constants#RIGHT}, or {@link prefuse.Constants#CENTER}.
@@ -450,7 +450,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Get the vertical aligment of the edge mount point with the second node.
+     * Get the vertical alignment of the edge mount point with the second node.
      * @return the vertical alignment, one of {@link prefuse.Constants#TOP},
      * {@link prefuse.Constants#BOTTOM}, or {@link prefuse.Constants#CENTER}.
      */
@@ -459,7 +459,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Set the horizontal aligment of the edge mount point with the first node.
+     * Set the horizontal alignment of the edge mount point with the first node.
      * @param align the horizontal alignment, one of 
      * {@link prefuse.Constants#LEFT}, {@link prefuse.Constants#RIGHT}, or
      * {@link prefuse.Constants#CENTER}.
@@ -469,7 +469,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Set the vertical aligment of the edge mount point with the first node.
+     * Set the vertical alignment of the edge mount point with the first node.
      * @param align the vertical alignment, one of
      * {@link prefuse.Constants#TOP}, {@link prefuse.Constants#BOTTOM}, or
      * {@link prefuse.Constants#CENTER}.
@@ -479,7 +479,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
 
     /**
-     * Set the horizontal aligment of the edge mount point with the second
+     * Set the horizontal alignment of the edge mount point with the second
      * node.
      * @param align the horizontal alignment, one of
      * {@link prefuse.Constants#LEFT}, {@link prefuse.Constants#RIGHT}, or
@@ -490,7 +490,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
     }
     
     /**
-     * Set the vertical aligment of the edge mount point with the second node.
+     * Set the vertical alignment of the edge mount point with the second node.
      * @param align the vertical alignment, one of
      * {@link prefuse.Constants#TOP}, {@link prefuse.Constants#BOTTOM}, or
      * {@link prefuse.Constants#CENTER}.

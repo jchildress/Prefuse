@@ -291,7 +291,7 @@ public class PrefuseLib {
     
     /**
      * Get the parent group string of a child group, stripping off the
-     * bottom-level group from the group name (e.g., graph.nodes --> graph).
+     * bottom-level group from the group name (e.g., graph.nodes --&gt; graph).
      * @param group the group name
      * @return the stripped parent group name
      */
@@ -302,7 +302,7 @@ public class PrefuseLib {
 
     /**
      * Get the tail group name of a child group, stripping all but the
-     * bottom-level group from the group name (e.g., graph.nodes --> nodes).
+     * bottom-level group from the group name (e.g., graph.nodes --&gt; nodes).
      * @param group the group name
      * @return the stripped child group name
      */

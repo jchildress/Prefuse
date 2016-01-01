@@ -15,8 +15,8 @@ import java.awt.geom.Rectangle2D;
  * M. D. Apperley, "A Review and Taxonomy of Distortion-Oriented Presentation
  * Techniques", in Transactions of Computer-Human Interaction (TOCHI),
  * 1(2): 126-160 (1994). Available online at
- * <a href="portal.acm.org/citation.cfm?id=180173&dl=ACM">
- * portal.acm.org/citation.cfm?id=180173&dl=ACM</a>.
+ * <a href="portal.acm.org/citation.cfm?id=180173&amp;dl=ACM">
+ * portal.acm.org/citation.cfm?id=180173&amp;dl=ACM</a>.
  * </p>
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a>

@@ -90,28 +90,28 @@ import prefuse.util.StringLib;
  * <p>The fundamental building blocks of the expression language, representing data values
  *  or referencing the contents of a Tuple data field.</p>
  * <ul>
- * <li><strong>Boolean literals  (<code>TRUE, FALSE</code>)</strong><br/>
+ * <li><strong>Boolean literals  (<code>TRUE, FALSE</code>)</strong><br>
  *   The boolean literals representing true and false conditions, parsed to type <code>boolean</code>
  * </li>
- * <li><strong>Integer literals (<code>1, -5, 12340</code>)</strong><br/>
+ * <li><strong>Integer literals (<code>1, -5, 12340</code>)</strong><br>
  *   Undecorated, non-decimal numbers are parsed as numbers of type <code>int</code>
  * </li>
- * <li><strong>Long literals (<code>1L, -5L, 12340L</code>)</strong><br/>
+ * <li><strong>Long literals (<code>1L, -5L, 12340L</code>)</strong><br>
  *   Integer values decorated with the suffix "L" are parsed as numbers of type <code>long</code>
  * </li>
- * <li><strong>Double literals (<code>1.0, 3.1415, 1e-35, 2.3e6</code>)</strong><br/>
+ * <li><strong>Double literals (<code>1.0, 3.1415, 1e-35, 2.3e6</code>)</strong><br>
  *   Numbers with decimals or exponents in scientific notation are parsed as numbers of type <code>double</code>
  * </li>
- * <li><strong>Float literals (<code>1.0f, 3.1415f, 1e-35f, 2.3e6f</code>)</strong><br/>
+ * <li><strong>Float literals (<code>1.0f, 3.1415f, 1e-35f, 2.3e6f</code>)</strong><br>
  *   Floating-point values decorated with the suffix "f" are parsed as numbers of type <code>float</code>
  * </li>
- * <li><strong>String literals (<code>"some text", 'a label'</code>)</strong><br/>
+ * <li><strong>String literals (<code>"some text", 'a label'</code>)</strong><br>
  *   Text strings placed in double (") or single (') quotations are parsed as <code>String</code> literals
  * </li>
- * <li><strong>Null literal  (<code>null</code>)</strong><br/>
+ * <li><strong>Null literal  (<code>null</code>)</strong><br>
  *   The string <code>null</code> is parsed as an ObjectLiteral of type null.
  * </li>
- * <li><strong>Data field references (<code>_strokeColor, [a data field]</code>)</strong><br/>
+ * <li><strong>Data field references (<code>_strokeColor, [a data field]</code>)</strong><br>
  *   Free-standing strings or those placed within brackets are parsed as a reference to the
  *   data field of that name. Brackets are required for any fields that include spaces or other
  *   unusual characters in their name (e.g., characters like +, -, *, etc), or conflict with
@@ -123,60 +123,60 @@ import prefuse.util.StringLib;
  * <h2>Operators and Control Flow</h2>
  * <p>Basic operators and control flow structures for the expression language.</p>
  * <ul>
- * <li><strong><code>x + y</code> (addition)</strong><br/>
+ * <li><strong><code>x + y</code> (addition)</strong><br>
  *     Add <code>x</code> and <code>y</code>
  * </li>
- * <li><strong><code>x - y</code> (subtraction)</strong><br/>
+ * <li><strong><code>x - y</code> (subtraction)</strong><br>
  *     Subtract <code>y</code> from <code>x</code>
  * </li>
- * <li><strong><code>x * y</code> (multiplication)</strong><br/>
+ * <li><strong><code>x * y</code> (multiplication)</strong><br>
  *     Multiply <code>x</code> and <code>y</code>
  * </li>
- * <li><strong><code>x / y</code> (division)</strong><br/>
+ * <li><strong><code>x / y</code> (division)</strong><br>
  *     Divide <code>x</code> by <code>y</code>
  * </li>
- * <li><strong><code>x ^ y</code> (exponentiation, pow)</strong><br/>
+ * <li><strong><code>x ^ y</code> (exponentiation, pow)</strong><br>
  *     Raise <code>x</code> to the exponent <code>y</code>
  * </li>
- * <li><strong><code>x % y</code> (modulo)</strong><br/>
+ * <li><strong><code>x % y</code> (modulo)</strong><br>
  *     Return the remainder of <code>x</code> divided by <code>y</code>
  * </li>
- * <li><strong><code>x = y, x == y</code> (equality)</strong><br/>
+ * <li><strong><code>x = y, x == y</code> (equality)</strong><br>
  *     Indicates if <code>x</code> and <code>y</code> are equal
  * </li>
- * <li><strong><code>x != y, x <> y</code> (inequality)</strong><br/>
+ * <li><strong><code>x != y, x &lt;&gt; y</code> (inequality)</strong><br>
  *     Indicates if <code>x</code> and <code>y</code> are not equal
  * </li>
- * <li><strong><code>x > y</code> (greater than)</strong><br/>
+ * <li><strong><code>x &gt; y</code> (greater than)</strong><br>
  *     Indicates if <code>x</code> is greater than <code>y</code>
  * </li>
- * <li><strong><code>x >= y</code> (greater than or equal to)</strong><br/>
+ * <li><strong><code>x &gt;= y</code> (greater than or equal to)</strong><br>
  *     Indicates if <code>x</code> is greater than or equal to <code>y</code>
  * </li>
- * <li><strong><code>x < y</code> (less than)</strong><br/>
+ * <li><strong><code>x &lt; y</code> (less than)</strong><br>
  *     Indicates if <code>x</code> is less than <code>y</code>
  * </li>
- * <li><strong><code>x <= y</code> (less than or equal to)</strong><br/>
+ * <li><strong><code>x &lt;= y</code> (less than or equal to)</strong><br>
  *     Indicates if <code>x</code> is less than or equal to <code>y</code>
  * </li>
- * <li><strong><code>x AND y, x && y</code> (and)</strong><br/>
+ * <li><strong><code>x AND y, x &amp;&amp; y</code> (and)</strong><br>
  *     Indicates if both <code>x</code> and <code>y</code> are true
  * </li>
- * <li><strong><code>x OR y, x || y</code> (or)</strong><br/>
+ * <li><strong><code>x OR y, x || y</code> (or)</strong><br>
  *     Indicates if either <code>x</code> or <code>y</code> is true
  * </li>
- * <li><strong><code>NOT x, !x</code> (not)</strong><br/>
+ * <li><strong><code>NOT x, !x</code> (not)</strong><br>
  *     Indicates if the negation of <code>x</code> is true
  * </li>
- * <li><strong><code>x XOR y</code> (exclusive or)</strong><br/>
+ * <li><strong><code>x XOR y</code> (exclusive or)</strong><br>
  *     Indicates if one, but not both, of <code>x</code> or <code>y</code> is true
  * </li>
- * <li><strong><code>IF test THEN x ELSE y</code> (if-then-else)</strong><br/>
+ * <li><strong><code>IF test THEN x ELSE y</code> (if-then-else)</strong><br>
  *     Evaluates the predicate <code>test</code>, and if true evaluates and returns the
  *     expression <code>x</code>, and if false evaluates and returns the expression
  *     <code>y</code>
  * </li>
- * <li><strong><code>()</code> (parentheses)</strong><br/>
+ * <li><strong><code>()</code> (parentheses)</strong><br>
  *     Groups expressions together to enforce a particular order of evaluation. For example,
  *     <code>1+2*3</code> evaluates to <code>7</code>, while <code>(1+2)*3</code> evaluates
  *     to <code>9</code>.
@@ -186,30 +186,30 @@ import prefuse.util.StringLib;
  * <h2>General Functions</h2> 
  * <p>General purpose functions.</p>
  * <ul>
- *   <li><strong><code>ROW()</code></strong><br/>
+ *   <li><strong><code>ROW()</code></strong><br>
  *     Returns the table row number (or -1 if none) of the current Tuple.
  *   </li>
- *   <li><strong><code>ISNODE()</code></strong><br/>
+ *   <li><strong><code>ISNODE()</code></strong><br>
  *     Returns true if the current Tuple is a graph Node.
  *   </li>
- *   <li><strong><code>ISEDGE()</code></strong><br/>
+ *   <li><strong><code>ISEDGE()</code></strong><br>
  *     Returns true if the current Tuple is a graph Edge.
  *   </li>
- *   <li><strong><code>DEGREE()</code></strong><br/>
+ *   <li><strong><code>DEGREE()</code></strong><br>
  *     If the current Tuple is graph Node, returns the Node degree
  *     (the total number of incident edges). Otherwise returns 0.
  *   </li>
- *   <li><strong><code>INDEGREE()</code></strong><br/>
+ *   <li><strong><code>INDEGREE()</code></strong><br>
  *     If the current Tuple is graph Node, returns the Node indegree
  *     (the number of incident edges pointing towards this node).
  *     Otherwise returns 0.
  *   </li>
- *   <li><strong><code>OUTDEGREE()</code></strong><br/>
+ *   <li><strong><code>OUTDEGREE()</code></strong><br>
  *     If the current Tuple is graph Node, returns the Node outdegree
  *     (the number of incident edges pointing away from the node).
  *     Otherwise returns 0.
  *   </li>
- *   <li><strong><code>CHILDCOUNT()</code></strong><br/>
+ *   <li><strong><code>CHILDCOUNT()</code></strong><br>
  *     If the current Tuple is graph Node, returns the number of tree
  *     children nodes. If the Tuple is not a Node, this method returns 0.
  *     If the Node is part of a Graph (not a Tree), the number of children
@@ -217,7 +217,7 @@ import prefuse.util.StringLib;
  *     been computed, a new spanning tree will be computed using the default
  *     method. See {@link prefuse.data.Graph#getSpanningTree()} for more.
  *   </li>
- *   <li><strong><code>TREEDEPTH()</code></strong><br/>
+ *   <li><strong><code>TREEDEPTH()</code></strong><br>
  *     If the current Tuple is graph Node, returns the depth of this Node
  *     in its Tree or SpanningTree. If the Tuple is not a Node, this method
  *     returns 0. If the Node is part of a Graph (not a Tree), the tree depth
@@ -231,93 +231,93 @@ import prefuse.util.StringLib;
  * <h2>Mathematical Functions</h2>
  * <p>Functions for performing mathematical calculations.</p>
  * <ul>
- *   <li><strong><code>ABS(x)</code></strong><br/>
+ *   <li><strong><code>ABS(x)</code></strong><br>
  *     Returns the absolute value of <code>x</code>
  *   </li>
- *   <li><strong><code>ACOS(x)</code></strong><br/>
+ *   <li><strong><code>ACOS(x)</code></strong><br>
  *     Returns the inverse cosine (arc cosine) of a <code>x</code>
  *   </li>
- *   <li><strong><code>ASIN(x)</code></strong><br/>
+ *   <li><strong><code>ASIN(x)</code></strong><br>
  *     Returns the inverse sine (arc sine) of a <code>x</code>
  *   </li>
- *   <li><strong><code>ATAN(x)</code></strong><br/>
+ *   <li><strong><code>ATAN(x)</code></strong><br>
  *     Returns the inverse tangent (arc tangent) of a <code>x</code>
  *   </li>
- *   <li><strong><code>ATAN2(y, x)</code></strong><br/>
+ *   <li><strong><code>ATAN2(y, x)</code></strong><br>
  *     For the Cartesian coordinates <code>x</code>, <code>y</code> return the polar coordinate angle theta
  *   </li>
- *   <li><strong><code>CEIL(x), CEILING(x)</code></strong><br/>
+ *   <li><strong><code>CEIL(x), CEILING(x)</code></strong><br>
  *     Returns the nearest integer value greater than or equal to <code>x</code>.
  *   </li>
- *   <li><strong><code>COS(x)</code></strong><br/>
+ *   <li><strong><code>COS(x)</code></strong><br>
  *     Returns the cosine of <code>x</code>
  *   </li>
- *   <li><strong><code>COT(x)</code></strong><br/>
+ *   <li><strong><code>COT(x)</code></strong><br>
  *     Returns the cotangent of <code>x</code>
  *   </li>
- *   <li><strong><code>DEGREES(x)</code></strong><br/>
+ *   <li><strong><code>DEGREES(x)</code></strong><br>
  *     Converts <code>x</code> from radians to degrees
  *   </li>
- *   <li><strong><code>EXP(x)</code></strong><br/>
+ *   <li><strong><code>EXP(x)</code></strong><br>
  *     Returns the value of <em>e</em> (the base of natural logarithms) raised to the <code>x</code> power
  *   </li>
- *   <li><strong><code>FLOOR(x)</code></strong><br/>
+ *   <li><strong><code>FLOOR(x)</code></strong><br>
  *     Returns the nearest integer value less than or equal to <code>x</code>.
  *   </li>
- *   <li><strong><code>LOG(x), LOG(b, x)</code></strong><br/>
- *     With one argument, returns the natural logarithm (logarithm base <em>e</em>) of <code>x</code><br/>
+ *   <li><strong><code>LOG(x), LOG(b, x)</code></strong><br>
+ *     With one argument, returns the natural logarithm (logarithm base <em>e</em>) of <code>x</code><br>
  *     With two arguments, returns the logarithm of <code>x</code> for the provided base <code>b</code>
  *   </li>
- *   <li><strong><code>LOG2(x)</code></strong><br/>
+ *   <li><strong><code>LOG2(x)</code></strong><br>
  *     Returns the logarithm base 2 of <code>x</code>
  *   </li>
- *   <li><strong><code>LOG10(x)</code></strong><br/>
+ *   <li><strong><code>LOG10(x)</code></strong><br>
  *     Returns the logarithm base 10 of <code>x</code>
  *   </li>
- *   <li><strong><code>MAX(a, b, c, ...)</code></strong><br/>
+ *   <li><strong><code>MAX(a, b, c, ...)</code></strong><br>
  *     Returns the maximum value among the provided arguments
  *   </li>
- *   <li><strong><code>MIN(a, b, c, ...)</code></strong><br/>
+ *   <li><strong><code>MIN(a, b, c, ...)</code></strong><br>
  *     Returns the minimum value among the provided arguments
  *   </li>
- *   <li><strong><code>MOD(x, y)</code></strong><br/>
+ *   <li><strong><code>MOD(x, y)</code></strong><br>
  *     Returns <code>x</code> modulo <code>y</code> (the remainder of <code>x</code> divided by <code>y</code>)
  *   </li>
- *   <li><strong><code>PI()</code></strong><br/>
+ *   <li><strong><code>PI()</code></strong><br>
  *     Returns the constant &pi; (= 3.1415926535...), the ratio between the circumference and diameter of a circle
  *   </li>
- *   <li><strong><code>POW(x, y), POWER(x, y)</code></strong><br/>
+ *   <li><strong><code>POW(x, y), POWER(x, y)</code></strong><br>
  *     Return the value of <code>x</code> raised to the exponent <code>y</code>
  *   </li>
- *   <li><strong><code>RADIANS(x)</code></strong><br/>
+ *   <li><strong><code>RADIANS(x)</code></strong><br>
  *     Converts <code>x</code> from degrees to radians
  *   </li>
- *   <li><strong><code>RAND()</code></strong><br/>
+ *   <li><strong><code>RAND()</code></strong><br>
  *     Returns a random floating-point value between 0 and 1
  *   </li>
- *   <li><strong><code>ROUND(x)</code></strong><br/>
+ *   <li><strong><code>ROUND(x)</code></strong><br>
  *     Returns the value of <code>x</code> rounded to the nearest integer
  *   </li>
- *   <li><strong><code>SIGN(x)</code></strong><br/>
+ *   <li><strong><code>SIGN(x)</code></strong><br>
  *     Returns the sign of <code>x</code>: 1 for positive, -1 for negative
  *   </li>
- *   <li><strong><code>SIN(x)</code></strong><br/>
+ *   <li><strong><code>SIN(x)</code></strong><br>
  *     Returns the sine of <code>x</code>
  *   </li>
- *   <li><strong><code>SQRT(x)</code></strong><br/>
+ *   <li><strong><code>SQRT(x)</code></strong><br>
  *     Returns the square root of <code>x</code>
  *   </li>
- *   <li><strong><code>SUM(a, b, c, ...)</code></strong><br/>
+ *   <li><strong><code>SUM(a, b, c, ...)</code></strong><br>
  *     Returns the sum of the provided input value
  *   </li>
- *   <li><strong><code>TAN(x)</code></strong><br/>
+ *   <li><strong><code>TAN(x)</code></strong><br>
  *     Returns the tangent of <code>x</code>
  *   </li>
- *   <li><strong><code>SAFELOG10(x)</code></strong><br/>
+ *   <li><strong><code>SAFELOG10(x)</code></strong><br>
  *     Returns a "negative safe" logarithm base 10 of <code>x</code>, equivalent to
  *     <code>SIGN(x) * LOG10(ABS(x))</code>
  *   </li>
- *   <li><strong><code>SAFESQRT(x)</code></strong><br/>
+ *   <li><strong><code>SAFESQRT(x)</code></strong><br>
  *     Returns a "negative safe" square root of <code>x</code>, equivalent to
  *     <code>SIGN(x) * SQRT(ABS(x))</code>
  *   </li>
@@ -326,72 +326,72 @@ import prefuse.util.StringLib;
  *   <h2>String Functions</h2>
  *   <p>Functions for processing text strings.</p>
  *   <ul>
- *   <li><strong><code>CAP(str)</code></strong><br/>
+ *   <li><strong><code>CAP(str)</code></strong><br>
  *     Capitalize words in the string <code>str</code>. Individual words/names will be given
  *     uppercase first letters, with all other letters in lowercase.
  *   </li>
- *   <li><strong><code>CONCAT(a, b, c, ...)</code></strong><br/>
+ *   <li><strong><code>CONCAT(a, b, c, ...)</code></strong><br>
  *     Concatenate the input strings into one resulting string.
  *   </li>
- *   <li><strong><code>CONCAT_WS(sep, a, b, c, ...)</code></strong><br/>
+ *   <li><strong><code>CONCAT_WS(sep, a, b, c, ...)</code></strong><br>
  *     Concatenate with separator. Concatenates the input strings into one resulting
  *     string, placing the string <code>sep</code> between each of the other arguments
  *   </li>
- *   <li><strong><code>FORMAT(x, d)</code></strong><br/>
+ *   <li><strong><code>FORMAT(x, d)</code></strong><br>
  *     Format the number <code>x</code> as a string of the type "#,###.##", showing <code>d</code> decimal places
  *   </li>
- *   <li><strong><code>INSERT(str, pos, len, newstr)</code></strong><br/>
+ *   <li><strong><code>INSERT(str, pos, len, newstr)</code></strong><br>
  *     Replaces the substring of length <code>len</code> starting at position <code>pos</code> in input
  *     string <code>str</code> with the string <code>newstr</code>
  *   </li>
- *   <li><strong><code>LEFT(str, len)</code></strong><br/>
+ *   <li><strong><code>LEFT(str, len)</code></strong><br>
  *     Returns the leftmost <code>len</code> characters of string <code>str</code>
  *   </li>
- *   <li><strong><code>LENGTH(str)</code></strong><br/>
+ *   <li><strong><code>LENGTH(str)</code></strong><br>
  *     Returns the length, in characters, of the input string <code>str</code>
  *   </li>
- *   <li><strong><code>LOWER(str), LCASE(str)</code></strong><br/>
+ *   <li><strong><code>LOWER(str), LCASE(str)</code></strong><br>
  *     Returns the string <code>str</code> mapped to lowercase letters
  *   </li>
- *   <li><strong><code>LPAD(str, len, pad)</code></strong><br/>
+ *   <li><strong><code>LPAD(str, len, pad)</code></strong><br>
  *     Pad the left side of string <code>str</code> with copies of string <code>pad</code>,
  *     up to a total padding of <code>len</code> characters
  *   </li>
- *   <li><strong><code>MID(str, pos, len)</code></strong><br/>
+ *   <li><strong><code>MID(str, pos, len)</code></strong><br>
  *     Return a substring of <code>str</code> of length <code>len</code>, starting at
  *     position <code>pos</code>
  *   </li>
- *   <li><strong><code>POSITION(substr, str)</code></strong><br/>
+ *   <li><strong><code>POSITION(substr, str)</code></strong><br>
  *     Returns the starting position of the first occurrence of substring <code>substr</code>
  *     in the string <code>str</code>. Returns -1 if the substring is not found.
  *   </li>
- *   <li><strong><code>REVERSE(str)</code></strong><br/>
+ *   <li><strong><code>REVERSE(str)</code></strong><br>
  *     Returns a reversed copy of the input string <code>str</code>
  *   </li>
- *   <li><strong><code>REPEAT(str, count)</code></strong><br/>
+ *   <li><strong><code>REPEAT(str, count)</code></strong><br>
  *     Returns a string consisting of <code>str</code> repeated <code>count</code> times
  *   </li>
- *   <li><strong><code>REPLACE(str, orig, replace)</code></strong><br/>
+ *   <li><strong><code>REPLACE(str, orig, replace)</code></strong><br>
  *     Returns a copy of <code>str</code> in which all occurrences of <code>orig</code> have been
  *     replaced by <code>replace</code>
  *   </li>
- *   <li><strong><code>RIGHT(str, len)</code></strong><br/>
+ *   <li><strong><code>RIGHT(str, len)</code></strong><br>
  *     Returns the <code>len</code> rightmost characters of string <code>str</code>
  *   </li>
- *   <li><strong><code>RPAD(x)</code></strong><br/>
+ *   <li><strong><code>RPAD(x)</code></strong><br>
  *     Pad the right side of string <code>str</code> with copies of string <code>pad</code>,
  *     up to a total padding of <code>len</code> characters
  *   </li>
- *   <li><strong><code>SPACE(n)</code></strong><br/>
+ *   <li><strong><code>SPACE(n)</code></strong><br>
  *     Returns a string consisting of <code>n</code> whitespace characters
  *   </li>
- *   <li><strong><code>SUBSTRING(str,pos), SUBSTRING(str,pos,len)</code></strong><br/>
+ *   <li><strong><code>SUBSTRING(str,pos), SUBSTRING(str,pos,len)</code></strong><br>
  *     For two arguments, returns the substring of <code>str</code> starting at position
- *     <code>pos</code> and continuing to the end of the string.<br/>
+ *     <code>pos</code> and continuing to the end of the string.<br>
  *     For three arguments, returns the substring of <code>str</code> of length <code>len</code>,
  *     beginning at position <code>pos</code>
  *   </li>
- *   <li><strong><code>UPPER(str), UCASE(str</code></strong><br/>
+ *   <li><strong><code>UPPER(str), UCASE(str</code></strong><br>
  *     Returns the string <code>str</code> mapped to uppercase letters
  *   </li>
  *   </ul>
@@ -399,30 +399,30 @@ import prefuse.util.StringLib;
  *    <h2>Color Functions</h2>
  *    <p>Functions for generating, translating, and interpolating color values.</p>
  *   <ul>
- *   <li><strong><code>RGB(r, g, b)</code></strong><br/>
+ *   <li><strong><code>RGB(r, g, b)</code></strong><br>
  *     Returns an integer representing a fully opaque RGB (red, green, blue) color value
  *   </li>
- *   <li><strong><code>RGBA(r, g, b, a)</code></strong><br/>
+ *   <li><strong><code>RGBA(r, g, b, a)</code></strong><br>
  *     Returns an integer representing an RGBA (red, green, blue, alpha/transparency) color value
  *   </li>
- *   <li><strong><code>GRAY(v)</code></strong><br/>
+ *   <li><strong><code>GRAY(v)</code></strong><br>
  *     Returns an integer representing a grayscale color value of intensity <code>v</code>
  *   </li>
- *   <li><strong><code>HEX(hex)</code></strong><br/>
+ *   <li><strong><code>HEX(hex)</code></strong><br>
  *     Returns an integer representing the RGB color value encoded by the hexadecimal number
  *     <code>hex</code>
  *   </li>
- *   <li><strong><code>HSB(h, s, b)</code></strong><br/>
+ *   <li><strong><code>HSB(h, s, b)</code></strong><br>
  *     Maps the given hue (<code>hue</code>), saturation (<code>s</code>), and brightness
  *     (<code>b</code>) color space values (as floating point numbers between 0 and 1) to
  *     an integer representing an RGB color value
  *   </li>
- *   <li><strong><code>HSBA(h, s, b, a)</code></strong><br/>
+ *   <li><strong><code>HSBA(h, s, b, a)</code></strong><br>
  *     Maps the given hue (<code>hue</code>), saturation (<code>s</code>), brightness
  *     (<code>b</code>), and alpha (<code>a</code>) color space values (as floating point
  *     numbers between 0 and 1) to an integer representing an RGBA color value
  *   </li>
- *   <li><strong><code>COLORINTERP(c1, c2, f)</code></strong><br/>
+ *   <li><strong><code>COLORINTERP(c1, c2, f)</code></strong><br>
  *     Returns an interpolated color value between the input colors <code>c1</code> and
  *     <code>c2</code> determined by the mixing proportion <code>f</code>, a value
  *     between 0 and 1
@@ -438,25 +438,25 @@ import prefuse.util.StringLib;
  *    evaluate to references for the x-coordinate, y-coordinate, mouse hover status,
  *    highlight status, and fill color, respectively.</p>
  *   <ul>
- *   <li><strong><code>GROUPSIZE(group)</code></strong><br/>
+ *   <li><strong><code>GROUPSIZE(group)</code></strong><br>
  *     Returns the number of members in the data group <code>group</code>
  *   </li>
- *   <li><strong><code>INGROUP(group)</code></strong><br/>
+ *   <li><strong><code>INGROUP(group)</code></strong><br>
  *     Returns true if the current VisualItem is a member of data group <code>group</code>
  *   </li>
- *   <li><strong><code>MATCH(group, includeAll)</code></strong><br/>
+ *   <li><strong><code>MATCH(group, includeAll)</code></strong><br>
  *     Returns true if the current VisualItem is currently a search match. This is similar
  *     to <code>INGROUP(group)</code>, but also includes a possible special case when no
  *     query has been issued and all items should be counted as "matches" (indicated
  *     by <code>includeAll</code> being true).
  *   </li>
- *   <li><strong><code>QUERY(group)</code></strong><br/>
+ *   <li><strong><code>QUERY(group)</code></strong><br>
  *     Returns the current search query string in a search group of name <code>group</code>
  *   </li>
- *   <li><strong><code>VISIBLE()</code></strong><br/>
+ *   <li><strong><code>VISIBLE()</code></strong><br>
  *     Returns true if the current VisualItem is visible, equivalent to <code>_visible</code>
  *   </li>
- *   <li><strong><code>VALIDATED()</code></strong><br/>
+ *   <li><strong><code>VALIDATED()</code></strong><br>
  *     Returns true if the current VisualItem's bounds have been validated,
  *     equivalent to <code>_validated</code>
  *   </li>

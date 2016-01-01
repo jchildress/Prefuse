@@ -200,7 +200,7 @@ public class Sort {
 	 * be written in brackets ([]), just as is done in 
 	 * {@link prefuse.data.expression.parser.ExpressionParser expression
 	 * language statements}. For example, the
-	 * following string</p>
+	 * following string
 	 * 
 	 * <pre>"Profit DESC, [Product Type]"</pre>   
 	 * 

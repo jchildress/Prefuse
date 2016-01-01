@@ -1103,7 +1103,7 @@ public class Visualization {
      * Remove a data processing Action registered with this visualization.
      * If the removed action is currently running, it will be canceled.
      * The visualization reference held by the removed Action will be set to
-     * null.<br/>
+     * null.<br>
      * <strong>NOTE:</strong> Errors may occur if the removed Action is 
      * included in an "always run after" relation with another registered
      * Action that has not been removed from this visualization. It is the

@@ -27,7 +27,7 @@ import prefuse.visual.tuple.TableAggregateItem;
 public class AggregateTable extends VisualTable {
 
     /**
-     * Table storing the 1->Many aggregation mappings
+     * Table storing the 1-&gt;Many aggregation mappings
      */
     protected Table m_aggregated;
     

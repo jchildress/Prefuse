@@ -38,9 +38,7 @@ import prefuse.visual.VisualItem;
  * {@link #setBinCount(int)}). This value will determine the number of
  * quantiles that the data should be divided into. 
  * </p>
- * 
- * </p>
- * 
+ *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class DataColorAction extends ColorAction {

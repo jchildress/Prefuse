@@ -22,7 +22,7 @@ public class ParseException extends RuntimeException {
    * This constructor calls its super class with the empty string
    * to force the "toString" method of parent class "Throwable" to
    * print the error message in the form:
-   *     ParseException: <result of getMessage>
+   *     ParseException: &lt;result of getMessage&gt;
    */
   public ParseException(Token currentTokenVal,
                         int[][] expectedTokenSequencesVal,
@@ -66,7 +66,7 @@ public class ParseException extends RuntimeException {
   /**
    * This is the last token that has been consumed successfully.  If
    * this object has been created due to a parse error, the token
-   * followng this token will (therefore) be the first error token.
+   * following this token will (therefore) be the first error token.
    */
   public Token currentToken;
 
@@ -112,26 +112,26 @@ public class ParseException extends RuntimeException {
       }
       expected += eol + "    ";
     }
-    String retval = "Encountered \"";
+    String retVal = "Encountered \"";
     Token tok = currentToken.next;
     for (int i = 0; i < maxSize; i++) {
-      if (i != 0) retval += " ";
+      if (i != 0) retVal += " ";
       if (tok.kind == 0) {
-        retval += tokenImage[0];
+        retVal += tokenImage[0];
         break;
       }
-      retval += add_escapes(tok.image);
+      retVal += add_escapes(tok.image);
       tok = tok.next; 
     }
-    retval += "\" at line " + currentToken.next.beginLine + ", column " + currentToken.next.beginColumn;
-    retval += "." + eol;
+    retVal += "\" at line " + currentToken.next.beginLine + ", column " + currentToken.next.beginColumn;
+    retVal += "." + eol;
     if (expectedTokenSequences.length == 1) {
-      retval += "Was expecting:" + eol + "    ";
+      retVal += "Was expecting:" + eol + "    ";
     } else {
-      retval += "Was expecting one of:" + eol + "    ";
+      retVal += "Was expecting one of:" + eol + "    ";
     }
-    retval += expected;
-    return retval;
+    retVal += expected;
+    return retVal;
   }
 
   /**
@@ -145,7 +145,7 @@ public class ParseException extends RuntimeException {
    * string literal.
    */
   protected String add_escapes(String str) {
-      StringBuffer retval = new StringBuffer();
+      StringBuffer retVal = new StringBuffer();
       char ch;
       for (int i = 0; i < str.length(); i++) {
         switch (str.charAt(i))
@@ -153,40 +153,40 @@ public class ParseException extends RuntimeException {
            case 0 :
               continue;
            case '\b':
-              retval.append("\\b");
+              retVal.append("\\b");
               continue;
            case '\t':
-              retval.append("\\t");
+              retVal.append("\\t");
               continue;
            case '\n':
-              retval.append("\\n");
+              retVal.append("\\n");
               continue;
            case '\f':
-              retval.append("\\f");
+              retVal.append("\\f");
               continue;
            case '\r':
-              retval.append("\\r");
+              retVal.append("\\r");
               continue;
            case '\"':
-              retval.append("\\\"");
+              retVal.append("\\\"");
               continue;
            case '\'':
-              retval.append("\\\'");
+              retVal.append("\\\'");
               continue;
            case '\\':
-              retval.append("\\\\");
+              retVal.append("\\\\");
               continue;
            default:
               if ((ch = str.charAt(i)) < 0x20 || ch > 0x7e) {
                  String s = "0000" + Integer.toString(ch, 16);
-                 retval.append("\\u" + s.substring(s.length() - 4, s.length()));
+                 retVal.append("\\u" + s.substring(s.length() - 4, s.length()));
               } else {
-                 retval.append(ch);
+                 retVal.append(ch);
               }
               continue;
         }
       }
-      return retval.toString();
+      return retVal.toString();
    }
 
 }

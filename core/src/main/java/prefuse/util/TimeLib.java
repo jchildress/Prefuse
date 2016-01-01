@@ -212,7 +212,7 @@ public class TimeLib {
      * values less than or equal to that of the given field. For example,
      * clearing to {@link Calendar#HOUR} will floor the time to nearest
      * hour which occurred before or at the given time (e.g., 1:32
-     * --> 1:30).
+     * --&gt; 1:30).
      * @param t the reference time
      * @param c a Calendar instance used to help compute the value, the
      * state of the Calendar will be overwritten.
@@ -232,7 +232,7 @@ public class TimeLib {
      * values less than or equal to that of the given field. For example,
      * clearing to {@link Calendar#HOUR} will floor the time to nearest
      * hour which occurred before or at the given time (e.g., 1:32
-     * --> 1:30).
+     * --&gt; 1:30).
      * @param c the Calendar to clear
      * @param field the time field to clear to, one of the
      * {@link java.util.Calendar} fields, or one of the extended fields

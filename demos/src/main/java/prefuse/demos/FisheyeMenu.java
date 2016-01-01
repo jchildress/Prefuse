@@ -13,10 +13,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.AbstractAction;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import prefuse.Constants;
 import prefuse.Display;
@@ -74,7 +71,7 @@ public class FisheyeMenu extends Display {
     
     /**
      * Create a new, empty FisheyeMenu.
-     * @see #addMenuItem(String, javax.swing.Action)
+     * @see #addMenuItem(String, ActionListener)
      */
     public FisheyeMenu() {
         super(new Visualization());
@@ -115,21 +112,21 @@ public class FisheyeMenu extends Display {
 
         // fisheye distortion based on the current anchor location
         ActionList distort = new ActionList();
-        Distortion feye = new FisheyeDistortion(0,m_scale);
-        distort.add(feye);
+        Distortion fEye = new FisheyeDistortion(0,m_scale);
+        distort.add(fEye);
         distort.add(colors);
         distort.add(new RepaintAction());
         m_vis.putAction("distort", distort);
         
         // update the distortion anchor position to be the current
         // location of the mouse pointer
-        addControlListener(new AnchorUpdateControl(feye, "distort"));
+        addControlListener(new AnchorUpdateControl(fEye, "distort"));
     }
     
     /**
      * Adds a menu item to the fisheye menu.
      * @param name the menu label to use
-     * @param action the ActionListener to notify when the item is clicked
+     * @param listener the ActionListener to notify when the item is clicked
      * The prefuse VisualItem corresponding to this menu item will
      * be returned by the ActionEvent's getSource() method.
      */
@@ -150,7 +147,7 @@ public class FisheyeMenu extends Display {
         
         // create and display application window
         JFrame f = new JFrame("p r e f u s e  |  f i s h e y e");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.getContentPane().add(fm);
         f.pack();
         f.setVisible(true);
@@ -201,7 +198,7 @@ public class FisheyeMenu extends Display {
             
             // second pass
             h = ins.top;
-            double ih, y=0, x=ins.left;
+            double ih, y, x=ins.left;
             iter = m_vis.items();
             while ( iter.hasNext() ) {
                 VisualItem item = (VisualItem)iter.next();
