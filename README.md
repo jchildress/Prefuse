@@ -1,5 +1,8 @@
 # Prefuse
 
+[![Build Status](https://travis-ci.org/Sciss/Prefuse.svg?branch=master)](https://travis-ci.org/Sciss/Prefuse)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.sciss/prefuse-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.sciss/prefuse-core)
+
 ## statement
 
 Prefuse is a Java-based toolkit for building interactive information visualization applications. It was developed until 2007 by its original author, [Jeffrey Heer](http://homes.cs.washington.edu/~jheer/). Prefuse is licensed under the terms of a [BSD license](http://github.com/Sciss/Prefuse/blob/master/licenses/Prefuse-License.txt) and can be freely used for both commercial and non-commercial purposes. The original website is at [prefuse.org](http://prefuse.org/).
