@@ -10,7 +10,7 @@ lazy val commonJavaOptions = Seq("-source", "1.6")
 lazy val fullDescr = "A toolkit for building interactive information visualization applications"
 
 lazy val commonSettings = Seq(
-  version           := "1.0.1-SNAPSHOT",
+  version           := "1.0.1",
   organization      := "de.sciss",
   scalaVersion      := "2.11.7",  // not used
   homepage          := Some(url(s"https://github.com/Sciss/$baseName")),

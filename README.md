@@ -25,7 +25,11 @@ To link to this library from Maven:
 
 Or sbt:
 
-    "de.sciss" % "prefuse-core" % "1.0.0"
+    "de.sciss" % "prefuse-core" % "1.0.1"
+
+## contributing
+
+Please see the file [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## changes
 
