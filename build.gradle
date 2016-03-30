@@ -1,0 +1,31 @@
+apply plugin: 'java'
+
+repositories {
+
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+}
+
+
+dependencies {
+    compile 'org.apache.lucene:lucene-core:5.5.0'
+    compile 'org.apache.lucene:lucene-queryparser:5.5.0'
+    compile 'org.apache.lucene:lucene-analyzers-common:5.5.0'
+
+    compile 'com.google.guava:guava:19.0'
+    compile 'org.jogamp.gluegen:gluegen:2.3.2'
+    compile 'org.jogamp.gluegen:gluegen-rt:2.3.2'
+    compile 'org.jogamp.jogl:jogl:2.3.2'
+    compile 'org.jogamp.jogl:jogl-all:2.3.2'
+    compile 'org.jogamp.jogl:newt:2.3.2'
+    compile 'org.jogamp.jogl:nativewindow:2.3.2'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
+
+    compile 'junit:junit:4.12'
+
+
+}
+
